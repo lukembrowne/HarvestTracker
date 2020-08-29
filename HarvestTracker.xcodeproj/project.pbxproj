@@ -10,10 +10,12 @@
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
 		A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */; };
-		A3D98B7024FA83F0003ED12E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6F24FA83F0003ED12E /* ContentView.swift */; };
+		A3D98B7024FA83F0003ED12E /* HarvestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6F24FA83F0003ED12E /* HarvestList.swift */; };
 		A3D98B7224FA83F4003ED12E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7124FA83F4003ED12E /* Assets.xcassets */; };
 		A3D98B7524FA83F4003ED12E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7424FA83F4003ED12E /* Preview Assets.xcassets */; };
 		A3D98B7824FA83F4003ED12E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */; };
+		A3D98B8024FA85F1003ED12E /* HarvestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */; };
+		A3D98B8224FA8691003ED12E /* AddHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B8124FA8691003ED12E /* AddHarvest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +23,13 @@
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6D24FA83F0003ED12E /* HarvestTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HarvestTracker.xcdatamodel; sourceTree = "<group>"; };
-		A3D98B6F24FA83F0003ED12E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3D98B6F24FA83F0003ED12E /* HarvestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestList.swift; sourceTree = "<group>"; };
 		A3D98B7124FA83F4003ED12E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3D98B7424FA83F4003ED12E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3D98B7724FA83F4003ED12E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3D98B7924FA83F4003ED12E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRow.swift; sourceTree = "<group>"; };
+		A3D98B8124FA8691003ED12E /* AddHarvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +64,9 @@
 			children = (
 				A3D98B6824FA83F0003ED12E /* AppDelegate.swift */,
 				A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */,
-				A3D98B6F24FA83F0003ED12E /* ContentView.swift */,
+				A3D98B6F24FA83F0003ED12E /* HarvestList.swift */,
+				A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */,
+				A3D98B8124FA8691003ED12E /* AddHarvest.swift */,
 				A3D98B7124FA83F4003ED12E /* Assets.xcassets */,
 				A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */,
 				A3D98B7924FA83F4003ED12E /* Info.plist */,
@@ -150,8 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
+				A3D98B8224FA8691003ED12E /* AddHarvest.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
-				A3D98B7024FA83F0003ED12E /* ContentView.swift in Sources */,
+				A3D98B8024FA85F1003ED12E /* HarvestRow.swift in Sources */,
+				A3D98B7024FA83F0003ED12E /* HarvestList.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

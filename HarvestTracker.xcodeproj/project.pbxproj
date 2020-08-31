@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F71FE6524FB25AE003CC71C /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F71FE6424FB25AE003CC71C /* Harvest.swift */; };
+		A32029D424FD9B8000DD1643 /* CropsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32029D324FD9B8000DD1643 /* CropsJSON.swift */; };
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
 		A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F71FE6424FB25AE003CC71C /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
+		A32029D324FD9B8000DD1643 /* CropsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropsJSON.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +70,9 @@
 				A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */,
 				A3D98B6F24FA83F0003ED12E /* HarvestList.swift */,
 				A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */,
+				2F71FE6424FB25AE003CC71C /* Harvest.swift */,
 				A3D98B8124FA8691003ED12E /* AddHarvest.swift */,
+				A32029D324FD9B8000DD1643 /* CropsJSON.swift */,
 				A3D98B7124FA83F4003ED12E /* Assets.xcassets */,
 				A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */,
 				A3D98B7924FA83F4003ED12E /* Info.plist */,
@@ -158,7 +164,9 @@
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvest.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
+				A32029D424FD9B8000DD1643 /* CropsJSON.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRow.swift in Sources */,
+				2F71FE6524FB25AE003CC71C /* Harvest.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestList.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 			);

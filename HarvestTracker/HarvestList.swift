@@ -17,32 +17,52 @@ struct HarvestList: View {
       entity: Harvest.entity(),
       // 3
       sortDescriptors: [
-        NSSortDescriptor(keyPath: \Harvest.crop, ascending: false)
+        NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)
       ]
     // 4
     ) var harvests: FetchedResults<Harvest>
+    
+    
+    // Retrieve crops from database
+    @FetchRequest(entity: Crop.entity(),
+                  sortDescriptors: [
+                    NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
+                        ]) var crops: FetchedResults<Crop>
+
 
     
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var isPresented = false
+    
+    // Used to workaround bug that add button doesn't work if sheet has already been presented
+    @Environment(\.presentationMode) var presentation
 
-    
-    
+
     var body: some View {
         
         NavigationView {
           List {
-            ForEach(harvests, id: \.crop) {
+            ForEach(harvests, id: \.self) {
               HarvestRow(harvest: $0)
             }
             .onDelete(perform: deleteHarvest)
           }
           .sheet(isPresented: $isPresented) {
-            AddHarvest { crop, weight, harvestDate in
-                self.addHarvest(crop: crop, weight: weight, harvestDate: harvestDate)
+            AddHarvest(isPresented: self.$isPresented) { crop,
+                weight,
+                harvestDate,
+                unit,
+                isPresented in
+              self.addHarvest(crop: crop,
+                              weight: weight,
+                              harvestDate: harvestDate,
+                              unit: unit,
+                              isPresented: self.$isPresented)
               self.isPresented = false
             }
+            .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+
           }
           .navigationBarTitle(Text("Harvests"))
             .navigationBarItems(trailing:
@@ -51,33 +71,76 @@ struct HarvestList: View {
               }
           )
         }
+        .onAppear() {
+            print("Navigation view appeared")
+            if(self.harvests.count == 0){
+                print("No harvests found")
+                self.loadDefaultHarvests()
+            }
+            
+            if(self.crops.count == 0){
+                print("No crops found")
+                self.loadDefaultCrops()
+            }
+        }
     }
     
     
     func deleteHarvest(at offsets: IndexSet) {
-      // 1
       offsets.forEach { index in
-        // 2
         let harvest = self.harvests[index]
-        // 3
         self.managedObjectContext.delete(harvest)
       }
-      // 4
       saveContext()
     }
     
-    func addHarvest(crop: String, weight: String, harvestDate: Date) {
+    func addHarvest(crop: String,
+                    weight: String,
+                    harvestDate: Date,
+                    unit: String,
+                    isPresented: Binding<Bool>) {
       // 1
       let newHarvest = Harvest(context: managedObjectContext)
 
       // 2
       newHarvest.crop = crop
-      newHarvest.weight = weight
+      newHarvest.weight = Double(weight) ?? 0.0
       newHarvest.harvestDate = harvestDate
+      newHarvest.unit = unit
+        
+    //  print(newHarvest)
+        Harvest.printHarvest()
 
       // 3
       saveContext()
     }
+    
+    func loadDefaultHarvests() {
+        
+        let newHarvest = Harvest(context: managedObjectContext)
+              
+        newHarvest.crop = "default harvest init"
+        newHarvest.weight = 420
+        
+        saveContext()
+        
+    }
+    
+    func loadDefaultCrops() {
+          
+        for crop in cropsJSONDecoded {
+            let newCrop = Crop(context: managedObjectContext)
+                   
+            newCrop.cropName = crop.cropName
+            newCrop.costPerUnit = crop.costPerUnit
+            newCrop.unit = crop.unit
+        }
+        
+        
+              
+          saveContext()
+          
+      }
     
     
     func saveContext() {

@@ -1,14 +1,44 @@
 //
-//  CropsJSON.swift
+//  Crop.swift
 //  HarvestTracker
 //
-//  Created by Luke Browne on 8/31/20.
+//  Created by Luke Browne on 9/1/20.
 //  Copyright © 2020 Luke Browne. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import CoreData
 
-struct CropsJSON: Decodable {
+extension Crop {
+    
+    
+    // Load default crops if no crops are in database
+    static func loadDefaultCrops(in managedObjectContext: NSManagedObjectContext) {
+           
+         for crop in cropsJSONDecoded {
+             let newCrop = Crop(context: managedObjectContext)
+                    
+             newCrop.cropName = crop.cropName
+             newCrop.costPerUnit = crop.costPerUnit
+             newCrop.unit = crop.unit
+         }
+         
+        // Save
+            do {
+              try managedObjectContext.save()
+            } catch {
+              print("Error saving managed object context: \(error)")
+            }
+           
+       }
+    
+    
+}
+
+
+
+// Need to set Crop struct in JSON format to be able to decode it
+struct CropJSON: Decodable {
     
     let cropName: String
     let costPerUnit: Double
@@ -16,7 +46,8 @@ struct CropsJSON: Decodable {
     
 }
 
-let cropsJSON = """
+// Raw crop data to initialize database
+let cropJSONRaw = """
     [
       {
         "cropName": "basil",
@@ -151,9 +182,6 @@ let cropsJSON = """
     ]
 """
 
-let jsonData = cropsJSON.data(using: .utf8)!
 
-// code from avanderlee.com/swift/json-parsing-decoding/
-
-
-let cropsJSONDecoded: [CropsJSON] = try! JSONDecoder().decode([CropsJSON].self, from: jsonData)
+// code for parsing and loading JSON from: avanderlee.com/swift/json-parsing-decoding/
+let cropsJSONDecoded: [CropJSON] = try! JSONDecoder().decode([CropJSON].self, from: cropJSONRaw.data(using: .utf8)!)

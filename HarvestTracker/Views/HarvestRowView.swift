@@ -1,5 +1,5 @@
 //
-//  HarvestRow.swift
+//  HarvestRowView.swift
 //  HarvestTracker
 //
 //  Created by Luke Browne on 8/29/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HarvestRow: View {
+struct HarvestRowView: View {
     
     let harvest: Harvest
     

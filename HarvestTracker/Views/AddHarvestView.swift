@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddHarvest: View {
+struct AddHarvestView: View {
     
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -22,6 +22,9 @@ struct AddHarvest: View {
     @State var crop = ""
     @State var weight = ""
     @State var harvestDate = Date()
+    
+    @State var isPresentedAddCrop = false
+
     
     @State var unit = "oz"
     var units = ["oz", "lb", "g", "kg"]
@@ -38,7 +41,6 @@ struct AddHarvest: View {
       NavigationView {
         Form {
             
-            
           // Select Crop
           Section(header: Text("Crop")) {
             Picker("Choose a crop:", selection: $crop) {
@@ -47,6 +49,12 @@ struct AddHarvest: View {
                                 .tag(self.crops[index].cropName ?? "" )
                            }
             }.environment(\.managedObjectContext, self.managedObjectContext)
+       Button(action: { self.isPresentedAddCrop.toggle() }) {
+                           Text("Add Harvest")
+                         }.sheet(isPresented: $isPresentedAddCrop) {
+                         Text("Sheet to add harvest")
+                         }
+            
           }
 
           // Enter weight
@@ -96,16 +104,15 @@ struct AddHarvest: View {
                                     )
                                 )
 
-        }
+      }
     }
     
     private func addHarvestAction() {
       onComplete(
-        crop.isEmpty ? AddHarvest.DefaultCrop : crop,
-        weight.isEmpty ? AddHarvest.DefaultWeight : weight,
+        crop.isEmpty ? AddHarvestView.DefaultCrop : crop,
+        weight.isEmpty ? AddHarvestView.DefaultWeight : weight,
         harvestDate,
         unit,
         $isPresented)
     }
 }
-

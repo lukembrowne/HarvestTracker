@@ -14,7 +14,7 @@
         <relationship name="crop2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crop" inverseName="harvest" inverseEntity="Crop"/>
     </entity>
     <elements>
-        <element name="Harvest" positionX="-144.75" positionY="-42.89453125" width="128" height="118"/>
         <element name="Crop" positionX="119.87109375" positionY="-7.828125" width="128" height="103"/>
+        <element name="Harvest" positionX="-144.75" positionY="-42.89453125" width="128" height="118"/>
     </elements>
 </model>

@@ -7,33 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F71FE6524FB25AE003CC71C /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F71FE6424FB25AE003CC71C /* Harvest.swift */; };
-		A32029D424FD9B8000DD1643 /* CropsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32029D324FD9B8000DD1643 /* CropsJSON.swift */; };
+		A36230ED24FEE27B00A672FD /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EC24FEE27B00A672FD /* Harvest.swift */; };
+		A36230EF24FEE89E00A672FD /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EE24FEE89E00A672FD /* Crop.swift */; };
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
 		A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */; };
-		A3D98B7024FA83F0003ED12E /* HarvestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6F24FA83F0003ED12E /* HarvestList.swift */; };
+		A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */; };
 		A3D98B7224FA83F4003ED12E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7124FA83F4003ED12E /* Assets.xcassets */; };
 		A3D98B7524FA83F4003ED12E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7424FA83F4003ED12E /* Preview Assets.xcassets */; };
 		A3D98B7824FA83F4003ED12E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */; };
-		A3D98B8024FA85F1003ED12E /* HarvestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */; };
-		A3D98B8224FA8691003ED12E /* AddHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B8124FA8691003ED12E /* AddHarvest.swift */; };
+		A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */; };
+		A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B8124FA8691003ED12E /* AddHarvestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F71FE6424FB25AE003CC71C /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
-		A32029D324FD9B8000DD1643 /* CropsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropsJSON.swift; sourceTree = "<group>"; };
+		A36230EC24FEE27B00A672FD /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
+		A36230EE24FEE89E00A672FD /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6D24FA83F0003ED12E /* HarvestTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HarvestTracker.xcdatamodel; sourceTree = "<group>"; };
-		A3D98B6F24FA83F0003ED12E /* HarvestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestList.swift; sourceTree = "<group>"; };
+		A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestListView.swift; sourceTree = "<group>"; };
 		A3D98B7124FA83F4003ED12E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3D98B7424FA83F4003ED12E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3D98B7724FA83F4003ED12E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3D98B7924FA83F4003ED12E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRow.swift; sourceTree = "<group>"; };
-		A3D98B8124FA8691003ED12E /* AddHarvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvest.swift; sourceTree = "<group>"; };
+		A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRowView.swift; sourceTree = "<group>"; };
+		A3D98B8124FA8691003ED12E /* AddHarvestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +47,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A32029D524FE74F900DD1643 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
+				A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */,
+				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A32029D624FE750100DD1643 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A32029D724FE750700DD1643 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A36230EC24FEE27B00A672FD /* Harvest.swift */,
+				A36230EE24FEE89E00A672FD /* Crop.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A3D98B5C24FA83F0003ED12E = {
 			isa = PBXGroup;
 			children = (
@@ -66,13 +92,11 @@
 		A3D98B6724FA83F0003ED12E /* HarvestTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A32029D724FE750700DD1643 /* Models */,
+				A32029D624FE750100DD1643 /* ViewModels */,
+				A32029D524FE74F900DD1643 /* Views */,
 				A3D98B6824FA83F0003ED12E /* AppDelegate.swift */,
 				A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */,
-				A3D98B6F24FA83F0003ED12E /* HarvestList.swift */,
-				A3D98B7F24FA85F1003ED12E /* HarvestRow.swift */,
-				2F71FE6424FB25AE003CC71C /* Harvest.swift */,
-				A3D98B8124FA8691003ED12E /* AddHarvest.swift */,
-				A32029D324FD9B8000DD1643 /* CropsJSON.swift */,
 				A3D98B7124FA83F4003ED12E /* Assets.xcassets */,
 				A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */,
 				A3D98B7924FA83F4003ED12E /* Info.plist */,
@@ -162,13 +186,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
-				A3D98B8224FA8691003ED12E /* AddHarvest.swift in Sources */,
+				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
-				A32029D424FD9B8000DD1643 /* CropsJSON.swift in Sources */,
-				A3D98B8024FA85F1003ED12E /* HarvestRow.swift in Sources */,
-				2F71FE6524FB25AE003CC71C /* Harvest.swift in Sources */,
-				A3D98B7024FA83F0003ED12E /* HarvestList.swift in Sources */,
+				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
+				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
+				A36230ED24FEE27B00A672FD /* Harvest.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
+				A36230EF24FEE89E00A672FD /* Crop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

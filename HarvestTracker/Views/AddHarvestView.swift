@@ -10,33 +10,35 @@ import SwiftUI
 
 struct AddHarvestView: View {
     
+    // Environment and bindings
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
 
-
     @Binding var isPresented: Bool
     
+    
+    // Initialize and set defaults
+    @State var crop = ""
     static let DefaultCrop = "default crop"
+    
+    @State var weight = ""
     static let DefaultWeight = "1"
 
-    @State var crop = ""
-    @State var weight = ""
     @State var harvestDate = Date()
-    
-    @State var isPresentedAddCrop = false
-
     
     @State var unit = "oz"
     var units = ["oz", "lb", "g", "kg"]
-        
+    
+    @State var isPresentedAddCrop = false
+
+    // Fetch request for crops
     @FetchRequest(entity: Crop.entity(),
                   sortDescriptors: [
                     NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
                         ]) var crops: FetchedResults<Crop>
     
-
-    let onComplete: (String, String, Date, String, Binding<Bool>) -> Void
-
+    
+    // Main view
     var body: some View {
       NavigationView {
         Form {
@@ -49,10 +51,12 @@ struct AddHarvestView: View {
                                 .tag(self.crops[index].cropName ?? "" )
                            }
             }.environment(\.managedObjectContext, self.managedObjectContext)
+            
+       // Testing
        Button(action: { self.isPresentedAddCrop.toggle() }) {
-                           Text("Add Harvest")
+                           Text("Add New Crop")
                          }.sheet(isPresented: $isPresentedAddCrop) {
-                         Text("Sheet to add harvest")
+                         Text("Sheet to add new Crop")
                          }
             
           }
@@ -94,25 +98,49 @@ struct AddHarvestView: View {
         }
         .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
         .navigationBarItems(leading:
-            Button(action: {
-                print("tapped cancel")
-                self.presentation.wrappedValue.dismiss()
-                self.isPresented = false
-                                }, label: {
-                                    Text("Cancel")
-                                }
-                                    )
+            
+        // Add Cancel button
+        Button(action: {
+            print("tapped cancel")
+            self.presentation.wrappedValue.dismiss()
+            self.isPresented = false
+                            }, label: {
+                                Text("Cancel")
+                            }
                                 )
+                            )
 
-      }
-    }
+      } // End Navigation View
+    } // End Body
     
+    
+    //
     private func addHarvestAction() {
-      onComplete(
-        crop.isEmpty ? AddHarvestView.DefaultCrop : crop,
-        weight.isEmpty ? AddHarvestView.DefaultWeight : weight,
-        harvestDate,
-        unit,
-        $isPresented)
+        
+        // Add harvest to database
+        Harvest.addHarvest(crop: crop.isEmpty ? AddHarvestView.DefaultCrop : crop,
+                           weight: weight.isEmpty ? AddHarvestView.DefaultWeight : weight,
+                           harvestDate: harvestDate,
+                           unit: unit,
+                           isPresented: $isPresented,
+                           in: self.managedObjectContext)
+        
+        // Close sheet once harvest is added
+        self.isPresented = false
+      }
+    
+}
+
+
+
+
+
+struct AddHarvestView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        return AddHarvestView(isPresented: .constant(true)).environment(\.managedObjectContext, context)
     }
 }

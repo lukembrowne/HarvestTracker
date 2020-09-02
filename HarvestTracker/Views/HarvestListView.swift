@@ -44,19 +44,7 @@ struct HarvestListView: View {
             .onDelete(perform: deleteHarvest)
           }
             .sheet(isPresented: $isPresented) {
-            AddHarvestView(isPresented: self.$isPresented) { crop,
-                weight,
-                harvestDate,
-                unit,
-                isPresented in
-                Harvest.addHarvest(crop: crop,
-                              weight: weight,
-                              harvestDate: harvestDate,
-                              unit: unit,
-                              isPresented: self.$isPresented,
-                              in: self.managedObjectContext)
-              self.isPresented = false
-            }
+            AddHarvestView(isPresented: self.$isPresented)
             .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
                 
           }

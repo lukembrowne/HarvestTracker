@@ -18,15 +18,15 @@ struct AddHarvestView: View {
     
     
     // Initialize and set defaults
-    @State var crop = ""
-    static let DefaultCrop = "default crop"
+    @State var chosenCrop = "No crop chosen"
+    static let defaultCrop = "default crop"
     
-    @State var weight = ""
-    static let DefaultWeight = "1"
+    @State var chosenWeight = ""
+    static let defaultWeight = "1"
 
-    @State var harvestDate = Date()
+    @State var chosenHarvestDate = Date()
     
-    @State var unit = "oz"
+    @State var chosenUnit = "oz"
     var units = ["oz", "lb", "g", "kg"]
     
     @State var isPresentedAddCrop = false
@@ -40,32 +40,40 @@ struct AddHarvestView: View {
     
     // Main view
     var body: some View {
+        
       NavigationView {
+        
         Form {
             
           // Select Crop
           Section(header: Text("Crop")) {
-            Picker("Choose a crop:", selection: $crop) {
-                           ForEach(0 ..< crops.count) { index in
-                            Text(self.crops[index].cropName ?? "")
-                                .tag(self.crops[index].cropName ?? "" )
-                           }
-            }.environment(\.managedObjectContext, self.managedObjectContext)
-            
+
        // Testing
-       Button(action: { self.isPresentedAddCrop.toggle() }) {
-                           Text("Add New Crop")
-                         }.sheet(isPresented: $isPresentedAddCrop) {
-                         Text("Sheet to add new Crop")
-                         }
+//       Button(action: { self.isPresentedAddCrop.toggle() }) {
+//                           Text("Add New Crop")
+//                         }.sheet(isPresented: $isPresentedAddCrop) {
+//                         Text("Sheet to add new Crop")
+//                         }
+//
+            NavigationLink(destination: CropListView(chosenCrop: $chosenCrop)) {
+                HStack {
+                    Text("Choose a crop:")
+                    Spacer()
+                    Text(chosenCrop)
+                }
+            }
             
-          }
+          } // End select crop section
+            
+            
 
           // Enter weight
           Section(header: Text("Amount")) {
-            TextField("Weight", text: $weight)
+            
+            TextField("Weight", text: $chosenWeight)
                 .keyboardType(.decimalPad)
-            Picker("units", selection: $unit) {
+            
+            Picker("units", selection: $chosenUnit) {
                 ForEach(0 ..< units.count) { index in
                     Text(self.units[index])
                         .tag(self.units[index])
@@ -77,7 +85,7 @@ struct AddHarvestView: View {
           // Enter harvest date
           Section {
             DatePicker(
-              selection: $harvestDate,
+              selection: $chosenHarvestDate,
               displayedComponents: .date) { Text("Harvest Date").foregroundColor(Color(.gray)) }
             }
 
@@ -118,10 +126,10 @@ struct AddHarvestView: View {
     private func addHarvestAction() {
         
         // Add harvest to database
-        Harvest.addHarvest(crop: crop.isEmpty ? AddHarvestView.DefaultCrop : crop,
-                           weight: weight.isEmpty ? AddHarvestView.DefaultWeight : weight,
-                           harvestDate: harvestDate,
-                           unit: unit,
+        Harvest.addHarvest(crop: chosenCrop.isEmpty ? AddHarvestView.defaultCrop : chosenCrop,
+                           weight: chosenWeight.isEmpty ? AddHarvestView.defaultWeight : chosenWeight,
+                           harvestDate: chosenHarvestDate,
+                           unit: chosenUnit,
                            isPresented: $isPresented,
                            in: self.managedObjectContext)
         

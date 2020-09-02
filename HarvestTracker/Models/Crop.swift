@@ -9,7 +9,28 @@
 import SwiftUI
 import CoreData
 
-extension Crop {
+extension Crop: Identifiable {
+    
+
+    // Add Crop
+    static func addCrop(cropName: String,
+                       costPerUnit: String,
+                       unit: String,
+                       in managedObjectContext: NSManagedObjectContext) {
+         // 1
+         let newCrop = Crop(context: managedObjectContext)
+
+         newCrop.cropName = cropName
+         newCrop.costPerUnit = Double(costPerUnit) ?? 0.0
+         newCrop.unit = unit
+
+          do {
+            try managedObjectContext.save()
+          } catch {
+            print("Error saving managed object context: \(error)")
+          }
+       }
+    
     
     
     // Load default crops if no crops are in database

@@ -67,9 +67,7 @@ extension Harvest {
            print("Error saving managed object context: \(error)")
          }
         
-       }   
-    
-    
-    
+       }
+  
     
 }

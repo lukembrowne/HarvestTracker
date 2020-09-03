@@ -35,42 +35,51 @@ struct HarvestListView: View {
     
     var body: some View {
     
-        NavigationView {
-        
-          List {
-            ForEach(harvests, id: \.self) {
-              HarvestRowView(harvest: $0)
-            }
-            .onDelete(perform: deleteHarvest)
-          }
-            .sheet(isPresented: $isPresented) {
-                    AddHarvestView(isPresented: self.$isPresented)
-            .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+            
+            NavigationView {
                 
-          }
-          .navigationBarTitle(Text("Harvests"))
-          .navigationBarItems(leading: EditButton(),
-            trailing:
-                Button(action: { self.isPresented.toggle() }) {
-                    Image(systemName: "plus")
+              List {
+                
+                // Add total harvest amount
+                HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, self.managedObjectContext)
+                
+                
+                ForEach(harvests, id: \.self) {
+                  HarvestRowView(harvest: $0)
                 }
-            )
-        }
-        .onAppear() {
-            
-            print("Navigation view appeared")
-            
-            if(self.harvests.count == 0){
-                print("No harvests found")
-                Harvest.addDefaultHarvests(in: self.managedObjectContext)
-            }
+                .onDelete(perform: deleteHarvest)
+              }
+                .sheet(isPresented: $isPresented) {
+                        AddHarvestView(isPresented: self.$isPresented)
+                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+                    
+              }
+              .navigationBarTitle(Text("Harvest"))
+              .navigationBarItems(leading: EditButton(),
+                trailing:
+                    Button(action: { self.isPresented.toggle() }) {
+                        Image(systemName: "plus")
+                    }
+                )
+            } // End Navigation View
+            .onAppear() {
+                
+                // To remove lines between rows of list
+                 UITableView.appearance().separatorStyle = .none
+                
+                print("Navigation view appeared")
+                
+                if(self.harvests.count == 0){
+                    print("No harvests found")
+                    Harvest.addDefaultHarvests(in: self.managedObjectContext)
+                }
 
-            if(self.crops.count == 0){
-                print("No crops found")
-                Crop.loadDefaultCrops(in: self.managedObjectContext)
-            }
-        }
-    }
+                if(self.crops.count == 0){
+                    print("No crops found")
+                    Crop.loadDefaultCrops(in: self.managedObjectContext)
+                }
+            } // End on Appear
+    } // End Body
     
     // Maybe there is a way to factor this out into Harvest, but not sure how
     func deleteHarvest(at offsets: IndexSet) {

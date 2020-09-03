@@ -12,6 +12,7 @@
 		A36230EF24FEE89E00A672FD /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EE24FEE89E00A672FD /* Crop.swift */; };
 		A36230F124FFBDF800A672FD /* CropListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F024FFBDF800A672FD /* CropListView.swift */; };
 		A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F224FFBF6600A672FD /* CropRowView.swift */; };
+		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
 		A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */; };
@@ -29,6 +30,7 @@
 		A36230EE24FEE89E00A672FD /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 		A36230F024FFBDF800A672FD /* CropListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropListView.swift; sourceTree = "<group>"; };
 		A36230F224FFBF6600A672FD /* CropRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRowView.swift; sourceTree = "<group>"; };
+		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
 				A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */,
+				A3A739B925011238005A2E5F /* HarvestTotalView.swift */,
 				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
 				A36230F024FFBDF800A672FD /* CropListView.swift */,
 				A36230F224FFBF6600A672FD /* CropRowView.swift */,
@@ -199,6 +202,7 @@
 				A36230F124FFBDF800A672FD /* CropListView.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
+				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
@@ -345,6 +349,7 @@
 				DEVELOPMENT_TEAM = EV4FSTVJL4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HarvestTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,6 +370,7 @@
 				DEVELOPMENT_TEAM = EV4FSTVJL4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HarvestTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

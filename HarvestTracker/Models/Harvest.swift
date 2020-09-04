@@ -18,18 +18,49 @@ extension Harvest {
     
     // Add Harvest
     static func addHarvest(crop: String,
-                       weight: String,
+                       amountEntered: String,
                        harvestDate: Date,
                        unit: String,
                        isPresented: Binding<Bool>,
                        in managedObjectContext: NSManagedObjectContext) {
-         // 1
+        
          let newHarvest = Harvest(context: managedObjectContext)
 
          newHarvest.crop = crop
-         newHarvest.weight = Double(weight) ?? 0.0
+         newHarvest.amountEntered = Double(amountEntered) ?? 0.0
          newHarvest.harvestDate = harvestDate
-         newHarvest.unit = unit
+         newHarvest.unitEntered = unit
+        
+        // Standardize amount
+        switch unit {
+        case "oz":
+//            print("oz selected")
+            newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
+                                                        unit: UnitMass.ounces).converted(to: UnitMass.grams).value
+        case "lb":
+//            print("lb selected")
+            newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
+                                                                   unit: UnitMass.pounds).converted(to: UnitMass.grams).value
+        case "g":
+//            print("g selected")
+            newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
+                                                                   unit: UnitMass.grams).converted(to: UnitMass.grams).value
+        case "kg":
+//            print("kg selected")
+            newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
+                                                                   unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
+        default:
+            print("Unrecognized unit")
+        }
+        
+        
+        // Testing
+        let test = Measurement(value: 420.0, unit: UnitMass.pounds)
+        print(test)
+        
+        print(test.converted(to: UnitMass.centigrams))
+        
+        
 
           do {
             try managedObjectContext.save()
@@ -44,7 +75,7 @@ extension Harvest {
         let newHarvest = Harvest(context: managedObjectContext)
               
         newHarvest.crop = "default harvest init"
-        newHarvest.weight = 420
+        newHarvest.amountEntered = 420
         
        do {
           try managedObjectContext.save()

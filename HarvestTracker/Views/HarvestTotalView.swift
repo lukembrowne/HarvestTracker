@@ -12,7 +12,7 @@ struct HarvestTotalView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    var totalHarvestWeight = 0.0
+    var totalHarvestAmount = 0.0
     
     init(harvests: FetchedResults<Harvest> ){
         self.harvests = harvests
@@ -24,7 +24,7 @@ struct HarvestTotalView: View {
     
     
     var body: some View {
-        Text("Total Harvest: \(self.totalHarvestWeight)")
+        Text("Total Harvest: \(self.totalHarvestAmount, specifier: "%.2f") kg")
         
     }
     
@@ -34,12 +34,15 @@ struct HarvestTotalView: View {
         
         if(harvests.count > 0){
             for index in 0...harvests.count - 1 {
-                print(index)
-                totalHarvestWeight += harvests[index].weight
+//                print(index)
+                totalHarvestAmount += harvests[index].amountStandardized
             }
         } else {
-            totalHarvestWeight = 0.0
+            totalHarvestAmount = 0.0
         }
+        
+        // Convert to unit
+        totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: .kilograms).value
         
     }
     

@@ -39,7 +39,7 @@ struct AddCropView: View {
                 } // End select crop section
                 
                 
-                // Enter weight
+                // Enter amount
                 Section(header: Text("Amount")) {
                     
                     TextField("Cost Per Unit", text: $chosenCostPerUnit)

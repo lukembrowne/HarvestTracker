@@ -32,9 +32,14 @@ struct HarvestRowView: View {
                 }
             }
             Spacer()
-            Text(String(harvest.weight))
+            Text(String(harvest.amountEntered))
                 .font(.title)
-            Text(String(harvest.unit ?? "def"))
+            Text(String(harvest.unitEntered ?? "def"))
+                .font(.caption)
+            
+            Text(String(harvest.amountStandardized))
+                .font(.title)
+            Text(String("g"))
                 .font(.caption)
             
         }

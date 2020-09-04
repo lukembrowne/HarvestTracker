@@ -21,8 +21,8 @@ struct AddHarvestView: View {
     @State var chosenCrop = "No crop chosen"
     static let defaultCrop = "default crop"
     
-    @State var chosenWeight = ""
-    static let defaultWeight = "1"
+    @State var chosenAmount = ""
+    static let defaultAmount = "1"
 
     @State var chosenHarvestDate = Date()
     
@@ -67,10 +67,10 @@ struct AddHarvestView: View {
             
             
 
-          // Enter weight
+          // Enter amount
           Section(header: Text("Amount")) {
             
-            TextField("Weight", text: $chosenWeight)
+            TextField("Amount", text: $chosenAmount)
                 .keyboardType(.decimalPad)
             
             Picker("units", selection: $chosenUnit) {
@@ -127,7 +127,7 @@ struct AddHarvestView: View {
         
         // Add harvest to database
         Harvest.addHarvest(crop: chosenCrop.isEmpty ? AddHarvestView.defaultCrop : chosenCrop,
-                           weight: chosenWeight.isEmpty ? AddHarvestView.defaultWeight : chosenWeight,
+                           amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
                            isPresented: $isPresented,

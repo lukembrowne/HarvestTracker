@@ -13,9 +13,15 @@ struct HarvestTotalView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     var totalHarvestAmount = 0.0
+    var currencyFormatter = NumberFormatter()
+    var totalHarvestValue = 0.0
+    var totalHarvestValueDisplay = ""
     
     init(harvests: FetchedResults<Harvest> ){
         self.harvests = harvests
+        self.currencyFormatter.usesGroupingSeparator = true
+        self.currencyFormatter.numberStyle = .currency
+        self.currencyFormatter.locale = Locale.current
         calcTotalHarvest()
 
     }
@@ -24,7 +30,7 @@ struct HarvestTotalView: View {
     
     
     var body: some View {
-        Text("Total Harvest: \(self.totalHarvestAmount, specifier: "%.2f") kg")
+        Text("Total Harvest: \(self.totalHarvestAmount, specifier: "%.2f") kg, Value: \(self.totalHarvestValueDisplay)")
         
     }
     
@@ -36,13 +42,17 @@ struct HarvestTotalView: View {
             for index in 0...harvests.count - 1 {
 //                print(index)
                 totalHarvestAmount += harvests[index].amountStandardized
+                totalHarvestValue += harvests[index].amountStandardized * 2
             }
         } else {
             totalHarvestAmount = 0.0
         }
         
-        // Convert to unit
+        // Convert to displayed unit
         totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: .kilograms).value
+        
+        // Calculate value
+        totalHarvestValueDisplay = currencyFormatter.string(from: NSNumber(value: totalHarvestValue)) ?? ""
         
     }
     

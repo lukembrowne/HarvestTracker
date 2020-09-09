@@ -68,11 +68,6 @@ struct HarvestListView: View {
                  UITableView.appearance().separatorStyle = .none
                 
                 print("Navigation view appeared")
-                
-                if(self.harvests.count == 0){
-                    print("No harvests found")
-                  //  Harvest.addDefaultHarvests(in: self.managedObjectContext)
-                }
 
                 if(self.crops.count == 0){
                     print("No crops found")

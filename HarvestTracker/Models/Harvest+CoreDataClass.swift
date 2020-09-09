@@ -66,28 +66,6 @@ public class Harvest: NSManagedObject {
         }
     }
     
-// Add Default Harvest
-    static func addDefaultHarvests(in managedObjectContext: NSManagedObjectContext) {
-        
-        let newHarvest = Harvest(context: managedObjectContext)
-        
-        let defaultCrop = Crop(context: managedObjectContext)
-        
-        defaultCrop.cropName = "Default crop name"
-        defaultCrop.costPerUnit = 420.0
-        defaultCrop.unit = "g"
-        
-        newHarvest.crop = defaultCrop
-        newHarvest.amountEntered = 420
-        
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-        
-    }
-    
 // Delete Harvest
     static func deleteHarvest(harvest: Harvest, in managedObjectContext: NSManagedObjectContext ) {
         

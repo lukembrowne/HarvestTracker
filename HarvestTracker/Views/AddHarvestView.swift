@@ -120,11 +120,10 @@ struct AddHarvestView: View {
     private func addHarvestAction() {
         
         // Add harvest to database
-        Harvest.addHarvest(crop: chosenCrop?.cropName ?? "Unknown crop name",
+        Harvest.addHarvest(crop: chosenCrop,
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
-                           crop2: chosenCrop,
                            isPresented: $isPresented,
                            in: self.managedObjectContext)
         

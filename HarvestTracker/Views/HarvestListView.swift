@@ -71,7 +71,7 @@ struct HarvestListView: View {
                 
                 if(self.harvests.count == 0){
                     print("No harvests found")
-                    Harvest.addDefaultHarvests(in: self.managedObjectContext)
+                  //  Harvest.addDefaultHarvests(in: self.managedObjectContext)
                 }
 
                 if(self.crops.count == 0){

@@ -21,11 +21,10 @@ public class Harvest: NSManagedObject {
     
     
     // Add Harvest
-    static func addHarvest(crop: String,
+    static func addHarvest(crop: Crop?,
                            amountEntered: String,
                            harvestDate: Date,
                            unit: String,
-                           crop2: Crop?,
                            isPresented: Binding<Bool>,
                            in managedObjectContext: NSManagedObjectContext) {
         
@@ -35,7 +34,6 @@ public class Harvest: NSManagedObject {
         newHarvest.amountEntered = Double(amountEntered) ?? 0.0
         newHarvest.harvestDate = harvestDate
         newHarvest.unitEntered = unit
-        newHarvest.crop2 = crop2
         
         // Standardize amount
         switch unit {
@@ -73,7 +71,13 @@ public class Harvest: NSManagedObject {
         
         let newHarvest = Harvest(context: managedObjectContext)
         
-        newHarvest.crop = "default harvest init"
+        let defaultCrop = Crop(context: managedObjectContext)
+        
+        defaultCrop.cropName = "Default crop name"
+        defaultCrop.costPerUnit = 420.0
+        defaultCrop.unit = "g"
+        
+        newHarvest.crop = defaultCrop
         newHarvest.amountEntered = 420
         
         do {

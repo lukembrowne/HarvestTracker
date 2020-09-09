@@ -19,10 +19,8 @@ extension Harvest {
 
     @NSManaged public var amountEntered: Double
     @NSManaged public var amountStandardized: Double
-    @NSManaged public var crop: String?
+    @NSManaged public var crop: Crop?
     @NSManaged public var harvestDate: Date?
-    @NSManaged public var unitEntered: String?
-    @NSManaged public var crop2: Crop?
-    
+    @NSManaged public var unitEntered: String?    
 
 }

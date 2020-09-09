@@ -20,10 +20,9 @@ struct HarvestRowView: View {
     
     var body: some View {
         
-        
         HStack {
             VStack(alignment: .leading) {
-                harvest.crop.map(Text.init)
+                harvest.crop?.cropName.map(Text.init)
                     .font(.title)
                 HStack {
                     harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }

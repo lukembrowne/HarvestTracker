@@ -19,7 +19,7 @@ struct CropListView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @Binding var chosenCrop: String
+    @Binding var chosenCrop: Crop?
     
     @State var isPresentedAddCrop = false
 

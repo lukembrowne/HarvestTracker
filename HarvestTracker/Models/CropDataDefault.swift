@@ -9,55 +9,6 @@
 import SwiftUI
 import CoreData
 
-extension Crop: Identifiable {
-    
-
-    // Add Crop
-    static func addCrop(cropName: String,
-                       costPerUnit: String,
-                       unit: String,
-                       in managedObjectContext: NSManagedObjectContext) {
-         // 1
-         let newCrop = Crop(context: managedObjectContext)
-
-         newCrop.cropName = cropName
-         newCrop.costPerUnit = Double(costPerUnit) ?? 0.0
-         newCrop.unit = unit
-
-          do {
-            try managedObjectContext.save()
-          } catch {
-            print("Error saving managed object context: \(error)")
-          }
-       }
-    
-    
-    
-    // Load default crops if no crops are in database
-    static func loadDefaultCrops(in managedObjectContext: NSManagedObjectContext) {
-           
-         for crop in cropsJSONDecoded {
-             let newCrop = Crop(context: managedObjectContext)
-                    
-             newCrop.cropName = crop.cropName
-             newCrop.costPerUnit = crop.costPerUnit
-             newCrop.unit = crop.unit
-         }
-         
-        // Save
-            do {
-              try managedObjectContext.save()
-            } catch {
-              print("Error saving managed object context: \(error)")
-            }
-           
-       }
-    
-    
-}
-
-
-
 // Need to set Crop struct in JSON format to be able to decode it
 struct CropJSON: Decodable {
     

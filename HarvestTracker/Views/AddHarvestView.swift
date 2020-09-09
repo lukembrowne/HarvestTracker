@@ -18,7 +18,7 @@ struct AddHarvestView: View {
     
     
     // Initialize and set defaults
-    @State var chosenCrop = "No crop chosen"
+    @State var chosenCrop: Crop?
     static let defaultCrop = "default crop"
     
     @State var chosenAmount = ""
@@ -31,12 +31,6 @@ struct AddHarvestView: View {
     
     @State var isPresentedAddCrop = false
 
-    // Fetch request for crops
-    @FetchRequest(entity: Crop.entity(),
-                  sortDescriptors: [
-                    NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
-                        ]) var crops: FetchedResults<Crop>
-    
     
     // Main view
     var body: some View {
@@ -59,7 +53,7 @@ struct AddHarvestView: View {
                 HStack {
                     Text("Choose a crop:")
                     Spacer()
-                    Text(chosenCrop)
+                    Text(chosenCrop?.cropName ?? "...")
                 }
             }
             
@@ -126,10 +120,11 @@ struct AddHarvestView: View {
     private func addHarvestAction() {
         
         // Add harvest to database
-        Harvest.addHarvest(crop: chosenCrop.isEmpty ? AddHarvestView.defaultCrop : chosenCrop,
+        Harvest.addHarvest(crop: chosenCrop?.cropName ?? "Unknown crop name",
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
+                           crop2: chosenCrop,
                            isPresented: $isPresented,
                            in: self.managedObjectContext)
         

@@ -11,7 +11,7 @@ import SwiftUI
 struct CropRowView: View {
     
     var crop: Crop
-    @Binding var chosenCrop: String
+    @Binding var chosenCrop: Crop?
     
     // Set environment variable so that the list closes when a crop is selected
     @Environment(\.presentationMode) var presentation
@@ -24,7 +24,7 @@ struct CropRowView: View {
             Text(verbatim: crop.cropName ?? "")
             Spacer()
         }.onTapGesture {
-            self.chosenCrop = self.crop.cropName ?? ""
+            self.chosenCrop = self.crop
             print(self.chosenCrop)
             self.presentation.wrappedValue.dismiss()
         }

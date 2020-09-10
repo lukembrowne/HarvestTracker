@@ -42,7 +42,7 @@ struct HarvestTotalView: View {
             for index in 0...harvests.count - 1 {
 //                print(index)
                 totalHarvestAmount += harvests[index].amountStandardized
-                totalHarvestValue += harvests[index].amountStandardized * harvests[index].crop.costPerUnit
+                totalHarvestValue += harvests[index].amountStandardized * harvests[index].crop!.costPerUnit
             }
         } else {
             totalHarvestAmount = 0.0

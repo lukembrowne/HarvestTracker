@@ -30,6 +30,8 @@ struct AddHarvestView: View {
     var units = ["oz", "lb", "g", "kg"]
     
     @State var isPresentedAddCrop = false
+    @State var showingAlert = false
+
 
     
     // Main view
@@ -76,24 +78,39 @@ struct AddHarvestView: View {
             .pickerStyle(SegmentedPickerStyle())
           }
             
-          // Enter harvest date
-          Section {
-            DatePicker(
-              selection: $chosenHarvestDate,
-              displayedComponents: .date) { Text("Harvest Date").foregroundColor(Color(.gray)) }
+            // Enter harvest date
+            Section {
+                DatePicker(
+                    selection: $chosenHarvestDate,
+                    displayedComponents: .date) { Text("Harvest Date").foregroundColor(Color(.gray)) }
             }
-
-           // Add harvest button
+            
+            // Add harvest button
             HStack {
-               Spacer()
-               Button(action: addHarvestAction, label: {
-                   Image(systemName: "plus")
-                   Text("Add Harvest")
-                       })
-                       .foregroundColor(Color.white)
-                       .padding()
+                Spacer()
+                Button(action: {
+                    
+                    if self.chosenCrop != nil {
+                        self.addHarvestAction()
+                        
+                    } else {
+                        print("Chosen crop is nil")
+                        self.showingAlert.toggle()
+                    }
+                },
+                       
+                       
+                       label: {
+                        Image(systemName: "plus")
+                        Text("Add Harvest")
+                })
+                    .foregroundColor(Color.white)
+                    .padding()
                        .background(Color.green)
                        .cornerRadius(5)
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
+                }
                Spacer()
             }
            

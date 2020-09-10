@@ -40,6 +40,10 @@ struct HarvestRowView: View {
                 .font(.title)
             Text(String("g"))
                 .font(.caption)
+            Text(String(harvest.amountStandardized))
+                          .font(.title)
+                      Text(String("g"))
+                          .font(.caption)
             
         }
     }

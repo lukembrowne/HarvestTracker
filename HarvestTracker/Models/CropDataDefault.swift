@@ -29,17 +29,17 @@ let cropJSONRaw = """
       {
         "cropName": "beets",
         "costPerUnit": 0.124,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "carrot - whole",
         "costPerUnit": 0.13,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "chamomille - dried",
         "costPerUnit": 1.64,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "cilantro",
@@ -54,22 +54,22 @@ let cropJSONRaw = """
       {
         "cropName": "cucumbers",
         "costPerUnit": 0.249,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "eggplant - japanese",
         "costPerUnit": 0.23,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "eggplant - normal",
         "costPerUnit": 0.23,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "green beans",
         "costPerUnit": 0.25,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "kale and chard",
@@ -79,7 +79,7 @@ let cropJSONRaw = """
       {
         "cropName": "mixed greens",
         "costPerUnit": 0.749,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "oregano",
@@ -94,7 +94,7 @@ let cropJSONRaw = """
       {
         "cropName": "peppers - banana",
         "costPerUnit": 0.156,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "peppers - bell",
@@ -104,7 +104,7 @@ let cropJSONRaw = """
       {
         "cropName": "peppers - sweet mini",
         "costPerUnit": 0.156,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "sage",
@@ -114,17 +114,17 @@ let cropJSONRaw = """
       {
         "cropName": "shelled peas",
         "costPerUnit": 0.1,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "strawberries",
         "costPerUnit": 0.249,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "sugar snap peas",
         "costPerUnit": 0.39,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "thyme",
@@ -134,17 +134,17 @@ let cropJSONRaw = """
       {
         "cropName": "tomatillos",
         "costPerUnit": 0.249,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "tomatos",
         "costPerUnit": 0.3118,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "zucchini",
         "costPerUnit": 0.186,
-        "unit": "ounce"
+        "unit": "oz"
       },
       {
         "cropName": "zucchini_flowers",
@@ -156,4 +156,5 @@ let cropJSONRaw = """
 
 
 // code for parsing and loading JSON from: avanderlee.com/swift/json-parsing-decoding/
-let cropsJSONDecoded: [CropJSON] = try! JSONDecoder().decode([CropJSON].self, from: cropJSONRaw.data(using: .utf8)!)
+let cropsJSONDecoded: [CropJSON] = try! JSONDecoder().decode([CropJSON].self,
+                                                             from: cropJSONRaw.data(using: .utf8)!)

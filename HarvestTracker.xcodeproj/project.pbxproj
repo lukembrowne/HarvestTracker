@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D5BFE24FFC615000073AE /* AddCropView.swift */; };
+		A320188E250B9D5A0010943E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320188D250B9D5A0010943E /* HomeView.swift */; };
 		A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EE24FEE89E00A672FD /* CropDataDefault.swift */; };
 		A36230F124FFBDF800A672FD /* CropListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F024FFBDF800A672FD /* CropListView.swift */; };
 		A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F224FFBF6600A672FD /* CropRowView.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		A30D5BFE24FFC615000073AE /* AddCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCropView.swift; sourceTree = "<group>"; };
+		A320188D250B9D5A0010943E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36230EE24FEE89E00A672FD /* CropDataDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropDataDefault.swift; sourceTree = "<group>"; };
 		A36230F024FFBDF800A672FD /* CropListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropListView.swift; sourceTree = "<group>"; };
 		A36230F224FFBF6600A672FD /* CropRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRowView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				A36230F024FFBDF800A672FD /* CropListView.swift */,
 				A36230F224FFBF6600A672FD /* CropRowView.swift */,
 				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
+				A320188D250B9D5A0010943E /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
+				A320188E250B9D5A0010943E /* HomeView.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 				A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */,
 			);

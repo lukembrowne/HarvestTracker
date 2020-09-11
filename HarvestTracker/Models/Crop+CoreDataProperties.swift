@@ -18,6 +18,7 @@ extension Crop: Identifiable {
     }
 
     @NSManaged public var costPerUnit: Double
+    @NSManaged public var costPerG: Double
     @NSManaged public var cropName: String?
     @NSManaged public var unit: String?
     @NSManaged public var harvests: NSSet?

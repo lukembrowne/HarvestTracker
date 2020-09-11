@@ -19,13 +19,30 @@ public class Crop: NSManagedObject {
                         costPerUnit: String,
                         unit: String,
                         in managedObjectContext: NSManagedObjectContext) {
-        // 1
         let newCrop = Crop(context: managedObjectContext)
         
         newCrop.cropName = cropName
-        newCrop.costPerUnit = Double(costPerUnit) ?? 0.0
+        newCrop.costPerUnit = Double(costPerUnit) ?? 0
         newCrop.unit = unit
         
+        // Standardize cost per unit
+        switch unit {
+        case "oz":
+            newCrop.costPerG = newCrop.costPerUnit / 28.3495
+        case "lb":
+            newCrop.costPerG = newCrop.costPerUnit / 453.592
+        case "g":
+            newCrop.costPerG = newCrop.costPerUnit
+        case "kg":
+            newCrop.costPerG = newCrop.costPerUnit / 999.9991843
+        default:
+            print("Unrecognized unit")
+        }
+        
+        print(newCrop)
+        
+        
+        // Save
         do {
             try managedObjectContext.save()
         } catch {
@@ -37,20 +54,29 @@ public class Crop: NSManagedObject {
     // Load default crops if no crops are in database
     static func loadDefaultCrops(in managedObjectContext: NSManagedObjectContext) {
         
+        print("Loading default crops")
+        
         for crop in cropsJSONDecoded {
-            let newCrop = Crop(context: managedObjectContext)
-            
-            newCrop.cropName = crop.cropName
-            newCrop.costPerUnit = crop.costPerUnit
-            newCrop.unit = crop.unit
+            addCrop(cropName: crop.cropName,
+                    costPerUnit: String(crop.costPerUnit),
+                    unit: crop.unit,
+                    in: managedObjectContext)
         }
         
-        // Save
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
+//        for crop in cropsJSONDecoded {
+//            let newCrop = Crop(context: managedObjectContext)
+//
+//            newCrop.cropName = crop.cropName
+//            newCrop.costPerUnit = crop.costPerUnit
+//            newCrop.unit = crop.unit
+//        }
+//
+//        // Save
+//        do {
+//            try managedObjectContext.save()
+//        } catch {
+//            print("Error saving managed object context: \(error)")
+//        }
         
     }
     

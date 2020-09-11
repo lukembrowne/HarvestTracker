@@ -38,11 +38,16 @@ struct HarvestTotalView: View {
     // Calculate total Harvest
     mutating func calcTotalHarvest() {
         
+        // Loop over harvests if there are harvests
         if(harvests.count > 0){
             for index in 0...harvests.count - 1 {
+                
+                print(harvests[index].crop!.unit)
+                
+                
 //                print(index)
                 totalHarvestAmount += harvests[index].amountStandardized
-                totalHarvestValue += harvests[index].amountStandardized * harvests[index].crop!.costPerUnit
+                totalHarvestValue += harvests[index].amountStandardized * harvests[index].crop!.costPerG
             }
         } else {
             totalHarvestAmount = 0.0

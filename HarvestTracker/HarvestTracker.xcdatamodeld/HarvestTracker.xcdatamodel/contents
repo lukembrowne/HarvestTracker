@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Crop" representedClassName="Crop" syncable="YES">
+        <attribute name="costPerG" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="costPerUnit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="cropName" optional="YES" attributeType="String"/>
         <attribute name="unit" optional="YES" attributeType="String"/>
@@ -14,7 +15,7 @@
         <relationship name="crop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crop" inverseName="harvests" inverseEntity="Crop"/>
     </entity>
     <elements>
-        <element name="Crop" positionX="119.87109375" positionY="-7.828125" width="128" height="103"/>
+        <element name="Crop" positionX="119.87109375" positionY="-7.828125" width="128" height="118"/>
         <element name="Harvest" positionX="-144.75" positionY="-42.89453125" width="128" height="118"/>
     </elements>
 </model>

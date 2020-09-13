@@ -14,8 +14,7 @@ struct AddHarvestView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    @Binding var isPresented: Bool
-    
+    @Binding var isPresented: Bool   
     
     // Initialize and set defaults
     @State var chosenCrop: Crop?
@@ -146,6 +145,8 @@ struct AddHarvestView: View {
         
         // Close sheet once harvest is added
         self.isPresented = false
+        self.presentation.wrappedValue.dismiss()
+
       }
     
 }

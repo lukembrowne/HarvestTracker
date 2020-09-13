@@ -49,11 +49,12 @@ struct HarvestListView: View {
                 }
                 .onDelete(perform: deleteHarvest)
               }
-                .sheet(isPresented: $isPresented) {
-                        AddHarvestView(isPresented: self.$isPresented)
-                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-                    
-              }
+//                .sheet(isPresented: $isPresented) {
+//                        AddHarvestView(isPresented: self.$isPresented)
+//                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+//                    
+//              }
+                
               .navigationBarTitle(Text("Harvest"))
               .navigationBarItems(leading: EditButton(),
                 trailing:

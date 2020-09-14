@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct AddHarvestView: View {
     
@@ -66,7 +67,12 @@ struct AddHarvestView: View {
           Section(header: Text("Amount")) {
             
             TextField("Amount", text: $chosenAmount)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.decimalPad)
+                .introspectTextField { textField in
+                   textField.becomeFirstResponder()
+            }
+
             
             Picker("units", selection: $chosenUnit) {
                 ForEach(0 ..< units.count) { index in
@@ -150,10 +156,6 @@ struct AddHarvestView: View {
       }
     
 }
-
-
-
-
 
 struct AddHarvestView_Previews: PreviewProvider {
     

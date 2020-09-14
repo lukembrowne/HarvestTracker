@@ -1,0 +1,6 @@
+framework module Pods_HarvestTracker {
+  umbrella header "Pods-HarvestTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}

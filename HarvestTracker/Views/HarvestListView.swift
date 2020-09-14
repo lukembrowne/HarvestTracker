@@ -56,12 +56,12 @@ struct HarvestListView: View {
 //              }
                 
               .navigationBarTitle(Text("Harvest"))
-              .navigationBarItems(leading: EditButton(),
-                trailing:
-                    Button(action: { self.isPresented.toggle() }) {
-                        Image(systemName: "plus")
-                    }
-                )
+//              .navigationBarItems(leading: EditButton(),
+//                trailing:
+//                    Button(action: { self.isPresented.toggle() }) {
+//                        Image(systemName: "plus")
+//                    }
+//                )
             } // End Navigation View
             .onAppear() {
                 

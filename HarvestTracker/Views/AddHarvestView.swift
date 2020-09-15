@@ -18,7 +18,7 @@ struct AddHarvestView: View {
     @Binding var isPresented: Bool   
     
     // Initialize and set defaults
-    @State var chosenCrop: Crop?
+    @Binding var chosenCrop: Crop?
     static let defaultCrop = "default crop"
     
     @State var chosenAmount = ""
@@ -44,14 +44,7 @@ struct AddHarvestView: View {
           // Select Crop
           Section(header: Text("Crop")) {
 
-       // Testing
-//       Button(action: { self.isPresentedAddCrop.toggle() }) {
-//                           Text("Add New Crop")
-//                         }.sheet(isPresented: $isPresentedAddCrop) {
-//                         Text("Sheet to add new Crop")
-//                         }
-//
-            NavigationLink(destination: CropListView(chosenCrop: $chosenCrop)) {
+            NavigationLink(destination: CropListView()) {
                 HStack {
                     Text("Choose a crop:")
                     Spacer()
@@ -87,7 +80,10 @@ struct AddHarvestView: View {
             Section {
                 DatePicker(
                     selection: $chosenHarvestDate,
-                    displayedComponents: .date) { Text("Harvest Date").foregroundColor(Color(.gray)) }
+                    displayedComponents: .date) {
+                    Text("Harvest Date").foregroundColor(Color(.gray))
+                }
+                .datePickerStyle(DefaultDatePickerStyle())
             }
             
             // Add harvest button
@@ -117,23 +113,23 @@ struct AddHarvestView: View {
                     Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
                 }
                Spacer()
-            }
+            }   
+
            
         }
         .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
         .navigationBarItems(leading:
             
-        // Add Cancel button
-        Button(action: {
-            print("tapped cancel")
-            self.presentation.wrappedValue.dismiss()
-            self.isPresented = false
-                            }, label: {
-                                Text("Cancel")
-                            }
+            // Add Cancel button
+            Button(action: {
+                print("tapped cancel")
+                self.presentation.wrappedValue.dismiss()
+                self.isPresented = false
+                                }, label: {
+                                    Text("Cancel")
+                                }
+                                    )
                                 )
-                            )
-
       } // End Navigation View
     } // End Body
     
@@ -157,12 +153,12 @@ struct AddHarvestView: View {
     
 }
 
-struct AddHarvestView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        return AddHarvestView(isPresented: .constant(true)).environment(\.managedObjectContext, context)
-    }
-}
+//struct AddHarvestView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+//        return AddHarvestView(isPresented: .constant(true)).environment(\.managedObjectContext, context)
+//    }
+//}

@@ -19,15 +19,18 @@ struct CropListView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @Binding var chosenCrop: Crop?
+    @State var chosenCrop: Crop?
     
     @State var isPresentedAddCrop = false
 
 
-
     var body: some View {
         
-        VStack {
+        NavigationView {
+            
+          List {
+            
+            // Button to add new crop
             Button(action: { self.isPresentedAddCrop.toggle() },
                    label: {
                               Image(systemName: "plus")
@@ -42,14 +45,32 @@ struct CropListView: View {
                 .environment(\.managedObjectContext, self.managedObjectContext)
             }
             
+            // Display crops in list
+            ForEach(crops, id: \.self) { crop in
                 
-            List(crops) { crop in
-             CropRowView(crop: crop,
-                         chosenCrop: self.$chosenCrop)
-             }
-        }
+                NavigationLink(destination: AddHarvestView(isPresented: $isPresentedAddCrop, chosenCrop: $chosenCrop)) {
+                    CropRowView(crop: crop,
+                                chosenCrop: self.$chosenCrop)
+                }
+            }
+          }
+          //                .sheet(isPresented: $isPresented) {
+          //                        AddHarvestView(isPresented: self.$isPresented)
+          //                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+          //
+          //              }
+          
+          .navigationBarTitle(Text("Choose crop"), displayMode: .inline)
+          .navigationBarItems(leading: Button(action: {print("cancel pressed")}) {
+                                Text("Back")})
+//
+//                              trailing:
+//                                Button(action: { self.isPresented.toggle() }) {
+//                                    Image(systemName: "plus")
+//                                }
+        } // End Navigation View
         
-
+        
     }
 }
 

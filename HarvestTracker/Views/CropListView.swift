@@ -15,59 +15,65 @@ struct CropListView: View {
     @FetchRequest(entity: Crop.entity(),
                   sortDescriptors: [
                     NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
-                        ]) var crops: FetchedResults<Crop>
+                  ]) var crops: FetchedResults<Crop>
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var chosenCrop: Crop?
     
     @State var isPresentedAddCrop = false
-
-
+    @State var isPresentedAddHarvest = false
+    @Binding var isPresentedChooseCrop: Bool
+    
+    
     var body: some View {
         
         NavigationView {
             
-          List {
-            
-            // Button to add new crop
-            Button(action: { self.isPresentedAddCrop.toggle() },
-                   label: {
-                              Image(systemName: "plus")
-                              Text("Add New Crop")
-                                  })
-                                  .foregroundColor(Color.white)
-                                  .padding()
-                                  .background(Color.green)
-                                  .cornerRadius(5)
-            .sheet(isPresented: $isPresentedAddCrop) {
-                    AddCropView()
-                .environment(\.managedObjectContext, self.managedObjectContext)
-            }
-            
-            // Display crops in list
-            ForEach(crops, id: \.self) { crop in
+            List {
                 
-                NavigationLink(destination: AddHarvestView(isPresented: $isPresentedAddCrop, chosenCrop: $chosenCrop)) {
+                // Button to add new crop
+                Button(action: { self.isPresentedAddCrop.toggle() },
+                       label: {
+                        Image(systemName: "plus")
+                        Text("Add New Crop")
+                       })
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(5)
+                    .sheet(isPresented: $isPresentedAddCrop) {
+                        AddCropView()
+                            .environment(\.managedObjectContext, self.managedObjectContext)
+                    }
+                
+                // Display crops in list
+                ForEach(crops, id: \.self) { crop in
+                    
                     CropRowView(crop: crop,
-                                chosenCrop: self.$chosenCrop)
+                                chosenCrop: self.$chosenCrop,
+                                isPresentedAddHarvest: self.$isPresentedAddHarvest,
+                                isPresentedChooseCrop: self.$isPresentedChooseCrop)
+                    
                 }
             }
-          }
-          //                .sheet(isPresented: $isPresented) {
-          //                        AddHarvestView(isPresented: self.$isPresented)
-          //                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-          //
-          //              }
-          
-          .navigationBarTitle(Text("Choose crop"), displayMode: .inline)
-          .navigationBarItems(leading: Button(action: {print("cancel pressed")}) {
-                                Text("Back")})
-//
-//                              trailing:
-//                                Button(action: { self.isPresented.toggle() }) {
-//                                    Image(systemName: "plus")
-//                                }
+            // Display addharvestview when crop is selected
+            .sheet(isPresented: $isPresentedAddHarvest) {
+                AddHarvestView(chosenCrop: $chosenCrop,
+                               isPresentedChooseCrop: $isPresentedChooseCrop,
+                               isPresentedAddHarvest: $isPresentedAddHarvest)
+                    .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+                
+            }
+            
+            .navigationBarTitle(Text("Choose crop"), displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
+                print("cancel pressed")
+                self.isPresentedChooseCrop = false
+                
+            }) {
+                Text("Cancel")})
+
         } // End Navigation View
         
         

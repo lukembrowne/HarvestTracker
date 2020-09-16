@@ -14,9 +14,7 @@ struct AddHarvestView: View {
     // Environment and bindings
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
-
-    @Binding var isPresented: Bool   
-    
+   
     // Initialize and set defaults
     @Binding var chosenCrop: Crop?
     static let defaultCrop = "default crop"
@@ -31,6 +29,8 @@ struct AddHarvestView: View {
     
     @State var isPresentedAddCrop = false
     @State var showingAlert = false
+    @Binding var isPresentedChooseCrop: Bool
+    @Binding var isPresentedAddHarvest: Bool
 
 
     
@@ -44,7 +44,7 @@ struct AddHarvestView: View {
           // Select Crop
           Section(header: Text("Crop")) {
 
-            NavigationLink(destination: CropListView()) {
+            NavigationLink(destination: CropListView(isPresentedChooseCrop: $isPresentedChooseCrop)) {
                 HStack {
                     Text("Choose a crop:")
                     Spacer()
@@ -124,7 +124,9 @@ struct AddHarvestView: View {
             Button(action: {
                 print("tapped cancel")
                 self.presentation.wrappedValue.dismiss()
-                self.isPresented = false
+//                self.isPresentedChooseCrop = false
+
+//                self.isPresentedAddHarvest = false
                                 }, label: {
                                     Text("Cancel")
                                 }
@@ -142,12 +144,13 @@ struct AddHarvestView: View {
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
-                           isPresented: $isPresented,
+                           isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         
         // Close sheet once harvest is added
-        self.isPresented = false
-        self.presentation.wrappedValue.dismiss()
+        self.isPresentedAddHarvest = false
+        self.isPresentedChooseCrop = false
+//        self.presentation.wrappedValue.dismiss()
 
       }
     

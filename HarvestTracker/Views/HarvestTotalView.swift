@@ -41,9 +41,7 @@ struct HarvestTotalView: View {
         // Loop over harvests if there are harvests
         if(harvests.count > 0){
             for index in 0...harvests.count - 1 {
-                
-                print(harvests[index].crop!.unit)
-                
+                               
                 
 //                print(index)
                 totalHarvestAmount += harvests[index].amountStandardized

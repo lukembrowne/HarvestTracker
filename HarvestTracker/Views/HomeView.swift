@@ -16,7 +16,7 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var selectedTab = 1
-    @State var chooseCropPresented = false
+    @State var isPresentedChooseCrop = false
 
 
     
@@ -37,9 +37,9 @@ struct HomeView: View {
                     Text("Reports")
             }.tag(2)
             
-            SheetPresenter(presentingSheet: $chooseCropPresented,
+            SheetPresenter(presentingSheet: $isPresentedChooseCrop,
                            selectedTab: $selectedTab,
-                           content: CropListView().environment(\.managedObjectContext, self.managedObjectContext))
+                           content: CropListView(isPresentedChooseCrop: $isPresentedChooseCrop).environment(\.managedObjectContext, self.managedObjectContext))
                             .tabItem {
                                 Image(systemName: "plus.circle")
                                 Text("Add Harvest")

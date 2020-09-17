@@ -51,6 +51,22 @@ public class Crop: NSManagedObject {
     }
     
     
+    // Delete Crop
+        static func deleteCrop(crop: Crop, in managedObjectContext: NSManagedObjectContext ) {
+            
+            // Delete
+            managedObjectContext.delete(crop)
+            
+            // Save
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error saving managed object context: \(error)")
+            }
+            
+        }
+    
+    
     // Load default crops if no crops are in database
     static func loadDefaultCrops(in managedObjectContext: NSManagedObjectContext) {
         

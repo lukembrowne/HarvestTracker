@@ -21,6 +21,17 @@ struct CropJSON: Decodable {
 // Raw crop data to initialize database
 let cropJSONRaw = """
     [
+
+      {
+        "cropName": "zzz_sorttest",
+        "costPerUnit": 1.99,
+        "unit": "bunch"
+      },
+      {
+        "cropName": "aaa_sorttest",
+        "costPerUnit": 1.99,
+        "unit": "bunch"
+      },
       {
         "cropName": "basil",
         "costPerUnit": 1.99,

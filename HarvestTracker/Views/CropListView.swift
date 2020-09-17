@@ -23,7 +23,8 @@ struct CropListView: View {
     
     @State var isPresentedAddCrop = false
     @State var isPresentedAddHarvest = false
-    @Binding var isPresentedChooseCrop: Bool
+
+
     
     
     var body: some View {
@@ -32,44 +33,49 @@ struct CropListView: View {
             
             List {
                 
-                // Button to add new crop
-                Button(action: { self.isPresentedAddCrop.toggle() },
-                       label: {
-                        Image(systemName: "plus")
-                        Text("Add New Crop")
-                       })
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(5)
-                    .sheet(isPresented: $isPresentedAddCrop) {
-                        AddCropView()
-                            .environment(\.managedObjectContext, self.managedObjectContext)
-                    }
+//                // Button to add new crop
+//                Button(action: { self.isPresentedAddCrop.toggle() },
+//                       label: {
+//                        Image(systemName: "plus")
+//                        Text("Add New Crop")
+//                       })
+//                    .foregroundColor(Color.white)
+//                    .padding()
+//                    .background(Color.green)
+//                    .cornerRadius(5)
+//                    .sheet(isPresented: $isPresentedAddCrop) {
+//                        AddCropView()
+//                            .environment(\.managedObjectContext, self.managedObjectContext)
+//                    }
                 
                 // Display crops in list
                 ForEach(crops, id: \.self) { crop in
                     
-                    CropRowView(crop: crop,
-                                chosenCrop: self.$chosenCrop,
-                                isPresentedAddHarvest: self.$isPresentedAddHarvest,
-                                isPresentedChooseCrop: self.$isPresentedChooseCrop)
-                    
-                }
-            }
+//                    NavigationLink(
+//
+//                        destination: AddHarvestView(chosenCrop: $chosenCrop)
+//
+//                    ) {
+                        CropRowView(crop: crop,
+                                    chosenCrop: self.$chosenCrop,
+                                    isPresentedAddHarvest:  $isPresentedAddHarvest)
+                        
+                    }
+//                .isDetailLink(false)
+                                }
             // Display addharvestview when crop is selected
             .sheet(isPresented: $isPresentedAddHarvest) {
                 AddHarvestView(chosenCrop: $chosenCrop,
-                               isPresentedChooseCrop: $isPresentedChooseCrop,
+//                               isPresentedChooseCrop: $isPresentedChooseCrop,
                                isPresentedAddHarvest: $isPresentedAddHarvest)
                     .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-                
+
             }
             
             .navigationBarTitle(Text("Choose crop"), displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
                 print("cancel pressed")
-                self.isPresentedChooseCrop = false
+//                self.isPresentedChooseCrop = false
                 
             }) {
                 Text("Cancel")})

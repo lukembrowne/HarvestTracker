@@ -27,30 +27,34 @@ struct AddHarvestView: View {
     @State var chosenUnit = "oz"
     var units = ["oz", "lb", "g", "kg"]
     
+    @State var showingNoCropAlert = false
     @State var isPresentedAddCrop = false
-    @State var showingAlert = false
-    @Binding var isPresentedChooseCrop: Bool
+//    @Binding var isPresentedChooseCrop: Bool
     @Binding var isPresentedAddHarvest: Bool
+//    @State var isPresentedAddHarvest = false
 
 
     
     // Main view
     var body: some View {
-        
-      NavigationView {
-        
+                
         Form {
             
           // Select Crop
           Section(header: Text("Crop")) {
 
-            NavigationLink(destination: CropListView(isPresentedChooseCrop: $isPresentedChooseCrop)) {
+            Button {
+                self.isPresentedAddHarvest = false
+            } label: {
                 HStack {
-                    Text("Choose a crop:")
-                    Spacer()
-                    Text(chosenCrop?.cropName ?? "...")
-                }
+                Text("Choose a crop:")
+                Spacer()
+                Text(chosenCrop?.cropName ?? "...")
+        }
             }
+
+            
+              
             
           } // End select crop section
             
@@ -96,7 +100,7 @@ struct AddHarvestView: View {
                         
                     } else {
                         print("Chosen crop is nil")
-                        self.showingAlert.toggle()
+                        self.showingNoCropAlert.toggle()
                     }
                 },
                        
@@ -109,7 +113,7 @@ struct AddHarvestView: View {
                     .padding()
                        .background(Color.green)
                        .cornerRadius(5)
-                .alert(isPresented: $showingAlert) {
+                .alert(isPresented: $showingNoCropAlert) {
                     Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
                 }
                Spacer()
@@ -117,22 +121,21 @@ struct AddHarvestView: View {
 
            
         }
-        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
-        .navigationBarItems(leading:
-            
-            // Add Cancel button
-            Button(action: {
-                print("tapped cancel")
-                self.presentation.wrappedValue.dismiss()
-//                self.isPresentedChooseCrop = false
-
+//        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
+//        .navigationBarItems(leading:
+//
+//            // Add Cancel button
+//            Button(action: {
+//                print("tapped cancel")
+//                self.presentation.wrappedValue.dismiss()
+////                self.isPresentedChooseCrop = false
+//
 //                self.isPresentedAddHarvest = false
-                                }, label: {
-                                    Text("Cancel")
-                                }
-                                    )
-                                )
-      } // End Navigation View
+//                                }, label: {
+//                                    Text("Cancel")
+//                                }
+//                                    )
+//                                )
     } // End Body
     
     
@@ -149,7 +152,7 @@ struct AddHarvestView: View {
         
         // Close sheet once harvest is added
         self.isPresentedAddHarvest = false
-        self.isPresentedChooseCrop = false
+//        self.isPresentedChooseCrop = false
 //        self.presentation.wrappedValue.dismiss()
 
       }

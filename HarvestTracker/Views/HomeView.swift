@@ -29,32 +29,30 @@ struct HomeView: View {
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
-            }.tag(1)
+                }.tag(1)
             
             Text("Reports view")
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Reports")
-            }.tag(2)
+                }.tag(2)
             
-            SheetPresenter(presentingSheet: $isPresentedChooseCrop,
-                           selectedTab: $selectedTab,
-                           content: CropListView(isPresentedChooseCrop: $isPresentedChooseCrop).environment(\.managedObjectContext, self.managedObjectContext))
-                            .tabItem {
-                                Image(systemName: "plus.circle")
-                                Text("Add Harvest")
-                           }.tag(3)
-                
-                Text("Settings View")
+            CropListView().environment(\.managedObjectContext, self.managedObjectContext)
+                .tabItem {
+                    Image(systemName: "plus.circle")
+                    Text("Add Harvest")
+                }.tag(3)
+            
+            Text("Settings View")
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
-            }.tag(4)
+                }.tag(4)
             
         }
-
-        }
-            
+        
+    }
+    
     }
 
 
@@ -64,28 +62,28 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-
-struct SheetPresenter<Content>: View where Content: View {
-    
-    @Binding var presentingSheet: Bool
-    @Binding var selectedTab: Int
-
-    var content: Content
-    
-    var body: some View {
-        
-        Text("")
-            .sheet(isPresented: self.$presentingSheet,
-                   onDismiss: {
-                    self.selectedTab = 1
-                    
-            },
-                   content: { self.content })
-            .onAppear {
-                DispatchQueue.main.async {
-                    self.presentingSheet = true
-                }
-            }
-
-    }
-}
+//
+//struct SheetPresenter<Content>: View where Content: View {
+//
+//    @Binding var presentingSheet: Bool
+//    @Binding var selectedTab: Int
+//
+//    var content: Content
+//
+//    var body: some View {
+//
+//        Text("")
+//            .sheet(isPresented: self.$presentingSheet,
+//                   onDismiss: {
+//                    self.selectedTab = 1
+//
+//            },
+//                   content: { self.content })
+//            .onAppear {
+//                DispatchQueue.main.async {
+//                    self.presentingSheet = true
+//                }
+//            }
+//
+//    }
+//}

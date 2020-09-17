@@ -13,7 +13,7 @@ struct CropRowView: View {
     var crop: Crop
     @Binding var chosenCrop: Crop?
     @Binding var isPresentedAddHarvest: Bool
-    @Binding var isPresentedChooseCrop: Bool
+//    @Binding var isPresentedChooseCrop: Bool
 
     
     var body: some View {
@@ -24,7 +24,8 @@ struct CropRowView: View {
             Spacer()
         }.onTapGesture {
             self.chosenCrop = self.crop
-            self.isPresentedChooseCrop = false
+            print("Chosen crop is: \(self.chosenCrop?.cropName)")
+//            self.isPresentedChooseCrop = false
             self.isPresentedAddHarvest = true
         }
     }

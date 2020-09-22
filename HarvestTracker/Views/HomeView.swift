@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  HarvestTracker
 //
-//  Created by Luke Browne on 9/11/20.
+//  Created by Luke Browne on 9/18/20.
 //  Copyright © 2020 Luke Browne. All rights reserved.
 //
 
@@ -10,50 +10,40 @@ import SwiftUI
 
 struct HomeView: View {
     
-    // State variables
-    @State var isPresented = false
+    
+    // Fetch Harvests
+    @FetchRequest(entity: Harvest.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)]
+    ) var harvests: FetchedResults<Harvest>
+    
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @State private var selectedTab = 1
-    @State var isPresentedChooseCrop = false
-
-
+    
     
     
     var body: some View {
         
-        TabView(selection: $selectedTab) {
-            
-            HarvestListView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }.tag(1)
-            
-            Text("Reports view")
-                .tabItem {
-                    Image(systemName: "chart.bar")
-                    Text("Reports")
-                }.tag(2)
-            
-            CropListView().environment(\.managedObjectContext, self.managedObjectContext)
-                .tabItem {
-                    Image(systemName: "plus.circle")
-                    Text("Add Harvest")
-                }.tag(3)
-            
-            Text("Settings View")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }.tag(4)
-            
-        }
         
+        GeometryReader { geometry in
+            
+            VStack {
+                
+                Text("Harvest Tracker")
+                    .font(.largeTitle).fontWeight(.bold)
+                    .padding()
+                
+                // Add total harvest amount
+                HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, self.managedObjectContext)
+                    .frame(width: .infinity, height: geometry.size.height * 0.2, alignment: .center)
+                
+                HarvestListView()
+                    .frame(width: .infinity, height: geometry.size.height * 0.66, alignment: .center)
+                
+            }
+        }
     }
-    
-    }
+}
 
 
 struct HomeView_Previews: PreviewProvider {
@@ -61,29 +51,3 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-//
-//struct SheetPresenter<Content>: View where Content: View {
-//
-//    @Binding var presentingSheet: Bool
-//    @Binding var selectedTab: Int
-//
-//    var content: Content
-//
-//    var body: some View {
-//
-//        Text("")
-//            .sheet(isPresented: self.$presentingSheet,
-//                   onDismiss: {
-//                    self.selectedTab = 1
-//
-//            },
-//                   content: { self.content })
-//            .onAppear {
-//                DispatchQueue.main.async {
-//                    self.presentingSheet = true
-//                }
-//            }
-//
-//    }
-//}

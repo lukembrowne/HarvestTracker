@@ -40,10 +40,6 @@ struct HarvestListView: View {
                 
               List {
                 
-                // Add total harvest amount
-                HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, self.managedObjectContext)
-                
-                
                 ForEach(harvests, id: \.self) {
                   HarvestRowView(harvest: $0)
                 }
@@ -55,7 +51,7 @@ struct HarvestListView: View {
 //                    
 //              }
                 
-              .navigationBarTitle(Text("Harvest"))
+              .navigationBarTitle(Text("Harvests"))
 //              .navigationBarItems(leading: EditButton(),
 //                trailing:
 //                    Button(action: { self.isPresented.toggle() }) {

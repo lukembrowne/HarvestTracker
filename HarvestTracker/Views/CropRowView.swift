@@ -24,7 +24,7 @@ struct CropRowView: View {
             Spacer()
         }.onTapGesture {
             self.chosenCrop = self.crop
-            print("Chosen crop is: \(self.chosenCrop?.cropName)")
+            print("Chosen crop is: \(self.chosenCrop?.cropName ?? "nil")")
 //            self.isPresentedChooseCrop = false
             self.isPresentedAddHarvest = true
         }

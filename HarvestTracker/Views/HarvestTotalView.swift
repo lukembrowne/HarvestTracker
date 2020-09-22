@@ -11,7 +11,7 @@ import SwiftUI
 struct HarvestTotalView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
-
+    
     var totalHarvestAmount = 0.0
     var currencyFormatter = NumberFormatter()
     var totalHarvestValue = 0.0
@@ -23,27 +23,63 @@ struct HarvestTotalView: View {
         self.currencyFormatter.numberStyle = .currency
         self.currencyFormatter.locale = Locale.current
         calcTotalHarvest()
-
-    }
-    
-   var harvests: FetchedResults<Harvest>
-    
-    
-    var body: some View {
-        Text("Total Harvest: \(self.totalHarvestAmount, specifier: "%.2f") kg, Value: \(self.totalHarvestValueDisplay)")
         
     }
     
-
+    var harvests: FetchedResults<Harvest>
+    
+    
+    var body: some View {
+        
+        
+        ZStack {
+            
+            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                .fill(Color.green.opacity(0.85))
+                .padding()
+            
+            HStack {
+                
+                // Total harvest amount
+                VStack {
+                    Text("Total harvest")
+                        .font(.title)
+                    HStack {
+                        Text("\(self.totalHarvestAmount, specifier: "%.2f")")
+                            .font(.largeTitle)
+                        Text("kg")
+                            .font(.caption)
+                    }
+                }
+                            
+                // Total harvest value
+                VStack {
+                    Text("Value")
+                        .font(.title)
+                    
+                    Text("\(self.totalHarvestValueDisplay)")
+                        .font(.largeTitle)
+                }
+            }
+            .foregroundColor(Color.white)
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
     // Calculate total Harvest
     mutating func calcTotalHarvest() {
         
         // Loop over harvests if there are harvests
         if(harvests.count > 0){
             for index in 0...harvests.count - 1 {
-                               
                 
-//                print(index)
+                
+                //                print(index)
                 totalHarvestAmount += harvests[index].amountStandardized
                 totalHarvestValue += harvests[index].amountStandardized * harvests[index].crop!.costPerG
             }

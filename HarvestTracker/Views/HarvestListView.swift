@@ -35,30 +35,20 @@ struct HarvestListView: View {
     
     var body: some View {
     
+        
+        VStack {
             
-            NavigationView {
-                
+            Text("Recent Harvests")
+                .font(.title)
+            
               List {
                 
                 ForEach(harvests, id: \.self) {
                   HarvestRowView(harvest: $0)
                 }
                 .onDelete(perform: deleteHarvest)
-              }
-//                .sheet(isPresented: $isPresented) {
-//                        AddHarvestView(isPresented: self.$isPresented)
-//                .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-//                    
-//              }
-                
-              .navigationBarTitle(Text("Harvests"))
-//              .navigationBarItems(leading: EditButton(),
-//                trailing:
-//                    Button(action: { self.isPresented.toggle() }) {
-//                        Image(systemName: "plus")
-//                    }
-//                )
-            } // End Navigation View
+
+            } // End List View
             .onAppear() {
                 
                 // To remove lines between rows of list
@@ -71,6 +61,9 @@ struct HarvestListView: View {
                     Crop.loadDefaultCrops(in: self.managedObjectContext)
                 }
             } // End on Appear
+            
+        }
+
     } // End Body
     
     // Maybe there is a way to factor this out into Harvest, but not sure how

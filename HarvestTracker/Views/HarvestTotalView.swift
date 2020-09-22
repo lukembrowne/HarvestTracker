@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HarvestTotalView: View {
     
@@ -42,7 +43,7 @@ struct HarvestTotalView: View {
                 
                 // Total harvest amount
                 VStack {
-                    Text("Total harvest")
+                    Text("Total Harvest")
                         .font(.title)
                     HStack {
                         Text("\(self.totalHarvestAmount, specifier: "%.2f")")
@@ -54,7 +55,7 @@ struct HarvestTotalView: View {
                             
                 // Total harvest value
                 VStack {
-                    Text("Value")
+                    Text("Total Value")
                         .font(.title)
                     
                     Text("\(self.totalHarvestValueDisplay)")
@@ -101,7 +102,20 @@ struct HarvestTotalView: View {
 }
 
 //struct HarvestTotalView_Previews: PreviewProvider {
+//    
+//    
+//    // Fetch Harvests
+//    @FetchRequest(entity: Harvest.entity(),
+//                  sortDescriptors: [NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)]
+//    ) static var harvests: FetchedResults<Harvest>
+//          
+//    
 //    static var previews: some View {
-//        HarvestTotalView()
+//        
+//        
+//        let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        
+//  
+//        HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, moc)
 //    }
 //}

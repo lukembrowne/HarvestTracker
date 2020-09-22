@@ -21,27 +21,29 @@ struct HarvestRowView: View {
     var body: some View {
         
         HStack {
+            
             VStack(alignment: .leading) {
+                
                 harvest.crop?.cropName.map(Text.init)
-                    .font(.title)
-                HStack {
-                    harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
-                        .font(.caption)
-                    Spacer()
-                }
+                    .font(.headline)
+                
+                harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
+                    .font(.caption)
+                
+                Text("Location")
+                    .font(.caption)
+                
             }
+            
             Spacer()
+            
             Text(String(harvest.amountEntered))
                 .font(.title)
             Text(String(harvest.unitEntered ?? "def"))
                 .font(.caption)
             
-            Text(String(harvest.amountStandardized))
-                .font(.title)
-            Text(String("g"))
-                .font(.caption)
-            
         }
     }
 }
+
 

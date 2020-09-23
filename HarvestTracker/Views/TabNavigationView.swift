@@ -31,7 +31,7 @@ struct TabNavigationView: View {
                     Text("Home")
                 }.tag(1)
             
-            Text("Reports view")
+            chartest()
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Reports")

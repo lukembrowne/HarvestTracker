@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D12508F9A400BFF24C /* Crop+CoreDataProperties.swift */; };
 		A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */; };
 		A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */; };
+		A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39708F3251B6CD6002CBB62 /* chartest.swift */; };
+		A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A3979469251B7437004A6FBB /* SwiftUICharts */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
@@ -42,6 +44,8 @@
 		A37236D12508F9A400BFF24C /* Crop+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A39708F3251B6CD6002CBB62 /* chartest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartest.swift; sourceTree = "<group>"; };
+		A3979472251B7484004A6FBB /* ChartView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ChartView; sourceTree = "<group>"; };
 		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1367E4C994373516DE695E41 /* Pods_HarvestTracker.framework in Frameworks */,
+				A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +121,8 @@
 		A3D98B5C24FA83F0003ED12E = {
 			isa = PBXGroup;
 			children = (
+				A3979472251B7484004A6FBB /* ChartView */,
+				A39708F3251B6CD6002CBB62 /* chartest.swift */,
 				A3D98B6724FA83F0003ED12E /* HarvestTracker */,
 				A3D98B6624FA83F0003ED12E /* Products */,
 				DD9DB990E053962CDCCEE5CB /* Pods */,
@@ -183,6 +190,9 @@
 			dependencies = (
 			);
 			name = HarvestTracker;
+			packageProductDependencies = (
+				A3979469251B7437004A6FBB /* SwiftUICharts */,
+			);
 			productName = HarvestTracker;
 			productReference = A3D98B6524FA83F0003ED12E /* HarvestTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +221,9 @@
 				Base,
 			);
 			mainGroup = A3D98B5C24FA83F0003ED12E;
+			packageReferences = (
+				A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = A3D98B6624FA83F0003ED12E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -291,6 +304,7 @@
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
+				A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
@@ -498,6 +512,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A3979469251B7437004A6FBB /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */ = {

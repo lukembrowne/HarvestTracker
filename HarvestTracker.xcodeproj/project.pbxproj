@@ -21,6 +21,10 @@
 		A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39708F3251B6CD6002CBB62 /* chartest.swift */; };
 		A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A3979469251B7437004A6FBB /* SwiftUICharts */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
+		A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */; };
+		A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */; };
+		A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B33251CB5B80021FAF0 /* BarChartView.swift */; };
+		A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B38251CB60C0021FAF0 /* Helpers.swift */; };
 		A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6824FA83F0003ED12E /* AppDelegate.swift */; };
 		A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */; };
 		A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */; };
@@ -45,8 +49,12 @@
 		A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A39708F3251B6CD6002CBB62 /* chartest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartest.swift; sourceTree = "<group>"; };
-		A3979472251B7484004A6FBB /* ChartView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ChartView; sourceTree = "<group>"; };
 		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
+		A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
+		A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
+		A3C12B33251CB5B80021FAF0 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		A3C12B36251CB5E90021FAF0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../../../ChartView/LICENSE; sourceTree = "<group>"; };
+		A3C12B38251CB60C0021FAF0 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D98B6A24FA83F0003ED12E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 		A32029D524FE74F900DD1643 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3C12B2C251CB5810021FAF0 /* BarCharts */,
 				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
 				A32CEFE72514D3560085A2EF /* HomeView.swift */,
 				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
@@ -118,10 +127,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A3C12B2C251CB5810021FAF0 /* BarCharts */ = {
+			isa = PBXGroup;
+			children = (
+				A3C12B38251CB60C0021FAF0 /* Helpers.swift */,
+				A3C12B36251CB5E90021FAF0 /* LICENSE */,
+				A3C12B33251CB5B80021FAF0 /* BarChartView.swift */,
+				A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */,
+				A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */,
+			);
+			path = BarCharts;
+			sourceTree = "<group>";
+		};
 		A3D98B5C24FA83F0003ED12E = {
 			isa = PBXGroup;
 			children = (
-				A3979472251B7484004A6FBB /* ChartView */,
 				A39708F3251B6CD6002CBB62 /* chartest.swift */,
 				A3D98B6724FA83F0003ED12E /* HarvestTracker */,
 				A3D98B6624FA83F0003ED12E /* Products */,
@@ -296,6 +316,7 @@
 				A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */,
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
 				A36230F124FFBDF800A672FD /* CropListView.swift in Sources */,
+				A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
 				A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */,
@@ -303,14 +324,17 @@
 				A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
+				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
 				A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
+				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,
 				A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
 				A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 				A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */,
+				A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

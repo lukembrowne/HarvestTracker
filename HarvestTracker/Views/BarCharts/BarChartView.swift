@@ -55,7 +55,7 @@ public struct BarChartView : View {
                 HStack{
                     if(!showValue){
                         Text(self.title)
-                            .font(.headline)
+                            .font(.title)
                             .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
                     }else{
                         Text("\(self.currentValue, specifier: self.valueSpecifier)")
@@ -70,32 +70,32 @@ public struct BarChartView : View {
                             .animation(.easeOut)
                     }
                     Spacer()
-                    self.cornerImage
-                        .imageScale(.large)
-                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
+//                    self.cornerImage
+//                        .imageScale(.large)
+//                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
                 }.padding()
                 BarChartRow(data: data.points.map{$0.1},
                             accentColor: self.colorScheme == .dark ? self.darkModeStyle.accentColor : self.style.accentColor,
                             gradient: self.colorScheme == .dark ? self.darkModeStyle.gradientColor : self.style.gradientColor,
                             touchLocation: self.$touchLocation)
-                if self.legend != nil  && self.formSize == ChartForm.medium && !self.showLabelValue{
-                    Text(self.legend!)
-                        .font(.headline)
-                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
-                        .padding()
-                }else if (self.data.valuesGiven && self.getCurrentValue() != nil) {
-                    LabelView(arrowOffset: self.getArrowOffset(touchLocation: self.touchLocation),
-                              title: .constant(self.getCurrentValue()!.0))
-                        .offset(x: self.getLabelViewOffset(touchLocation: self.touchLocation), y: -6)
-                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
-                }
+//                if self.legend != nil  && self.formSize == ChartForm.medium && !self.showLabelValue{
+//                    Text(self.legend!)
+//                        .font(.headline)
+//                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
+//                        .padding()
+//                }else if (self.data.valuesGiven && self.getCurrentValue() != nil) {
+//                    LabelView(arrowOffset: self.getArrowOffset(touchLocation: self.touchLocation),
+//                              title: .constant(self.getCurrentValue()!.0))
+//                        .offset(x: self.getLabelViewOffset(touchLocation: self.touchLocation), y: -6)
+//                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
+//                }
                 
             }
         }
-        .frame(minWidth:self.formSize.width,
-                maxWidth: self.isFullWidth ? .infinity : self.formSize.width,
-                minHeight:self.formSize.height,
-                maxHeight:self.formSize.height)
+//        .frame(minWidth:self.formSize.width,
+//                maxWidth: self.isFullWidth ? .infinity : self.formSize.width,
+//                minHeight:self.formSize.height,
+//                maxHeight:self.formSize.height)
 //        .frame(minWidth:.infinity,
 //                maxWidth: .infinity,
 //                minHeight:.infinity,

@@ -53,7 +53,7 @@
 		A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		A3C12B33251CB5B80021FAF0 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
-		A3C12B36251CB5E90021FAF0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../../../ChartView/LICENSE; sourceTree = "<group>"; };
+		A3C12B36251CB5E90021FAF0 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE.txt; path = ../../../ChartView/LICENSE.txt; sourceTree = "<group>"; };
 		A3C12B38251CB60C0021FAF0 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A3D98B6524FA83F0003ED12E /* HarvestTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvestTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D98B6824FA83F0003ED12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				A3C12B38251CB60C0021FAF0 /* Helpers.swift */,
-				A3C12B36251CB5E90021FAF0 /* LICENSE */,
+				A3C12B36251CB5E90021FAF0 /* LICENSE.txt */,
 				A3C12B33251CB5B80021FAF0 /* BarChartView.swift */,
 				A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */,
 				A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */,

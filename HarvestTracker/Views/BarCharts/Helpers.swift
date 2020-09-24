@@ -56,80 +56,6 @@ public struct GradientColors {
     public static let orngPink = GradientColor(start: Color(hexString: "FF8E2D"), end: Color(hexString: "FF4E7A"))
 }
 
-public struct Styles {
-    public static let lineChartStyleOne = ChartStyle(
-        backgroundColor: Color.white,
-        accentColor: Colors.OrangeStart,
-        secondGradientColor: Colors.OrangeEnd,
-        textColor: Color.black,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let barChartStyleOrangeLight = ChartStyle(
-        backgroundColor: Color.white,
-        accentColor: Colors.OrangeStart,
-        secondGradientColor: Colors.OrangeEnd,
-        textColor: Color.black,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let barChartStyleOrangeDark = ChartStyle(
-        backgroundColor: Color.black,
-        accentColor: Colors.OrangeStart,
-        secondGradientColor: Colors.OrangeEnd,
-        textColor: Color.white,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let barChartStyleNeonBlueLight = ChartStyle(
-        backgroundColor: Color.white,
-        accentColor: Colors.GradientNeonBlue,
-        secondGradientColor: Colors.GradientPurple,
-        textColor: Color.black,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let barChartStyleNeonBlueDark = ChartStyle(
-        backgroundColor: Color.black,
-        accentColor: Colors.GradientNeonBlue,
-        secondGradientColor: Colors.GradientPurple,
-        textColor: Color.white,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let barChartMidnightGreenDark = ChartStyle(
-        backgroundColor: Color(hexString: "#36534D"), //3B5147, 313D34
-        accentColor: Color(hexString: "#FFD603"),
-        secondGradientColor: Color(hexString: "#FFCA04"),
-        textColor: Color.white,
-        legendTextColor: Color(hexString: "#D2E5E1"),
-        dropShadowColor: Color.gray)
-    
-    public static let barChartMidnightGreenLight = ChartStyle(
-        backgroundColor: Color.white,
-        accentColor: Color(hexString: "#84A094"), //84A094 , 698378
-        secondGradientColor: Color(hexString: "#50675D"),
-        textColor: Color.black,
-        legendTextColor:Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let pieChartStyleOne = ChartStyle(
-        backgroundColor: Color.white,
-        accentColor: Colors.OrangeEnd,
-        secondGradientColor: Colors.OrangeStart,
-        textColor: Color.black,
-        legendTextColor: Color.gray,
-        dropShadowColor: Color.gray)
-    
-    public static let lineViewDarkMode = ChartStyle(
-        backgroundColor: Color.black,
-        accentColor: Colors.OrangeStart,
-        secondGradientColor: Colors.OrangeEnd,
-        textColor: Color.white,
-        legendTextColor: Color.white,
-        dropShadowColor: Color.gray)
-}
-
 public struct ChartForm {
     #if os(watchOS)
     public static let small = CGSize(width:120, height:90)
@@ -146,42 +72,6 @@ public struct ChartForm {
     #endif
 }
 
-public class ChartStyle {
-    public var backgroundColor: Color
-    public var accentColor: Color
-    public var gradientColor: GradientColor
-    public var textColor: Color
-    public var legendTextColor: Color
-    public var dropShadowColor: Color
-    public weak var darkModeStyle: ChartStyle?
-    
-    public init(backgroundColor: Color, accentColor: Color, secondGradientColor: Color, textColor: Color, legendTextColor: Color, dropShadowColor: Color){
-        self.backgroundColor = backgroundColor
-        self.accentColor = accentColor
-        self.gradientColor = GradientColor(start: accentColor, end: secondGradientColor)
-        self.textColor = textColor
-        self.legendTextColor = legendTextColor
-        self.dropShadowColor = dropShadowColor
-    }
-    
-    public init(backgroundColor: Color, accentColor: Color, gradientColor: GradientColor, textColor: Color, legendTextColor: Color, dropShadowColor: Color){
-        self.backgroundColor = backgroundColor
-        self.accentColor = accentColor
-        self.gradientColor = gradientColor
-        self.textColor = textColor
-        self.legendTextColor = legendTextColor
-        self.dropShadowColor = dropShadowColor
-    }
-    
-    public init(formSize: CGSize){
-        self.backgroundColor = Color.white
-        self.accentColor = Colors.OrangeStart
-        self.gradientColor = GradientColors.orange
-        self.legendTextColor = Color.gray
-        self.textColor = Color.black
-        self.dropShadowColor = Color.gray
-    }
-}
 
 public class ChartData: ObservableObject, Identifiable {
     @Published var points: [(String,Double)]
@@ -213,23 +103,6 @@ public class ChartData: ObservableObject, Identifiable {
     }
 }
 
-public class MultiLineChartData: ChartData {
-    var gradient: GradientColor
-    
-    public init<N: BinaryFloatingPoint>(points:[N], gradient: GradientColor) {
-        self.gradient = gradient
-        super.init(points: points)
-    }
-    
-    public init<N: BinaryFloatingPoint>(points:[N], color: Color) {
-        self.gradient = GradientColor(start: color, end: color)
-        super.init(points: points)
-    }
-    
-    public func getGradient() -> GradientColor {
-        return self.gradient
-    }
-}
 
 public class TestData{
     static public var data:ChartData = ChartData(points: [37,72,51,22,39,47,66,85,50])
@@ -260,19 +133,4 @@ extension Color {
         }
         self.init(red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255)
     }
-}
-
-class HapticFeedback {
-    #if os(watchOS)
-    //watchOS implementation
-    static func playSelection() -> Void {
-        WKInterfaceDevice.current().play(.click)
-    }
-    #else
-    //iOS implementation
-    let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
-    static func playSelection() -> Void {
-        UISelectionFeedbackGenerator().selectionChanged()
-    }
-    #endif
 }

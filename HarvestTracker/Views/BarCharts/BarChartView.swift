@@ -24,7 +24,6 @@ public struct BarChartView : View {
     private var data: ChartData
     public var title: String
     public var formSize:CGSize
-    public var dropShadow: Bool
     public var valueSpecifier:String
     
     @State private var touchLocation: CGFloat = -1.0
@@ -38,7 +37,6 @@ public struct BarChartView : View {
         self.data = data
         self.title = title
         self.formSize = form!
-        self.dropShadow = dropShadow!
         self.valueSpecifier = valueSpecifier!
     }
     

@@ -21,8 +21,6 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     
-    
-    
     var body: some View {
         
         
@@ -40,8 +38,11 @@ struct HomeView: View {
                 
                 Text("Total harvest \(HarvestCalculator(harvests: harvests).calcTotalHarvest())")
 //
-                BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]),
+//                BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]),
+//                             title: "Harvest total: 57.kg")
+                BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(),
                              title: "Harvest total: 57.kg")
+
                 
                 HarvestListView()
                     .frame(width: .infinity, height: geometry.size.height * 0.66, alignment: .center)

@@ -21,6 +21,7 @@ import SwiftUI
 
 public struct BarChartCell : View {
     var value: Double
+    var label: String
     var index: Int = 0
     var width: Float
     var numberOfDataPoints: Int
@@ -44,7 +45,7 @@ public struct BarChartCell : View {
             }
             .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))
             
-            Text("label")
+            Text(label)
                 .font(.footnote)
         }
         
@@ -56,7 +57,7 @@ public struct BarChartCell : View {
 #if DEBUG
 struct ChartCell_Previews : PreviewProvider {
     static var previews: some View {
-        BarChartCell(value: Double(0.75), width: 320, numberOfDataPoints: 12, touchLocation: .constant(-1))
+        BarChartCell(value: Double(0.75), label: "Test", width: 320, numberOfDataPoints: 12, touchLocation: .constant(-1))
     }
 }
 #endif

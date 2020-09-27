@@ -22,6 +22,7 @@ import SwiftUI
 public struct BarChartRow : View {
     
     var data: [Double]
+    var labels: [String]
     
     var maxValue: Double {
         guard let max = data.max() else {
@@ -38,10 +39,12 @@ public struct BarChartRow : View {
                 ForEach(0..<self.data.count, id: \.self) { i in
                     
                     BarChartCell(value: self.normalizedValue(index: i),
+                                 label: labels[i],
                                  index: i,
                                  width: Float(geometry.frame(in: .local).width - 22),
                                  numberOfDataPoints: self.data.count,
                                  touchLocation: self.$touchLocation)
+                        
                         .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.4, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
                         .animation(.spring())
                     
@@ -60,7 +63,7 @@ public struct BarChartRow : View {
 struct ChartRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            BarChartRow(data: [8,23,54,32,12,37,7], touchLocation: .constant(-1))
+            BarChartRow(data: [8,23,54,32,12,37,7], labels: ["a", "b", "c", "d", "e", "f", "g"], touchLocation: .constant(-1))
         }
     }
 }

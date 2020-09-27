@@ -35,13 +35,10 @@ struct HomeView: View {
                 // Add total harvest amount
 //                HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, self.managedObjectContext)
 //                    .frame(width: .infinity, height: geometry.size.height * 0.2, alignment: .center)
-                
-                Text("Total harvest \(HarvestCalculator(harvests: harvests).calcTotalHarvest())")
-//
-//                BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]),
-//                             title: "Harvest total: 57.kg")
+ 
+                // Add bar chart view
                 BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(),
-                             title: "Harvest total: 57.kg")
+                             title: "2019 total: \(HarvestCalculator(harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
 
                 
                 HarvestListView()

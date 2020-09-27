@@ -51,6 +51,9 @@ public struct BarChartView : View {
                 HStack{
                     Text(self.title)
                         .font(.title)
+                    // Harvest total unit here
+                    Text(" kg")
+                        .font(.caption)
                     Spacer()
                 }.padding()
                 

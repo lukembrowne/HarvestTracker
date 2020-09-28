@@ -18,7 +18,7 @@
 		A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D12508F9A400BFF24C /* Crop+CoreDataProperties.swift */; };
 		A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */; };
 		A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */; };
-		A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39708F3251B6CD6002CBB62 /* chartest.swift */; };
+		A395A1EA25220B340062983D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395A1E925220B340062983D /* SettingsView.swift */; };
 		A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A3979469251B7437004A6FBB /* SwiftUICharts */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
 		A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */; };
@@ -49,7 +49,7 @@
 		A37236D12508F9A400BFF24C /* Crop+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A39708F3251B6CD6002CBB62 /* chartest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartest.swift; sourceTree = "<group>"; };
+		A395A1E925220B340062983D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
 		A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
@@ -105,6 +105,7 @@
 				A36230F024FFBDF800A672FD /* CropListView.swift */,
 				A36230F224FFBF6600A672FD /* CropRowView.swift */,
 				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
+				A395A1E925220B340062983D /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,7 +144,6 @@
 		A3D98B5C24FA83F0003ED12E = {
 			isa = PBXGroup;
 			children = (
-				A39708F3251B6CD6002CBB62 /* chartest.swift */,
 				A3D98B6724FA83F0003ED12E /* HarvestTracker */,
 				A3D98B6624FA83F0003ED12E /* Products */,
 				DD9DB990E053962CDCCEE5CB /* Pods */,
@@ -323,11 +323,11 @@
 				A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */,
 				A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */,
 				A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */,
+				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
-				A39708F4251B6CD6002CBB62 /* chartest.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,
 				A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */,

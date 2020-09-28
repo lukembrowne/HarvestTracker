@@ -5,7 +5,6 @@
 //  Created by András Samu on 2019. 07. 19..
 //
 
-import Foundation
 import SwiftUI
 
 
@@ -68,10 +67,52 @@ public class TestData{
     
 }
 
+// Extension for rounding doubles
 extension Double {
     /// Rounds the double to decimal places value
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
+}
+
+// Small struct for deciding default unit
+
+struct DefaultUnit {
+    
+    var unitMass: UnitMass
+    var unitString: String
+    
+    init() {
+        
+        switch UserDefaults.standard.string(forKey: "DefaultUnit") {
+        
+        case "oz":
+            print("Default unit oz")
+            self.unitMass = UnitMass.ounces
+            self.unitString = "oz"
+            
+        case "lb":
+            print("Default unit lb")
+            self.unitMass = UnitMass.pounds
+            self.unitString = "lb"
+            
+        case "g":
+            print("Default unit g")
+            self.unitMass = UnitMass.grams
+            self.unitString = "g"
+            
+        case "kg":
+            print("Default unit kg")
+            self.unitMass = UnitMass.kilograms
+            self.unitString = "kg"
+            
+        default:
+            print("No default unit chosen")
+            self.unitMass = UnitMass.ounces
+            self.unitString = "oz"
+            
+        }
+    }
+    
 }

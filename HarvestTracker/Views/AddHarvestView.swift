@@ -24,7 +24,7 @@ struct AddHarvestView: View {
 
     @State var chosenHarvestDate = Date()
     
-    @State var chosenUnit = "oz"
+    @State var chosenUnit = DefaultUnit().unitString
     var units = ["oz", "lb", "g", "kg"]
     
     @State var showingNoCropAlert = false

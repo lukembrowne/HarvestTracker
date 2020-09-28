@@ -52,7 +52,7 @@ public struct BarChartRow : View {
                     
                     HStack {
                         VStack {
-                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: .kilograms).value)) kg")
+                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: DefaultUnit().unitMass).value)) \(DefaultUnit().unitString)")
                                 .font(.footnote)
                                 .offset(x: 0, y: -8)
                             Spacer()

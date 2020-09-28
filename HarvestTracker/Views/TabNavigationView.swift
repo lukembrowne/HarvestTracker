@@ -18,9 +18,7 @@ struct TabNavigationView: View {
     @State private var selectedTab = 1
     @State var isPresentedChooseCrop = false
 
-
-    
-    
+        
     var body: some View {
         
         TabView(selection: $selectedTab) {
@@ -31,7 +29,7 @@ struct TabNavigationView: View {
                     Text("Home")
                 }.tag(1)
             
-            chartest()
+            Text("Hello world")
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Reports")
@@ -43,7 +41,7 @@ struct TabNavigationView: View {
                     Text("Add Harvest")
                 }.tag(3)
             
-            Text("Settings View")
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -61,29 +59,3 @@ struct TabNavigationView_Previews: PreviewProvider {
         TabNavigationView()
     }
 }
-
-//
-//struct SheetPresenter<Content>: View where Content: View {
-//
-//    @Binding var presentingSheet: Bool
-//    @Binding var selectedTab: Int
-//
-//    var content: Content
-//
-//    var body: some View {
-//
-//        Text("")
-//            .sheet(isPresented: self.$presentingSheet,
-//                   onDismiss: {
-//                    self.selectedTab = 1
-//
-//            },
-//                   content: { self.content })
-//            .onAppear {
-//                DispatchQueue.main.async {
-//                    self.presentingSheet = true
-//                }
-//            }
-//
-//    }
-//}

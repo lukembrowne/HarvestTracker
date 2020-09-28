@@ -52,7 +52,7 @@ public struct BarChartView : View {
                     Text(self.title)
                         .font(.title)
                     // Harvest total unit here
-                    Text(" kg")
+                    Text(" \(DefaultUnit().unitString)")
                         .font(.caption)
                     Spacer()
                 }.padding()

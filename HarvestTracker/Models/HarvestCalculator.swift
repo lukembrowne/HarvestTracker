@@ -18,7 +18,8 @@ struct HarvestCalculator {
         
         var totalHarvestAmount = 0.0
         var totalHarvestValue = 0.0
-        
+                
+
         // Loop over harvests if there are harvests
         if(harvests.count > 0){
             for index in 0...harvests.count - 1 {
@@ -31,7 +32,7 @@ struct HarvestCalculator {
         }
         
         // Convert to displayed unit
-        totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: .kilograms).value
+        totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: DefaultUnit().unitMass).value
         
         return totalHarvestAmount
         

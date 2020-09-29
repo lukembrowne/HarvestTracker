@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		A31E05242523520A00448C45 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E05232523520A00448C45 /* UserSettings.swift */; };
 		A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320188D250B9D5A0010943E /* TabNavigationView.swift */; };
 		A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CEFE72514D3560085A2EF /* HomeView.swift */; };
+		A3490F1F252384E2002B7E15 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3490F1E252384E2002B7E15 /* TagListView.swift */; };
+		A3490F2225238622002B7E15 /* AddTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3490F2125238622002B7E15 /* AddTagView.swift */; };
+		A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3490F2525238B9C002B7E15 /* Tag+CoreDataClass.swift */; };
+		A3490F2825238B9C002B7E15 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3490F2625238B9C002B7E15 /* Tag+CoreDataProperties.swift */; };
 		A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EE24FEE89E00A672FD /* CropDataDefault.swift */; };
 		A36230F124FFBDF800A672FD /* CropListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F024FFBDF800A672FD /* CropListView.swift */; };
 		A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230F224FFBF6600A672FD /* CropRowView.swift */; };
@@ -20,7 +24,6 @@
 		A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */; };
 		A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */; };
 		A395A1EA25220B340062983D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395A1E925220B340062983D /* SettingsView.swift */; };
-		A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A3979469251B7437004A6FBB /* SwiftUICharts */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
 		A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */; };
 		A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */; };
@@ -44,6 +47,10 @@
 		A31E05232523520A00448C45 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A320188D250B9D5A0010943E /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		A32CEFE72514D3560085A2EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A3490F1E252384E2002B7E15 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		A3490F2125238622002B7E15 /* AddTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagView.swift; sourceTree = "<group>"; };
+		A3490F2525238B9C002B7E15 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		A3490F2625238B9C002B7E15 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A36230EE24FEE89E00A672FD /* CropDataDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropDataDefault.swift; sourceTree = "<group>"; };
 		A36230F024FFBDF800A672FD /* CropListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropListView.swift; sourceTree = "<group>"; };
 		A36230F224FFBF6600A672FD /* CropRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRowView.swift; sourceTree = "<group>"; };
@@ -79,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1367E4C994373516DE695E41 /* Pods_HarvestTracker.framework in Frameworks */,
-				A397946A251B7437004A6FBB /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,16 +104,18 @@
 			isa = PBXGroup;
 			children = (
 				A3C12B2C251CB5810021FAF0 /* BarCharts */,
-				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
-				A32CEFE72514D3560085A2EF /* HomeView.swift */,
+				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
+				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
+				A3490F2125238622002B7E15 /* AddTagView.swift */,
+				A36230F024FFBDF800A672FD /* CropListView.swift */,
+				A36230F224FFBF6600A672FD /* CropRowView.swift */,
 				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
 				A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */,
 				A3A739B925011238005A2E5F /* HarvestTotalView.swift */,
-				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
-				A36230F024FFBDF800A672FD /* CropListView.swift */,
-				A36230F224FFBF6600A672FD /* CropRowView.swift */,
-				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
+				A32CEFE72514D3560085A2EF /* HomeView.swift */,
 				A395A1E925220B340062983D /* SettingsView.swift */,
+				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
+				A3490F1E252384E2002B7E15 /* TagListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +134,8 @@
 				A37236D12508F9A400BFF24C /* Crop+CoreDataProperties.swift */,
 				A37236D22508F9A400BFF24C /* Harvest+CoreDataClass.swift */,
 				A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */,
+				A3490F2525238B9C002B7E15 /* Tag+CoreDataClass.swift */,
+				A3490F2625238B9C002B7E15 /* Tag+CoreDataProperties.swift */,
 				A36230EE24FEE89E00A672FD /* CropDataDefault.swift */,
 				A3C12B3E251CC92A0021FAF0 /* HarvestCalculator.swift */,
 				A31E05232523520A00448C45 /* UserSettings.swift */,
@@ -215,7 +225,6 @@
 			);
 			name = HarvestTracker;
 			packageProductDependencies = (
-				A3979469251B7437004A6FBB /* SwiftUICharts */,
 			);
 			productName = HarvestTracker;
 			productReference = A3D98B6524FA83F0003ED12E /* HarvestTracker.app */;
@@ -246,7 +255,6 @@
 			);
 			mainGroup = A3D98B5C24FA83F0003ED12E;
 			packageReferences = (
-				A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = A3D98B6624FA83F0003ED12E /* Products */;
 			projectDirPath = "";
@@ -322,15 +330,18 @@
 				A36230F124FFBDF800A672FD /* CropListView.swift in Sources */,
 				A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
+				A3490F2225238622002B7E15 /* AddTagView.swift in Sources */,
 				A3D98B6B24FA83F0003ED12E /* SceneDelegate.swift in Sources */,
 				A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */,
 				A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */,
 				A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */,
 				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
+				A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
 				A31E05242523520A00448C45 /* UserSettings.swift in Sources */,
+				A3490F1F252384E2002B7E15 /* TagListView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,
@@ -338,6 +349,7 @@
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
 				A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */,
 				A3C12B3F251CC92A0021FAF0 /* HarvestCalculator.swift in Sources */,
+				A3490F2825238B9C002B7E15 /* Tag+CoreDataProperties.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 				A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */,
 				A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */,
@@ -542,25 +554,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A3979469251B7437004A6FBB /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A3979468251B7437004A6FBB /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A3D98B6C24FA83F0003ED12E /* HarvestTracker.xcdatamodeld */ = {

@@ -29,7 +29,7 @@ struct TabNavigationView: View {
                     Text("Home")
                 }.tag(1)
             
-            Text("Hello world")
+            TagListView().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Reports")

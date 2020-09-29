@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Crop" representedClassName="Crop" syncable="YES">
         <attribute name="costPerG" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="costPerUnit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -13,9 +13,16 @@
         <attribute name="harvestDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="unitEntered" optional="YES" attributeType="String"/>
         <relationship name="crop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crop" inverseName="harvests" inverseEntity="Crop"/>
+        <relationship name="tag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="harvest" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="tagColor" optional="YES" attributeType="String"/>
+        <attribute name="tagName" optional="YES" attributeType="String"/>
+        <relationship name="harvest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Harvest" inverseName="tag" inverseEntity="Harvest"/>
     </entity>
     <elements>
         <element name="Crop" positionX="119.87109375" positionY="-7.828125" width="128" height="118"/>
-        <element name="Harvest" positionX="-144.75" positionY="-42.89453125" width="128" height="118"/>
+        <element name="Harvest" positionX="-350.61328125" positionY="-41.46484375" width="128" height="133"/>
+        <element name="Tag" positionX="6.05078125" positionY="-292.73828125" width="128" height="88"/>
     </elements>
 </model>

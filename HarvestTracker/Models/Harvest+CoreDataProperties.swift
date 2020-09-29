@@ -21,6 +21,30 @@ extension Harvest {
     @NSManaged public var amountStandardized: Double
     @NSManaged public var crop: Crop?
     @NSManaged public var harvestDate: Date?
-    @NSManaged public var unitEntered: String?    
+    @NSManaged public var unitEntered: String?
+    @NSManaged public var tag: NSSet?
 
 }
+
+
+// MARK: Generated accessors for tag
+extension Harvest {
+
+    @objc(addTagObject:)
+    @NSManaged public func addToTag(_ value: Tag)
+
+    @objc(removeTagObject:)
+    @NSManaged public func removeFromTag(_ value: Tag)
+
+    @objc(addTag:)
+    @NSManaged public func addToTag(_ values: NSSet)
+
+    @objc(removeTag:)
+    @NSManaged public func removeFromTag(_ values: NSSet)
+
+}
+
+extension Harvest : Identifiable {
+
+}
+

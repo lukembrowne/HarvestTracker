@@ -37,6 +37,8 @@ struct AddHarvestView: View {
     @State var chosenUnit: String
     var units = ["oz", "lb", "g", "kg"]
     
+    @State var chosenTags = [Tag]()
+    
     @State var showingNoCropAlert = false
     @State var isPresentedAddCrop = false
     @Binding var isPresentedAddHarvest: Bool
@@ -115,6 +117,15 @@ struct AddHarvestView: View {
                         Text(tag.tagName ?? "no name")
                     }
                 }
+                // JUST FOR TESTINg - automatically add tags to chosen tag list
+                // Change to be little buttons that you add to chosen tags by tapping
+                .onAppear {
+                   
+                    tags.forEach { tag in
+                        chosenTags.append(tag)
+
+                    }
+                }
               
                 
             }
@@ -177,7 +188,7 @@ struct AddHarvestView: View {
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
-                           tag: tags[0],
+                           tag: chosenTags,
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         

@@ -25,17 +25,24 @@ public class Harvest: NSManagedObject {
                            amountEntered: String,
                            harvestDate: Date,
                            unit: String,
-                           tag: Tag,
+                           tag: [Tag],
                            isPresented: Binding<Bool>,
                            in managedObjectContext: NSManagedObjectContext) {
         
         let newHarvest = Harvest(context: managedObjectContext)
         
         newHarvest.crop = crop
-        tag.addToHarvest(newHarvest)
         newHarvest.amountEntered = Double(amountEntered) ?? 0.0
         newHarvest.harvestDate = harvestDate
         newHarvest.unitEntered = unit
+        
+        // Loop over tags in set and
+        tag.forEach {tag in
+            print("Adding tag \(tag)")
+            tag.addToHarvestArray(newHarvest)
+
+        }
+
         
         // Standardize amount
         switch unit {

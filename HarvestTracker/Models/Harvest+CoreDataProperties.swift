@@ -22,25 +22,43 @@ extension Harvest {
     @NSManaged public var crop: Crop?
     @NSManaged public var harvestDate: Date?
     @NSManaged public var unitEntered: String?
-    @NSManaged public var tag: Set<Tag>?
+    @NSManaged public var tagArray: [Tag]?
 
 }
 
 
-// MARK: Generated accessors for tag
+// MARK: Generated accessors for tagArray
 extension Harvest {
 
-    @objc(addTagObject:)
-    @NSManaged public func addToTag(_ value: Tag)
+    @objc(insertObject:inTagArrayAtIndex:)
+    @NSManaged public func insertIntoTagArray(_ value: Tag, at idx: Int)
 
-    @objc(removeTagObject:)
-    @NSManaged public func removeFromTag(_ value: Tag)
+    @objc(removeObjectFromTagArrayAtIndex:)
+    @NSManaged public func removeFromTagArray(at idx: Int)
 
-    @objc(addTag:)
-    @NSManaged public func addToTag(_ values: NSSet)
+    @objc(insertTagArray:atIndexes:)
+    @NSManaged public func insertIntoTagArray(_ values: [Tag], at indexes: NSIndexSet)
 
-    @objc(removeTag:)
-    @NSManaged public func removeFromTag(_ values: NSSet)
+    @objc(removeTagArrayAtIndexes:)
+    @NSManaged public func removeFromTagArray(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInTagArrayAtIndex:withObject:)
+    @NSManaged public func replaceTagArray(at idx: Int, with value: Tag)
+
+    @objc(replaceTagArrayAtIndexes:withTagArray:)
+    @NSManaged public func replaceTagArray(at indexes: NSIndexSet, with values: [Tag])
+
+    @objc(addTagArrayObject:)
+    @NSManaged public func addToTagArray(_ value: Tag)
+
+    @objc(removeTagArrayObject:)
+    @NSManaged public func removeFromTagArray(_ value: Tag)
+
+    @objc(addTagArray:)
+    @NSManaged public func addToTagArray(_ values: NSOrderedSet)
+
+    @objc(removeTagArray:)
+    @NSManaged public func removeFromTagArray(_ values: NSOrderedSet)
 
 }
 

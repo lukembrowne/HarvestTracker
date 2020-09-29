@@ -17,26 +17,44 @@ extension Tag {
         return NSFetchRequest<Tag>(entityName: "Tag")
     }
 
-    @NSManaged public var tagName: String?
     @NSManaged public var tagColor: String?
-    @NSManaged public var harvest: Set<Tag>?
+    @NSManaged public var tagName: String?
+    @NSManaged public var harvestArray: [Harvest]?
 
 }
 
-// MARK: Generated accessors for harvest
+// MARK: Generated accessors for harvestArray
 extension Tag {
 
-    @objc(addHarvestObject:)
-    @NSManaged public func addToHarvest(_ value: Harvest)
+    @objc(insertObject:inHarvestArrayAtIndex:)
+    @NSManaged public func insertIntoHarvestArray(_ value: Harvest, at idx: Int)
 
-    @objc(removeHarvestObject:)
-    @NSManaged public func removeFromHarvest(_ value: Harvest)
+    @objc(removeObjectFromHarvestArrayAtIndex:)
+    @NSManaged public func removeFromHarvestArray(at idx: Int)
 
-    @objc(addHarvest:)
-    @NSManaged public func addToHarvest(_ values: NSSet)
+    @objc(insertHarvestArray:atIndexes:)
+    @NSManaged public func insertIntoHarvestArray(_ values: [Harvest], at indexes: NSIndexSet)
 
-    @objc(removeHarvest:)
-    @NSManaged public func removeFromHarvest(_ values: NSSet)
+    @objc(removeHarvestArrayAtIndexes:)
+    @NSManaged public func removeFromHarvestArray(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInHarvestArrayAtIndex:withObject:)
+    @NSManaged public func replaceHarvestArray(at idx: Int, with value: Harvest)
+
+    @objc(replaceHarvestArrayAtIndexes:withHarvestArray:)
+    @NSManaged public func replaceHarvestArray(at indexes: NSIndexSet, with values: [Harvest])
+
+    @objc(addHarvestArrayObject:)
+    @NSManaged public func addToHarvestArray(_ value: Harvest)
+
+    @objc(removeHarvestArrayObject:)
+    @NSManaged public func removeFromHarvestArray(_ value: Harvest)
+
+    @objc(addHarvestArray:)
+    @NSManaged public func addToHarvestArray(_ values: NSOrderedSet)
+
+    @objc(removeHarvestArray:)
+    @NSManaged public func removeFromHarvestArray(_ values: NSOrderedSet)
 
 }
 

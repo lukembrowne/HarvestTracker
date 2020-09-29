@@ -13,12 +13,12 @@
         <attribute name="harvestDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="unitEntered" optional="YES" attributeType="String"/>
         <relationship name="crop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crop" inverseName="harvests" inverseEntity="Crop"/>
-        <relationship name="tag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="harvest" inverseEntity="Tag"/>
+        <relationship name="tagArray" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="harvestArray" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="tagColor" optional="YES" attributeType="String"/>
         <attribute name="tagName" optional="YES" attributeType="String"/>
-        <relationship name="harvest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Harvest" inverseName="tag" inverseEntity="Harvest"/>
+        <relationship name="harvestArray" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Harvest" inverseName="tagArray" inverseEntity="Harvest"/>
     </entity>
     <elements>
         <element name="Crop" positionX="119.87109375" positionY="-7.828125" width="128" height="118"/>

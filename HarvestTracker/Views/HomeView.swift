@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwiftUICharts
 
 struct HomeView: View {
     
@@ -40,7 +39,7 @@ struct HomeView: View {
 
                 
                 HarvestListView()
-                    .frame(width: .infinity, height: geometry.size.height * 0.66, alignment: .center)
+                    .frame(width: geometry.size.width, height: geometry.size.height * 0.66, alignment: .center)
                 
             }
         }

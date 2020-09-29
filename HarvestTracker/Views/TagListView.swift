@@ -54,7 +54,7 @@ struct TagListView: View {
     // Maybe there is a way to factor this out into Crop, but not sure how
     func deleteCrop(at offsets: IndexSet) {
         offsets.forEach { index in
-            let crop = self.tags[index]
+//            let crop = self.tags[index]
 //            Crop.deleteCrop(crop: crop, in: self.managedObjectContext)
         }
     }

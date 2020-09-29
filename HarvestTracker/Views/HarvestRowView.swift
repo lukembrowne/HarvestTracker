@@ -30,9 +30,12 @@ struct HarvestRowView: View {
                 harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
                     .font(.caption)
                 
-                Text("\(harvest.tag?.first?.tagName ?? "no tag")")
-                    .font(.caption)
-                
+                // Row of tags
+                HStack {
+                    ForEach(harvest.tagArray ?? [Tag](), id: \.self) { tag in
+                        Text(tag.tagName ?? "no tag name")
+                    }
+                }
             }
             
             Spacer()

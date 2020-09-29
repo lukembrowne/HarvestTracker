@@ -21,10 +21,10 @@ import SwiftUI
 
 public struct BarChartRow : View {
     
+    @EnvironmentObject var settings: UserSettings
+    
     var data: [Double]
     var labels: [String]
-    
-    @ObservedObject var defaultUnit = DefaultUnit()
     
     var maxValue: Double {
         guard let max = data.max() else {
@@ -54,7 +54,7 @@ public struct BarChartRow : View {
                     
                     HStack {
                         VStack {
-                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: defaultUnit.unitMass).value)) \(defaultUnit.unitString)")
+                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
                                 .font(.footnote)
                                 .offset(x: 0, y: -8)
                             Spacer()
@@ -102,7 +102,7 @@ public struct BarChartRow : View {
 struct ChartRow_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            BarChartRow(data: [8,23,54,32,12,37,7], labels: ["a", "b", "c", "d", "e", "f", "g"], touchLocation: .constant(-1))
+            BarChartRow(data: [8,23,54,32,12,37,7], labels: ["a", "b", "c", "d", "e", "f", "g"], touchLocation: .constant(-1)).environmentObject(UserSettings())
         }
     }
 }

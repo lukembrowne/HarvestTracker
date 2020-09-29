@@ -12,7 +12,8 @@ import CoreData
 struct HarvestTotalView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+
+    var harvests: FetchedResults<Harvest>
     var totalHarvestAmount = 0.0
     var currencyFormatter = NumberFormatter()
     var totalHarvestValue = 0.0
@@ -27,7 +28,6 @@ struct HarvestTotalView: View {
         
     }
     
-    var harvests: FetchedResults<Harvest>
     
     
     var body: some View {

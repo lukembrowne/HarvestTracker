@@ -23,16 +23,15 @@ struct HarvestListView: View {
                   sortDescriptors: [
                     NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
                         ]) var crops: FetchedResults<Crop>
-
-
+    
     @Environment(\.managedObjectContext) var managedObjectContext
+    // Used to workaround bug that add button doesn't work if sheet has already been presented
+    @Environment(\.presentationMode) var presentation
+    
     
     // State variables
     @State var isPresented = false
 
-    // Used to workaround bug that add button doesn't work if sheet has already been presented
-    @Environment(\.presentationMode) var presentation
-    
     var body: some View {
     
         

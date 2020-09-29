@@ -71,7 +71,7 @@ struct AddCropView: View {
                 }
                 
             }
-            .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
+            .navigationBarTitle(Text("Add Crop"), displayMode: .inline)
             .navigationBarItems(leading:
                 
                 // Add Cancel button

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1367E4C994373516DE695E41 /* Pods_HarvestTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8D4207FBB68E47F972F7A /* Pods_HarvestTracker.framework */; };
 		A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D5BFE24FFC615000073AE /* AddCropView.swift */; };
+		A31E05242523520A00448C45 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E05232523520A00448C45 /* UserSettings.swift */; };
 		A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320188D250B9D5A0010943E /* TabNavigationView.swift */; };
 		A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CEFE72514D3560085A2EF /* HomeView.swift */; };
 		A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36230EE24FEE89E00A672FD /* CropDataDefault.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		72E8A5A459D57DFBB3E5462B /* Pods-HarvestTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HarvestTracker.release.xcconfig"; path = "Target Support Files/Pods-HarvestTracker/Pods-HarvestTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A30D5BFE24FFC615000073AE /* AddCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCropView.swift; sourceTree = "<group>"; };
+		A31E05232523520A00448C45 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A320188D250B9D5A0010943E /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		A32CEFE72514D3560085A2EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A36230EE24FEE89E00A672FD /* CropDataDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropDataDefault.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */,
 				A36230EE24FEE89E00A672FD /* CropDataDefault.swift */,
 				A3C12B3E251CC92A0021FAF0 /* HarvestCalculator.swift */,
+				A31E05232523520A00448C45 /* UserSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
+				A31E05242523520A00448C45 /* UserSettings.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,

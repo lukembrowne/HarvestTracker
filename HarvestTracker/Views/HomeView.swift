@@ -17,11 +17,10 @@ struct HomeView: View {
                   sortDescriptors: [NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)]
     ) var harvests: FetchedResults<Harvest>
     
-    
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @ObservedObject var defaultUnit: DefaultUnit
-    
+    @EnvironmentObject var settings: UserSettings
+
+
     
     var body: some View {
         
@@ -33,17 +32,11 @@ struct HomeView: View {
                 Text("Harvest Tracker")
                     .font(.largeTitle).fontWeight(.bold)
                     .padding()
-                
-                // Add total harvest amount
-//                HarvestTotalView(harvests: harvests).environment(\.managedObjectContext, self.managedObjectContext)
-//                    .frame(width: .infinity, height: geometry.size.height * 0.2, alignment: .center)
  
                 // Add bar chart view
-                BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(),
-                             title: "2019 total: \(HarvestCalculator(harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))", defaultUnit: defaultUnit)
-                    .onAppear(perform: {
-                        print("Default unit when barchartview appears is \(defaultUnit.unitString)")
-                    })
+                BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
+                             title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
+
 
                 
                 HarvestListView()
@@ -54,9 +47,9 @@ struct HomeView: View {
     }
 }
 
-//
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView().environmentObject(UserSettings())
+    }
+}

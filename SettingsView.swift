@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @ObservedObject var defaultUnit: DefaultUnit
+    @EnvironmentObject var settings: UserSettings
     var units = ["oz", "lb", "g", "kg"]
     
     
@@ -23,23 +23,19 @@ struct SettingsView: View {
             // Change default unit of weight
             Section(header: Text("Change default unit").font(.headline)) {
                 
-                Picker("units", selection: $defaultUnit.unitString) {
+                Picker("units", selection: $settings.unitString) {
                     ForEach(0 ..< units.count) { index in
                         Text(self.units[index])
                             .tag(self.units[index])
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-//                .onChange(of: chosenUnit) { _ in
-//                    UserDefaults.standard.set(self.chosenUnit, forKey: "DefaultUnit")
-//                }
-                
+
             }
             
             // Edit crop list
             Section(header: Text("Edit crop list").font(.headline)) {
                 
-                Text("Chosen crop is \(defaultUnit.unitString)")
                 Text("Button to edit crop list")
             }
             
@@ -61,8 +57,8 @@ struct SettingsView: View {
     }
 }
 
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView()
-//    }
-//}
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView().environmentObject(UserSettings())
+    }
+}

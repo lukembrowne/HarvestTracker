@@ -10,21 +10,20 @@ import SwiftUI
 
 struct TabNavigationView: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var settings: UserSettings
+    
     // State variables
     @State var isPresented = false
-    
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
     @State private var selectedTab = 1
     @State var isPresentedChooseCrop = false
 
-    @ObservedObject var defaultUnit = DefaultUnit()
-        
+
     var body: some View {
         
         TabView(selection: $selectedTab) {
             
-            HomeView(defaultUnit: defaultUnit)
+            HomeView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -42,7 +41,7 @@ struct TabNavigationView: View {
                     Text("Add Harvest")
                 }.tag(3)
             
-            SettingsView(defaultUnit: defaultUnit)
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -57,6 +56,6 @@ struct TabNavigationView: View {
 
 struct TabNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        TabNavigationView()
+        TabNavigationView().environmentObject(UserSettings())
     }
 }

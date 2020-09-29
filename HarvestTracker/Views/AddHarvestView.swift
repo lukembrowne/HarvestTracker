@@ -14,6 +14,7 @@ struct AddHarvestView: View {
     // Environment and bindings
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var settings: UserSettings
    
     // Initialize and set defaults
     @Binding var chosenCrop: Crop?
@@ -24,23 +25,21 @@ struct AddHarvestView: View {
 
     @State var chosenHarvestDate = Date()
     
-    @ObservedObject var defaultUnit = DefaultUnit()
-//    @State var chosenUnit: String
+    @State var chosenUnit: String
     var units = ["oz", "lb", "g", "kg"]
     
     @State var showingNoCropAlert = false
     @State var isPresentedAddCrop = false
-//    @Binding var isPresentedChooseCrop: Bool
     @Binding var isPresentedAddHarvest: Bool
-//    @State var isPresentedAddHarvest = false
 
-//    init(chosenCrop: Crop?, isPresentedAddHarvest: Bool) {
-//
-//        self.chosenCrop = chosenCrop
-//        self.isPresentedAddHarvest = isPresentedAddHarvest
-//        self.chosenUnit = defaultUnit.unitString
-//
-//    }
+    init(chosenCrop: Binding<Crop?>,
+         isPresentedAddHarvest: Binding<Bool>, settings: UserSettings) {
+                
+        self._chosenCrop = chosenCrop
+        self._isPresentedAddHarvest = isPresentedAddHarvest
+        self._chosenUnit = State(initialValue: settings.unitString)
+
+    }
 
     
     // Main view
@@ -79,7 +78,7 @@ struct AddHarvestView: View {
             }
 
             
-            Picker("units", selection: $defaultUnit.unitString) {
+            Picker("units", selection: $chosenUnit) {
                 ForEach(0 ..< units.count) { index in
                     Text(self.units[index])
                         .tag(self.units[index])
@@ -154,7 +153,7 @@ struct AddHarvestView: View {
         Harvest.addHarvest(crop: chosenCrop,
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
-                           unit: defaultUnit.unitString,
+                           unit: chosenUnit,
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         

@@ -21,6 +21,7 @@ struct CropListView: View {
                   ]) var crops: FetchedResults<Crop>
     
     @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var settings: UserSettings
     
     @State var chosenCrop: Crop?
     
@@ -53,7 +54,8 @@ struct CropListView: View {
             .sheet(isPresented: $isPresentedAddHarvest) {
                 AddHarvestView(chosenCrop: $chosenCrop,
                                //                               isPresentedChooseCrop: $isPresentedChooseCrop,
-                               isPresentedAddHarvest: $isPresentedAddHarvest)
+                               isPresentedAddHarvest: $isPresentedAddHarvest,
+                               settings: settings)
                     .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
                 
             } // .sheet

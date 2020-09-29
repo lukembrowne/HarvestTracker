@@ -21,8 +21,8 @@ import SwiftUI
 
 public struct BarChartView : View {
     
-    @ObservedObject var defaultUnit: DefaultUnit
-    
+    @EnvironmentObject var settings: UserSettings
+
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     private var data: ChartData
     public var title: String
@@ -36,12 +36,11 @@ public struct BarChartView : View {
     var isFullWidth:Bool {
         return self.formSize == ChartForm.large
     }
-    init(data:ChartData, title: String, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f", defaultUnit: DefaultUnit){
+    init(data:ChartData, title: String, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f"){
         self.data = data
         self.title = title
         self.formSize = form!
         self.valueSpecifier = valueSpecifier!
-        self.defaultUnit = defaultUnit
     }
     
     public var body: some View {
@@ -56,13 +55,10 @@ public struct BarChartView : View {
                     Text(self.title)
                         .font(.title)
                     // Harvest total unit here
-                    Text(" \(defaultUnit.unitString)")
+                    Text(" \(settings.unitString)")
                         .font(.caption)
                     Spacer()
                 }.padding()
-                .onAppear(perform: {
-                    print("Default unit when title appears is \(defaultUnit.unitString)")
-                })
                 
                 // Plot bars
                 BarChartRow(data: data.points.map{$0.1},
@@ -112,12 +108,12 @@ public struct BarChartView : View {
     }
 }
 
-//#if DEBUG
-//struct ChartView_Previews : PreviewProvider {
-//    static var previews: some View {
-//        BarChartView(data: TestData.values ,
-//                     title: "Test label",
-//                     valueSpecifier: "%.0f")
-//    }
-//}
-//#endif
+#if DEBUG
+struct ChartView_Previews : PreviewProvider {
+    static var previews: some View {
+        BarChartView(data: TestData.values ,
+                     title: "Test label",
+                     valueSpecifier: "%.0f").environmentObject(UserSettings())
+    }
+}
+#endif

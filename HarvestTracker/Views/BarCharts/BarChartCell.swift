@@ -20,6 +20,8 @@
 import SwiftUI
 
 public struct BarChartCell : View {
+    
+    
     var value: Double
     var label: String
     var index: Int = 0

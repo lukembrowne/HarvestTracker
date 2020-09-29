@@ -78,10 +78,47 @@ extension Double {
 
 // Small struct for deciding default unit
 
-struct DefaultUnit {
+class DefaultUnit: ObservableObject {
     
-    var unitMass: UnitMass
-    var unitString: String
+    @Published var unitMass: UnitMass
+    @Published var unitString: String {
+        didSet {
+            
+            // Save to user defaults
+            UserDefaults.standard.set(unitString, forKey: "DefaultUnit")
+            
+            // Update unitMass
+            switch unitString {
+            
+            case "oz":
+                print("Default unit set to oz")
+                self.unitMass = UnitMass.ounces
+            //                self.unitString = "oz"
+            
+            case "lb":
+                print("Default unit set to lb")
+                self.unitMass = UnitMass.pounds
+            //                self.unitString = "lb"
+            
+            case "g":
+                print("Default unit set to g")
+                self.unitMass = UnitMass.grams
+            //                self.unitString = "g"
+            
+            case "kg":
+                print("Default unit set to kg")
+                self.unitMass = UnitMass.kilograms
+            //                self.unitString = "kg"
+            
+            default:
+                print("No default unit chosen")
+                self.unitMass = UnitMass.ounces
+            //                self.unitString = "oz"
+            
+            }
+            
+        }
+    }
     
     init() {
         

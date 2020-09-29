@@ -24,6 +24,8 @@ public struct BarChartRow : View {
     var data: [Double]
     var labels: [String]
     
+    @ObservedObject var defaultUnit = DefaultUnit()
+    
     var maxValue: Double {
         guard let max = data.max() else {
             return 1
@@ -52,7 +54,7 @@ public struct BarChartRow : View {
                     
                     HStack {
                         VStack {
-                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: DefaultUnit().unitMass).value)) \(DefaultUnit().unitString)")
+                            Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: defaultUnit.unitMass).value)) \(defaultUnit.unitString)")
                                 .font(.footnote)
                                 .offset(x: 0, y: -8)
                             Spacer()

@@ -12,6 +12,7 @@ struct HarvestCalculator {
     
     var harvests: FetchedResults<Harvest>
     var monthlyTotals = [Double](repeating: 0, count: 12)
+    @ObservedObject var defaultUnit = DefaultUnit()
 
     // Calculate total Harvest
      func calcTotalHarvest() -> Double {
@@ -32,7 +33,7 @@ struct HarvestCalculator {
         }
         
         // Convert to displayed unit
-        totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: DefaultUnit().unitMass).value
+        totalHarvestAmount = Measurement(value: totalHarvestAmount, unit: UnitMass.grams).converted(to: defaultUnit.unitMass).value
         
         return totalHarvestAmount
         

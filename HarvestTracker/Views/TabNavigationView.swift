@@ -18,12 +18,13 @@ struct TabNavigationView: View {
     @State private var selectedTab = 1
     @State var isPresentedChooseCrop = false
 
+    @ObservedObject var defaultUnit = DefaultUnit()
         
     var body: some View {
         
         TabView(selection: $selectedTab) {
             
-            HomeView()
+            HomeView(defaultUnit: defaultUnit)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -41,7 +42,7 @@ struct TabNavigationView: View {
                     Text("Add Harvest")
                 }.tag(3)
             
-            SettingsView()
+            SettingsView(defaultUnit: defaultUnit)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

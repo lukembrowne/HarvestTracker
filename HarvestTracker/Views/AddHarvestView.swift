@@ -24,7 +24,8 @@ struct AddHarvestView: View {
 
     @State var chosenHarvestDate = Date()
     
-    @State var chosenUnit = DefaultUnit().unitString
+    @ObservedObject var defaultUnit = DefaultUnit()
+//    @State var chosenUnit: String
     var units = ["oz", "lb", "g", "kg"]
     
     @State var showingNoCropAlert = false
@@ -33,6 +34,13 @@ struct AddHarvestView: View {
     @Binding var isPresentedAddHarvest: Bool
 //    @State var isPresentedAddHarvest = false
 
+//    init(chosenCrop: Crop?, isPresentedAddHarvest: Bool) {
+//
+//        self.chosenCrop = chosenCrop
+//        self.isPresentedAddHarvest = isPresentedAddHarvest
+//        self.chosenUnit = defaultUnit.unitString
+//
+//    }
 
     
     // Main view
@@ -71,7 +79,7 @@ struct AddHarvestView: View {
             }
 
             
-            Picker("units", selection: $chosenUnit) {
+            Picker("units", selection: $defaultUnit.unitString) {
                 ForEach(0 ..< units.count) { index in
                     Text(self.units[index])
                         .tag(self.units[index])
@@ -146,7 +154,7 @@ struct AddHarvestView: View {
         Harvest.addHarvest(crop: chosenCrop,
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
-                           unit: chosenUnit,
+                           unit: defaultUnit.unitString,
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         

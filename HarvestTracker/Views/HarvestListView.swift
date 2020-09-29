@@ -54,8 +54,6 @@ struct HarvestListView: View {
                 // To remove lines between rows of list
                  UITableView.appearance().separatorStyle = .none
                 
-                print("Navigation view appeared")
-
                 if(self.crops.count == 0){
                     print("No crops found")
                     Crop.loadDefaultCrops(in: self.managedObjectContext)

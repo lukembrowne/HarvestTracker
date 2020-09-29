@@ -20,6 +20,8 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @ObservedObject var defaultUnit: DefaultUnit
+    
     
     var body: some View {
         
@@ -38,7 +40,10 @@ struct HomeView: View {
  
                 // Add bar chart view
                 BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(),
-                             title: "2019 total: \(HarvestCalculator(harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
+                             title: "2019 total: \(HarvestCalculator(harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))", defaultUnit: defaultUnit)
+                    .onAppear(perform: {
+                        print("Default unit when barchartview appears is \(defaultUnit.unitString)")
+                    })
 
                 
                 HarvestListView()
@@ -49,9 +54,9 @@ struct HomeView: View {
     }
 }
 
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}

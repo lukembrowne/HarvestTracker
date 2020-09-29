@@ -22,7 +22,7 @@ extension Harvest {
     @NSManaged public var crop: Crop?
     @NSManaged public var harvestDate: Date?
     @NSManaged public var unitEntered: String?
-    @NSManaged public var tag: NSSet?
+    @NSManaged public var tag: Set<Tag>?
 
 }
 

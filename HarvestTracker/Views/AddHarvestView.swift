@@ -16,6 +16,15 @@ struct AddHarvestView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
    
+    // Fetch requests
+    @FetchRequest(entity: Tag.entity(),
+                  sortDescriptors: [
+                    NSSortDescriptor(
+                        key: "tagName",
+                        ascending: true,
+                        selector: #selector(NSString.caseInsensitiveCompare(_:))) // To make case insensitive
+                  ]) var tags: FetchedResults<Tag>
+    
     // Initialize and set defaults
     @Binding var chosenCrop: Crop?
     static let defaultCrop = "default crop"
@@ -97,6 +106,20 @@ struct AddHarvestView: View {
                 .datePickerStyle(DefaultDatePickerStyle())
             }
             
+            // Add tags
+            
+            Section {
+                
+                HStack {
+                    ForEach(tags, id: \.self) { tag in
+                        Text(tag.tagName ?? "no name")
+                    }
+                }
+              
+                
+            }
+            
+            
             // Add harvest button
             HStack {
                 Spacer()
@@ -154,6 +177,7 @@ struct AddHarvestView: View {
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
+                           tag: tags[0],
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         

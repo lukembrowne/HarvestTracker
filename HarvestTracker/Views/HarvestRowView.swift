@@ -30,7 +30,7 @@ struct HarvestRowView: View {
                 harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
                     .font(.caption)
                 
-                Text("Location")
+                Text("\(harvest.tag?.first?.tagName ?? "no tag")")
                     .font(.caption)
                 
             }

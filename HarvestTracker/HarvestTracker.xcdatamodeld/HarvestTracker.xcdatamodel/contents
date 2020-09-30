@@ -16,7 +16,7 @@
         <relationship name="tagArray" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="harvestArray" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
-        <attribute name="tagColor" optional="YES" attributeType="String"/>
+        <attribute name="tagColorHex" optional="YES" attributeType="String"/>
         <attribute name="tagName" optional="YES" attributeType="String"/>
         <relationship name="harvestArray" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Harvest" inverseName="tagArray" inverseEntity="Harvest"/>
     </entity>

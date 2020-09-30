@@ -37,7 +37,7 @@ struct TagListView: View {
                 ForEach(tags, id: \.self) { tag in
                     Text(tag.tagName ?? "no name")
                 }
-                .onDelete(perform: deleteCrop)
+                .onDelete(perform: deleteTag)
                 
             } // list
             
@@ -52,10 +52,10 @@ struct TagListView: View {
     } // view
     
     // Maybe there is a way to factor this out into Crop, but not sure how
-    func deleteCrop(at offsets: IndexSet) {
+    func deleteTag(at offsets: IndexSet) {
         offsets.forEach { index in
-//            let crop = self.tags[index]
-//            Crop.deleteCrop(crop: crop, in: self.managedObjectContext)
+            let tag = self.tags[index]
+            Tag.deleteTag(tag: tag, in: self.managedObjectContext)
         }
     }
 }

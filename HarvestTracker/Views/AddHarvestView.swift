@@ -108,13 +108,13 @@ struct AddHarvestView: View {
                 .datePickerStyle(DefaultDatePickerStyle())
             }
             
-            // Add tags
-            
+            // Add tags to harvest
             Section {
                 
                 HStack {
                     ForEach(tags, id: \.self) { tag in
-                        Text(tag.tagName ?? "no name")
+                        TagView(tagName: tag.tagName ?? "no tag name",
+                                tagColorHex: tag.tagColorHex ?? "000000")
                     }
                 }
                 // JUST FOR TESTINg - automatically add tags to chosen tag list
@@ -126,6 +126,8 @@ struct AddHarvestView: View {
 
                     }
                 }
+                
+                Button(action: {print(tags)}, label: {Text("Print tags")})
               
                 
             }

@@ -2,7 +2,7 @@
 //  Tag+CoreDataProperties.swift
 //  HarvestTracker
 //
-//  Created by Luke Browne on 9/29/20.
+//  Created by Luke Browne on 9/30/20.
 //  Copyright © 2020 Luke Browne. All rights reserved.
 //
 //
@@ -17,9 +17,9 @@ extension Tag {
         return NSFetchRequest<Tag>(entityName: "Tag")
     }
 
-    @NSManaged public var tagColor: String?
+    @NSManaged public var tagColorHex: String?
     @NSManaged public var tagName: String?
-    @NSManaged public var harvestArray: [Harvest]?
+    @NSManaged public var harvestArray: NSOrderedSet?
 
 }
 

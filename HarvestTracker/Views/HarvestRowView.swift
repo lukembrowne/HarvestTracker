@@ -33,7 +33,8 @@ struct HarvestRowView: View {
                 // Row of tags
                 HStack {
                     ForEach(harvest.tagArray ?? [Tag](), id: \.self) { tag in
-                        Text(tag.tagName ?? "no tag name")
+                        TagView(tagName: tag.tagName ?? "no tag name",
+                                tagColorHex: tag.tagColorHex ?? "000000")
                     }
                 }
             }

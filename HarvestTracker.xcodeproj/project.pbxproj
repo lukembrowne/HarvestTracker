@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1367E4C994373516DE695E41 /* Pods_HarvestTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8D4207FBB68E47F972F7A /* Pods_HarvestTracker.framework */; };
+		2FD077AF2523F6D20086BBDD /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD077AE2523F6D20086BBDD /* TagView.swift */; };
 		A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D5BFE24FFC615000073AE /* AddCropView.swift */; };
 		A31E05242523520A00448C45 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E05232523520A00448C45 /* UserSettings.swift */; };
 		A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320188D250B9D5A0010943E /* TabNavigationView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FD077AE2523F6D20086BBDD /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		72E8A5A459D57DFBB3E5462B /* Pods-HarvestTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HarvestTracker.release.xcconfig"; path = "Target Support Files/Pods-HarvestTracker/Pods-HarvestTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A30D5BFE24FFC615000073AE /* AddCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCropView.swift; sourceTree = "<group>"; };
 		A31E05232523520A00448C45 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				A395A1E925220B340062983D /* SettingsView.swift */,
 				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
 				A3490F1E252384E2002B7E15 /* TagListView.swift */,
+				2FD077AE2523F6D20086BBDD /* TagView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
 				A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
+				2FD077AF2523F6D20086BBDD /* TagView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
 				A31E05242523520A00448C45 /* UserSettings.swift in Sources */,

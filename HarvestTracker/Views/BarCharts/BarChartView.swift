@@ -102,6 +102,7 @@ public struct BarChartView : View {
     }
     
     func getCurrentValue() -> (String,Double)? {
+        
         guard self.data.points.count > 0 else { return nil}
         let index = max(0,min(self.data.points.count-1,Int(floor((self.touchLocation*self.formSize.width)/(self.formSize.width/CGFloat(self.data.points.count))))))
         return self.data.points[index]

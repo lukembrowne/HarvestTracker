@@ -22,6 +22,9 @@ struct AddTagView: View {
     @State var chosenCostPerUnit = ""
     static let defaultCostPerUnit = "1"
     
+    @State private var tagColor =
+           Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
+    
 
     var body: some View {
             
@@ -35,7 +38,16 @@ struct AddTagView: View {
                 }
                 
                 
-                // Add crop button
+                // Pick color
+                Section(header: Text("Choose a color")) {
+                    
+                    ColorPicker("Color", selection: $tagColor)
+
+                }
+
+                
+                
+                // Add tag button
                 HStack {
                     Spacer()
                     Button(action: addTagAction, label: {
@@ -58,7 +70,9 @@ struct AddTagView: View {
         print("Add tag button pressed")
         
         // Add tag to database
-        Tag.addTag(tagName: tagName, tagColor: "default color", in: self.managedObjectContext)
+        Tag.addTag(tagName: tagName,
+                   tagColor: tagColor,
+                   in: self.managedObjectContext)
 
     }
 }

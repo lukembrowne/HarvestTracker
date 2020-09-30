@@ -10,21 +10,51 @@ import SwiftUI
 
 struct TagView: View {
     
-    var tagName: String
-    var tagColorHex: String
+    var tag: Tag
+    @State var isSelected = false
+    @Binding var chosenTags: [Tag]
+    
+    
+    init(tag: Tag ) {
+        self.tag = tag
+        self._chosenTags = Binding.constant([Tag]()) // Initialize empty binding that's never used if not
+    }
+    
+    init(tag: Tag, chosenTags: Binding<[Tag]>) {
+        self.tag = tag
+        self._chosenTags = chosenTags
+    }
+    
     
     
     var body: some View {
-//        Button(action: {}) {
+        
+        Button(action: {
+            
+            print(self.tag.tagName)
+            isSelected.toggle() // Adds checkmark to box
+            
+           // Check to see if tag already exists in chosenTags, and if not, add it, if not, remove it
+            chosenTags.append(self.tag)
+            
+            
+        }) {
             HStack {
-                Text(tagName)
-//                Image(systemName: "xmark.circle")
+                // Tag name
+                Text(tag.tagName ?? "")
+                
+                // Add check mark when selected
+                if(isSelected) {
+                    Image(systemName: "checkmark.circle.fill")
+                }
             }
-//        }
+        }
         .padding(5)
         .foregroundColor(.white)
-            .background(Color(UIColor(hexString: tagColorHex, alpha: 0.8)))
+        .background(Color(UIColor(hexString: tag.tagColorHex ?? "000000",
+                                  alpha: 0.9)))
         .cornerRadius(20)
+        .buttonStyle(BorderlessButtonStyle()) // Bug fix so that entire row doesn't highlight
     }
 }
 

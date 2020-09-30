@@ -113,21 +113,15 @@ struct AddHarvestView: View {
                 
                 HStack {
                     ForEach(tags, id: \.self) { tag in
-                        TagView(tagName: tag.tagName ?? "no tag name",
-                                tagColorHex: tag.tagColorHex ?? "000000")
-                    }
-                }
-                // JUST FOR TESTINg - automatically add tags to chosen tag list
-                // Change to be little buttons that you add to chosen tags by tapping
-                .onAppear {
-                   
-                    tags.forEach { tag in
-                        chosenTags.append(tag)
 
+                        TagView(tag: tag,
+                                chosenTags: $chosenTags)
+                        }
+  
                     }
-                }
-                
-                Button(action: {print(tags)}, label: {Text("Print tags")})
+
+                // Testing
+                Button(action: {print(chosenTags)}, label: {Text("Print chosen tags")})
               
                 
             }

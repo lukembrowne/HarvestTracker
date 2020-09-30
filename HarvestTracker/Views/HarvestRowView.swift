@@ -33,8 +33,8 @@ struct HarvestRowView: View {
                 // Row of tags
                 HStack {
                     ForEach(harvest.tagArray ?? [Tag](), id: \.self) { tag in
-                        TagView(tagName: tag.tagName ?? "no tag name",
-                                tagColorHex: tag.tagColorHex ?? "000000")
+                        TagView(tag: tag)
+                            .disabled(true) // Disable buttons
                     }
                 }
             }

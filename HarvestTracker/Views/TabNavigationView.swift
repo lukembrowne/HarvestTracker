@@ -47,6 +47,13 @@ struct TabNavigationView: View {
                     Text("Settings")
                 }.tag(4)
             
+            
+            HarvestListView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Harvests")
+                }.tag(5)
+            
         }
         
     }

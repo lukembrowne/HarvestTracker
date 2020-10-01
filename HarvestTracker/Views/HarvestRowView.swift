@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HarvestRowView: View {
     
-    let harvest: Harvest
+   @ObservedObject var harvest: Harvest
     
     static let releaseFormatter: DateFormatter = {
         let formatter = DateFormatter()

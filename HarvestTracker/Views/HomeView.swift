@@ -35,8 +35,6 @@ struct HomeView: View {
                 // Add bar chart view
                 BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
                              title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
-
-
                 
                 HarvestListView()
                     .frame(width: geometry.size.width, height: geometry.size.height * 0.66, alignment: .center)

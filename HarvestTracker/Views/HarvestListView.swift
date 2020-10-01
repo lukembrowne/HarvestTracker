@@ -37,6 +37,10 @@ struct HarvestListView: View {
         
         VStack {
             
+            
+            Button(action: {print(harvests)}, label: {Text("Print harvests")})
+
+            
             Text("Recent Harvests")
                 .font(.title)
             

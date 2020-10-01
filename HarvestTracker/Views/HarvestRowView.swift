@@ -10,7 +10,8 @@ import SwiftUI
 
 struct HarvestRowView: View {
     
-    @ObservedObject var harvest: Harvest
+//    @ObservedObject let harvest: Harvest // Causes exclusive access bug
+    let harvest: Harvest
     
     static let releaseFormatter: DateFormatter = {
         let formatter = DateFormatter()

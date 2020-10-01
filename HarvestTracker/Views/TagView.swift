@@ -31,13 +31,20 @@ struct TagView: View {
         
         Button(action: {
             
-            print(self.tag.tagName)
-            isSelected.toggle() // Adds checkmark to box
+            // Adds checkmark to tag
+            isSelected.toggle()
             
-           // Check to see if tag already exists in chosenTags, and if not, add it, if not, remove it
-            chosenTags.append(self.tag)
-            
-            
+            // If tag is already chosen, remove from chosen tags array
+            if chosenTags.contains(self.tag) {
+                
+                if let index = chosenTags.firstIndex(of: self.tag) {
+                    chosenTags.remove(at: index)
+                }
+                
+            } else {
+                // If tag not already in chosenTags, append to array
+                chosenTags.append(self.tag)
+            }
         }) {
             HStack {
                 // Tag name

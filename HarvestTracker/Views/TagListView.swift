@@ -35,7 +35,7 @@ struct TagListView: View {
                 
                 // Display crops in list
                 ForEach(tags, id: \.self) { tag in
-                    Text(tag.tagName ?? "no name")
+                    TagView(tag: tag)
                 }
                 .onDelete(perform: deleteTag)
                 

@@ -42,6 +42,10 @@ struct AddHarvestView: View {
     @State var showingNoCropAlert = false
     @State var isPresentedAddCrop = false
     @Binding var isPresentedAddHarvest: Bool
+    
+    let columns = [
+          GridItem(.adaptive(minimum: 80))
+      ]
 
     init(chosenCrop: Binding<Crop?>,
          isPresentedAddHarvest: Binding<Bool>, settings: UserSettings) {
@@ -123,6 +127,22 @@ struct AddHarvestView: View {
                 // Testing
                 Button(action: {print(chosenTags)}, label: {Text("Print chosen tags")})
               
+                
+            }
+            
+            Section {
+                
+                ScrollView {
+                           LazyVGrid(columns: columns, spacing: 20) {
+                               ForEach(tags, id: \.self) { tag in
+                                TagView(tag: tag,
+                                        chosenTags: $chosenTags)
+                               }
+                           }
+                           .padding(.horizontal)
+                       }
+                
+                
                 
             }
             

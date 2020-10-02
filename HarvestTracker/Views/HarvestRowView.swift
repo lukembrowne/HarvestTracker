@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HarvestRowView: View {
     
-//    @ObservedObject let harvest: Harvest // Causes exclusive access bug
+    //    @ObservedObject let harvest: Harvest // Causes exclusive access bug
     let harvest: Harvest
     
     static let releaseFormatter: DateFormatter = {
@@ -21,42 +21,47 @@ struct HarvestRowView: View {
     
     var body: some View {
         
-        HStack {
+        
+        VStack {
             
-            VStack(alignment: .leading) {
+            HStack {
                 
-                harvest.crop?.cropName.map(Text.init)
-                    .font(.headline)
+                VStack(alignment: .leading) {
+                    
+                    harvest.crop?.cropName.map(Text.init)
+                        .font(.headline)
+                    
+                    harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
+                        .font(.caption)
+                }
+                Spacer()
                 
-                harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
+                Text(String(harvest.amountEntered))
+                    .font(.title)
+                Text(String(harvest.unitEntered ?? "def"))
                     .font(.caption)
                 
+            }
+            
+            
+            if let tagArray = harvest.tagArray  {
                 
-                if let tagArray = harvest.tagArray  {
+                if tagArray.count > 0 {
                     
-                    
-                    if tagArray.count > 0 {
-                        // Row of tags
-                        HStack {
+                    ScrollView(.horizontal) {
+                        LazyHGrid(rows: [GridItem(.flexible())]) {
                             ForEach(harvest.tagArray ?? [Tag](), id: \.self) { tag in
                                 TagView(tag: tag)
-                                    .disabled(true) // Disable buttons
+                                    .disabled(true)
                             }
                         }
-                    } else {
-                        Spacer() // Add spacer if there are no tags so that title of crop is always in the same spot
                     }
                 }
             }
-            
-            Spacer()
-            
-            Text(String(harvest.amountEntered))
-                .font(.title)
-            Text(String(harvest.unitEntered ?? "def"))
-                .font(.caption)
-            
-        }.frame(height: 75) // Set height of row - fixes bug that rows aren't properly formatted sometimes
+        }
+        
+        
+        // .frame(height: 75) // Set height of row - fixes bug that rows aren't properly formatted sometimes
     }
 }
 

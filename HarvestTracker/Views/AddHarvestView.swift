@@ -15,7 +15,7 @@ struct AddHarvestView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
-   
+    
     // Fetch requests
     @FetchRequest(entity: Tag.entity(),
                   sortDescriptors: [
@@ -27,11 +27,10 @@ struct AddHarvestView: View {
     
     // Initialize and set defaults
     @Binding var chosenCrop: Crop?
-    static let defaultCrop = "default crop"
     
     @State var chosenAmount = ""
     static let defaultAmount = "1"
-
+    
     @State var chosenHarvestDate = Date()
     
     @State var chosenUnit: String
@@ -44,155 +43,203 @@ struct AddHarvestView: View {
     @Binding var isPresentedAddHarvest: Bool
     
     let columns = [
-          GridItem(.adaptive(minimum: 80))
-      ]
-
+        GridItem(.adaptive(minimum: 80))
+    ]
+    
+    // Regular init
     init(chosenCrop: Binding<Crop?>,
-         isPresentedAddHarvest: Binding<Bool>, settings: UserSettings) {
-                
+         isPresentedAddHarvest: Binding<Bool>,
+         settings: UserSettings) {
+        
         self._chosenCrop = chosenCrop
         self._isPresentedAddHarvest = isPresentedAddHarvest
         self._chosenUnit = State(initialValue: settings.unitString)
-
+        
     }
+    
+    init(harvest: Binding<Harvest?>,
+         chosenCrop: Binding<Crop?>,
+         isPresentedAddHarvest: Binding<Bool>,
+         settings: UserSettings){
+        
+        print(harvest)
+        let harvest2 = harvest.wrappedValue
+        self._chosenCrop = chosenCrop
+        self._chosenAmount = State(initialValue: "\(harvest2?.amountEntered)")
+        self._chosenHarvestDate = State(initialValue: harvest2?.harvestDate ?? Date())
+        // Add chosen tags
+        self._isPresentedAddHarvest = isPresentedAddHarvest
+        self._chosenUnit = State(initialValue: harvest2?.unitEntered ?? settings.unitString)
+    }
+    
 
+    
     
     // Main view
     var body: some View {
-                
-        Form {
+        
+        VStack{
+          
             
-          // Select Crop
-          Section(header: Text("Crop")) {
-
-            Button {
-                self.isPresentedAddHarvest = false
-            } label: {
-                HStack {
-                Text("Choose a crop:")
-                Spacer()
-                Text(chosenCrop?.cropName ?? "...")
-        }
-            }
-
-            
-              
-            
-          } // End select crop section
-            
-            
-
-          // Enter amount
-          Section(header: Text("Amount")) {
-            
-            TextField("Amount", text: $chosenAmount)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.decimalPad)
-                .introspectTextField { textField in
-                   textField.becomeFirstResponder()
-            }
-
-            
-            Picker("units", selection: $chosenUnit) {
-                ForEach(0 ..< units.count) { index in
-                    Text(self.units[index])
-                        .tag(self.units[index])
+            // Title bar with cancel button
+            ZStack{
+                HStack{
+                    Button(action: {
+                        self.isPresentedAddHarvest.toggle()
+                    }, label: {
+                        Text("Cancel")
+                        
+                    })
+                    Spacer()
+                    
                 }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-          }
-            
-            // Enter harvest date
-            Section {
-                DatePicker(
-                    selection: $chosenHarvestDate,
-                    displayedComponents: .date) {
-                    Text("Harvest Date").foregroundColor(Color(.gray))
-                }
-                .datePickerStyle(DefaultDatePickerStyle())
-            }
-            
-            // Add tags to harvest
-            Section {
                 
-                HStack {
-                    ForEach(tags, id: \.self) { tag in
+                HStack{
+                    Text("Add a new harvest")
+                        .font(.headline)
+                }
+            }.padding()
 
-                        TagView(tag: tag,
-                                chosenTags: $chosenTags)
+            
+            // Begin form
+            Form {
+                
+                // Select Crop
+                Section(header: Text("Crop")) {
+                    
+                    Button {
+                        self.isPresentedAddHarvest = false
+                    } label: {
+                        HStack {
+                            Text("Choose a crop:")
+                            Spacer()
+                            Text(chosenCrop?.cropName ?? "...")
                         }
-  
                     }
-
-                // Testing
-                Button(action: {print(chosenTags)}, label: {Text("Print chosen tags")})
-              
+                    
+                    
+                    
+                    
+                } // End select crop section
                 
-            }
-            
-            Section {
                 
-                ScrollView {
-                           LazyVGrid(columns: columns, spacing: 20) {
-                               ForEach(tags, id: \.self) { tag in
+                
+                // Enter amount
+                Section(header: Text("Amount")) {
+                    
+                    TextField("Amount", text: $chosenAmount)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
+                        .introspectTextField { textField in
+                            textField.becomeFirstResponder()
+                        }
+                    
+                    
+                    Picker("units", selection: $chosenUnit) {
+                        ForEach(0 ..< units.count) { index in
+                            Text(self.units[index])
+                                .tag(self.units[index])
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                
+                // Enter harvest date
+                Section {
+                    DatePicker(
+                        selection: $chosenHarvestDate,
+                        displayedComponents: .date) {
+                        Text("Harvest Date").foregroundColor(Color(.gray))
+                    }
+                    .datePickerStyle(DefaultDatePickerStyle())
+                }
+                
+                // Add tags to harvest
+                Section {
+                    
+                    HStack {
+                        ForEach(tags, id: \.self) { tag in
+                            
+                            TagView(tag: tag,
+                                    chosenTags: $chosenTags)
+                        }
+                        
+                    }
+                    
+                    // Testing
+                    Button(action: {print(chosenTags)}, label: {Text("Print chosen tags")})
+                    
+                    
+                }
+                
+                Section {
+                    
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(tags, id: \.self) { tag in
                                 TagView(tag: tag,
                                         chosenTags: $chosenTags)
-                               }
-                           }
-                           .padding(.horizontal)
-                       }
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    
+                    
+                    
+                }
                 
+                
+                // Add harvest button
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        
+                        if self.chosenCrop != nil {
+                            self.addHarvestAction()
+                            
+                        } else {
+                            print("Chosen crop is nil")
+                            self.showingNoCropAlert.toggle()
+                        }
+                    },
+                    
+                    
+                    label: {
+                        Image(systemName: "plus")
+                        Text("Add Harvest")
+                    })
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(5)
+                    .alert(isPresented: $showingNoCropAlert) {
+                        Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
+                    }
+                    Spacer()
+                }
                 
                 
             }
+            //        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
+            .navigationBarItems(leading:
+                                    
+                                    // Add Cancel button
+                                    Button(action: {
+                                        print("tapped cancel")
+                                        self.presentation.wrappedValue.dismiss()
+                                        //                self.isPresentedChooseCrop = false
+                                        
+                                        self.isPresentedAddHarvest = false
+                                    }, label: {
+                                        Text("Cancel")
+                                    }
+                                    )
+            )
             
-            
-            // Add harvest button
-            HStack {
-                Spacer()
-                Button(action: {
-                    
-                    if self.chosenCrop != nil {
-                        self.addHarvestAction()
-                        
-                    } else {
-                        print("Chosen crop is nil")
-                        self.showingNoCropAlert.toggle()
-                    }
-                },
-                       
-                       
-                       label: {
-                        Image(systemName: "plus")
-                        Text("Add Harvest")
-                })
-                    .foregroundColor(Color.white)
-                    .padding()
-                       .background(Color.green)
-                       .cornerRadius(5)
-                .alert(isPresented: $showingNoCropAlert) {
-                    Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
-                }
-               Spacer()
-            }   
-
-           
         }
-//        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
-//        .navigationBarItems(leading:
-//
-//            // Add Cancel button
-//            Button(action: {
-//                print("tapped cancel")
-//                self.presentation.wrappedValue.dismiss()
-////                self.isPresentedChooseCrop = false
-//
-//                self.isPresentedAddHarvest = false
-//                                }, label: {
-//                                    Text("Cancel")
-//                                }
-//                                    )
-//                                )
+        
+        
+        
     } // End Body
     
     
@@ -210,10 +257,10 @@ struct AddHarvestView: View {
         
         // Close sheet once harvest is added
         self.isPresentedAddHarvest = false
-//        self.isPresentedChooseCrop = false
-//        self.presentation.wrappedValue.dismiss()
-
-      }
+        //        self.isPresentedChooseCrop = false
+        //        self.presentation.wrappedValue.dismiss()
+        
+    }
     
 }
 

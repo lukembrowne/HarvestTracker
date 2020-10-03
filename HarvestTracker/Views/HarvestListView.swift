@@ -27,10 +27,14 @@ struct HarvestListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     // Used to workaround bug that add button doesn't work if sheet has already been presented
     @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var settings: UserSettings
+
     
-    
+  
     // State variables
-    @State var isPresented = false
+    @State var isPresentedEditHarvest = false
+    @State var chosenHarvest2: Harvest?
+    @State var chosenCrop2: Crop?
 
     var body: some View {
     
@@ -44,14 +48,36 @@ struct HarvestListView: View {
             Text("Recent Harvests")
                 .font(.title)
             
+            // Testing
+            Button(action: {print(self.chosenHarvest2)}, label: {Text("Print chosen harvest")})
+            
               List {
                 
-                ForEach(harvests, id: \.self) {
-                  HarvestRowView(harvest: $0)
+                ForEach(harvests, id: \.self) { harvest in
+//                  HarvestRowView(harvest: harvest)
+//                    .onTapGesture {
+//
+//                        self.chosenHarvest = harvest
+//                        chosenCrop = harvest.crop
+//                        isPresentedEditHarvest.toggle()
+//                    }
+                    
+                    HarvestRowView(harvest: harvest, chosenCrop: self.$chosenCrop2, chosenHarvest: self.$chosenHarvest2, isPresentedAddHarvest: $isPresentedEditHarvest)
                 }
                 .onDelete(perform: deleteHarvest)
+       
 
             } // End List View
+              .sheet(isPresented: $isPresentedEditHarvest) {
+
+                  AddHarvestView(harvest: $chosenHarvest2,
+                                 chosenCrop: $chosenCrop2,
+                                 isPresentedAddHarvest: $isPresentedEditHarvest,
+                                 settings: settings)
+//                      .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+//                testView(harvest: $chosenHarvest2)
+
+              }// .sheet
             .onAppear() {
                 
                 if(self.crops.count == 0){

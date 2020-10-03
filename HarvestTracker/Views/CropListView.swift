@@ -49,6 +49,7 @@ struct CropListView: View {
                 }
                 .onDelete(perform: deleteCrop)
                 
+                
             } // list
             // Display addharvestview when crop is selected
             .sheet(isPresented: $isPresentedAddHarvest) {

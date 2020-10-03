@@ -12,6 +12,9 @@ struct HarvestRowView: View {
     
     //    @ObservedObject let harvest: Harvest // Causes exclusive access bug
     let harvest: Harvest
+    @Binding var chosenCrop: Crop?
+    @Binding var chosenHarvest: Harvest?
+    @Binding var isPresentedAddHarvest: Bool
     
     static let releaseFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -58,6 +61,13 @@ struct HarvestRowView: View {
                     }
                 }
             }
+        }
+        .onTapGesture {
+            self.chosenHarvest = self.harvest
+            self.chosenCrop = self.harvest.crop
+            print("Chosen crop is: \(self.chosenCrop?.cropName ?? "nil")")
+//            self.isPresentedChooseCrop = false
+            self.isPresentedAddHarvest = true
         }
         
         

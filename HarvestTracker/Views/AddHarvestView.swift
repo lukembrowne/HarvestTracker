@@ -62,14 +62,14 @@ struct AddHarvestView: View {
          isPresentedAddHarvest: Binding<Bool>,
          settings: UserSettings){
         
-        print(harvest)
-        let harvest2 = harvest.wrappedValue
+        let harvestWrapped = harvest.wrappedValue
         self._chosenCrop = chosenCrop
-        self._chosenAmount = State(initialValue: "\(harvest2?.amountEntered)")
-        self._chosenHarvestDate = State(initialValue: harvest2?.harvestDate ?? Date())
-        // Add chosen tags
+        if let chosenAmount = harvestWrapped?.amountEntered {
+            self._chosenAmount = State(initialValue: "\(chosenAmount)")}
+        self._chosenHarvestDate = State(initialValue: harvestWrapped?.harvestDate ?? Date())
         self._isPresentedAddHarvest = isPresentedAddHarvest
-        self._chosenUnit = State(initialValue: harvest2?.unitEntered ?? settings.unitString)
+        self._chosenUnit = State(initialValue: harvestWrapped?.unitEntered ?? settings.unitString)
+        self._chosenTags = State(initialValue: harvestWrapped?.tagArray ?? [Tag]())
     }
     
 

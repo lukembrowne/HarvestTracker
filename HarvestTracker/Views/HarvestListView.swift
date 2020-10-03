@@ -33,8 +33,8 @@ struct HarvestListView: View {
   
     // State variables
     @State var isPresentedEditHarvest = false
-    @State var chosenHarvest2: Harvest?
-    @State var chosenCrop2: Crop?
+    @State var chosenHarvest: Harvest?
+    @State var chosenCrop: Crop?
 
     var body: some View {
     
@@ -49,20 +49,16 @@ struct HarvestListView: View {
                 .font(.title)
             
             // Testing
-            Button(action: {print(self.chosenHarvest2)}, label: {Text("Print chosen harvest")})
+            Button(action: {print(self.chosenHarvest)}, label: {Text("Print chosen harvest")})
             
               List {
                 
                 ForEach(harvests, id: \.self) { harvest in
-//                  HarvestRowView(harvest: harvest)
-//                    .onTapGesture {
-//
-//                        self.chosenHarvest = harvest
-//                        chosenCrop = harvest.crop
-//                        isPresentedEditHarvest.toggle()
-//                    }
                     
-                    HarvestRowView(harvest: harvest, chosenCrop: self.$chosenCrop2, chosenHarvest: self.$chosenHarvest2, isPresentedAddHarvest: $isPresentedEditHarvest)
+                    HarvestRowView(harvest: harvest,
+                                   chosenCrop: self.$chosenCrop,
+                                   chosenHarvest: self.$chosenHarvest,
+                                   isPresentedAddHarvest: $isPresentedEditHarvest)
                 }
                 .onDelete(perform: deleteHarvest)
        
@@ -70,13 +66,11 @@ struct HarvestListView: View {
             } // End List View
               .sheet(isPresented: $isPresentedEditHarvest) {
 
-                  AddHarvestView(harvest: $chosenHarvest2,
-                                 chosenCrop: $chosenCrop2,
+                  AddHarvestView(harvest: $chosenHarvest,
+                                 chosenCrop: $chosenCrop,
                                  isPresentedAddHarvest: $isPresentedEditHarvest,
                                  settings: settings)
-//                      .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-//                testView(harvest: $chosenHarvest2)
-
+                      .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
               }// .sheet
             .onAppear() {
                 

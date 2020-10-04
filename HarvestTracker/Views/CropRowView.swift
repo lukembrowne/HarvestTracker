@@ -10,11 +10,14 @@ import SwiftUI
 
 struct CropRowView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+
+    
     var crop: Crop
     @Binding var chosenCrop: Crop?
+    @Binding var cropBeingEdited: Crop?
     @Binding var isPresentedAddHarvest: Bool
-//    @Binding var isPresentedChooseCrop: Bool
-
+    @Binding var inEditMode: Bool
     
     var body: some View {
         
@@ -24,9 +27,19 @@ struct CropRowView: View {
             Spacer()
         }.onTapGesture {
             self.chosenCrop = self.crop
+            if(inEditMode) {self.cropBeingEdited = self.crop}
             print("Chosen crop is: \(self.chosenCrop?.cropName ?? "nil")")
 //            self.isPresentedChooseCrop = false
-            self.isPresentedAddHarvest = true
+            
+            // If in editmode, dismiss sheet and return to edit harvest, or else navigate to add harvest sheet
+            if(inEditMode) {
+                
+                self.presentationMode.wrappedValue.dismiss()
+
+            } else {
+                self.isPresentedAddHarvest = true
+
+            }
         }
     }
 }

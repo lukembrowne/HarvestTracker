@@ -24,9 +24,23 @@ struct CropListView: View {
     @EnvironmentObject var settings: UserSettings
     
     @State var chosenCrop: Crop?
+    @Binding var cropBeingEdited: Crop?
     
     @State var isPresentedAddCrop = false
     @State var isPresentedAddHarvest = false
+    @Binding var inEditMode: Bool
+    
+    // Set up two initializers - depending on whether in edit harvest mode or not
+    init(){
+        self._inEditMode = Binding.constant(false)
+        self._cropBeingEdited = Binding.constant(nil)
+    }
+    
+    init(inEditMode: Binding<Bool>,
+         cropBeingEdited: Binding<Crop?>){
+        self._inEditMode = inEditMode
+        self._cropBeingEdited = cropBeingEdited
+    }
     
     
     
@@ -43,8 +57,10 @@ struct CropListView: View {
                 // Display crops in list
                 ForEach(crops, id: \.self) { crop in
                     CropRowView(crop: crop,
-                                chosenCrop: self.$chosenCrop,
-                                isPresentedAddHarvest:  $isPresentedAddHarvest)
+                                chosenCrop: $chosenCrop,
+                                cropBeingEdited: $cropBeingEdited,
+                                isPresentedAddHarvest:  $isPresentedAddHarvest,
+                                inEditMode: $inEditMode)
                     
                 }
                 .onDelete(perform: deleteCrop)
@@ -53,12 +69,10 @@ struct CropListView: View {
             } // list
             // Display addharvestview when crop is selected
             .sheet(isPresented: $isPresentedAddHarvest) {
-                AddHarvestView(chosenCrop: $chosenCrop,
-                               //                               isPresentedChooseCrop: $isPresentedChooseCrop,
-                               isPresentedAddHarvest: $isPresentedAddHarvest,
-                               settings: settings)
-                    .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-                
+                    AddHarvestView(chosenCrop: chosenCrop,
+                                   isPresentedAddHarvest: $isPresentedAddHarvest,
+                                   settings: settings)
+                        .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
             } // .sheet
             
             // Button to add new crop

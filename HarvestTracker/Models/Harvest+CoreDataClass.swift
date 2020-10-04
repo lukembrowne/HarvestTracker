@@ -43,7 +43,6 @@ public class Harvest: NSManagedObject {
 
         }
 
-        
         // Standardize amount
         switch unit {
         case "oz":
@@ -74,6 +73,63 @@ public class Harvest: NSManagedObject {
             print("Error saving managed object context: \(error)")
         }
     }
+    
+    
+    // Update Harvest
+    static func updateHarvest(harvest: Harvest,
+                              crop: Crop?,
+                           amountEntered: String,
+                           harvestDate: Date,
+                           unit: String,
+                           tag: [Tag],
+                           isPresented: Binding<Bool>,
+                           in managedObjectContext: NSManagedObjectContext) {
+        
+
+        harvest.crop = crop
+        harvest.amountEntered = Double(amountEntered) ?? 0.0
+        harvest.harvestDate = harvestDate
+        harvest.unitEntered = unit
+        
+        // Loop over tags in set and
+        tag.forEach {tag in
+            print("Adding tag \(tag)")
+            tag.addToHarvestArray(harvest)
+
+        }
+
+        // Standardize amount
+        switch unit {
+        case "oz":
+            //            print("oz selected")
+            harvest.amountStandardized = Measurement(value: harvest.amountEntered,
+                                                        unit: UnitMass.ounces).converted(to: UnitMass.grams).value
+        case "lb":
+            //            print("lb selected")
+            harvest.amountStandardized = Measurement(value: harvest.amountEntered,
+                                                        unit: UnitMass.pounds).converted(to: UnitMass.grams).value
+        case "g":
+            //            print("g selected")
+            harvest.amountStandardized = Measurement(value: harvest.amountEntered,
+                                                        unit: UnitMass.grams).converted(to: UnitMass.grams).value
+        case "kg":
+            //            print("kg selected")
+            harvest.amountStandardized = Measurement(value: harvest.amountEntered,
+                                                        unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
+        default:
+            print("Unrecognized unit")
+        }
+        
+        
+        // Save
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+    
+    
     
 // Delete Harvest
     static func deleteHarvest(harvest: Harvest, in managedObjectContext: NSManagedObjectContext ) {

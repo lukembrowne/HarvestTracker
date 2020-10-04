@@ -26,7 +26,8 @@ struct AddHarvestView: View {
                   ]) var tags: FetchedResults<Tag>
     
     // Initialize and set defaults
-    @Binding var chosenCrop: Crop?
+    @State var chosenCrop: Crop?
+    var chosenHarvest: Harvest?
     
     @State var chosenAmount = ""
     static let defaultAmount = "1"
@@ -39,47 +40,52 @@ struct AddHarvestView: View {
     @State var chosenTags = [Tag]()
     
     @State var showingNoCropAlert = false
-    @State var isPresentedAddCrop = false
+    @State var isPresentedCropList = false
     @Binding var isPresentedAddHarvest: Bool
+    @State var inEditMode = false
     
     let columns = [
         GridItem(.adaptive(minimum: 80))
     ]
     
     // Regular init
-    init(chosenCrop: Binding<Crop?>,
+    init(chosenCrop: Crop?,
          isPresentedAddHarvest: Binding<Bool>,
          settings: UserSettings) {
         
-        self._chosenCrop = chosenCrop
+        self._chosenCrop = State(initialValue: chosenCrop)
         self._isPresentedAddHarvest = isPresentedAddHarvest
         self._chosenUnit = State(initialValue: settings.unitString)
         
     }
     
+    // Entering edit mode from tapping on harvest list row
     init(harvest: Binding<Harvest?>,
-         chosenCrop: Binding<Crop?>,
+         chosenCrop: Crop?,
          isPresentedAddHarvest: Binding<Bool>,
-         settings: UserSettings){
+         settings: UserSettings,
+         inEditMode: Bool){
         
         let harvestWrapped = harvest.wrappedValue
-        self._chosenCrop = chosenCrop
+        self.chosenHarvest = harvestWrapped
+        self._chosenCrop = State(initialValue: chosenCrop)
         if let chosenAmount = harvestWrapped?.amountEntered {
-            self._chosenAmount = State(initialValue: "\(chosenAmount)")}
+            self._chosenAmount = State(initialValue: "\(chosenAmount)")
+        }
         self._chosenHarvestDate = State(initialValue: harvestWrapped?.harvestDate ?? Date())
         self._isPresentedAddHarvest = isPresentedAddHarvest
         self._chosenUnit = State(initialValue: harvestWrapped?.unitEntered ?? settings.unitString)
         self._chosenTags = State(initialValue: harvestWrapped?.tagArray ?? [Tag]())
+        self._inEditMode = State(initialValue: inEditMode)
     }
     
-
+    
     
     
     // Main view
     var body: some View {
         
         VStack{
-          
             
             // Title bar with cancel button
             ZStack{
@@ -95,11 +101,16 @@ struct AddHarvestView: View {
                 }
                 
                 HStack{
-                    Text("Add a new harvest")
-                        .font(.headline)
+                    if(inEditMode) {
+                        Text("Edit harvest")
+                            .font(.headline)
+                    } else {
+                        Text("Add a new harvest")
+                            .font(.headline)
+                    }
                 }
             }.padding()
-
+            
             
             // Begin form
             Form {
@@ -107,18 +118,35 @@ struct AddHarvestView: View {
                 // Select Crop
                 Section(header: Text("Crop")) {
                     
-                    Button {
-                        self.isPresentedAddHarvest = false
-                    } label: {
-                        HStack {
-                            Text("Choose a crop:")
-                            Spacer()
-                            Text(chosenCrop?.cropName ?? "...")
+                    // If in edit mode, when crop is selected, navigate to crop list view
+                    if(inEditMode) {
+                        Button {
+                            self.isPresentedCropList = true
+                        } label: {
+                            HStack {
+                                Text("Choose a crop:")
+                                Spacer()
+                                Text(chosenCrop?.cropName ?? "...")
+                            }
+                        }
+                        .sheet(isPresented: $isPresentedCropList) {
+                            
+                            CropListView(inEditMode: $inEditMode,
+                                         cropBeingEdited: $chosenCrop).environment(\.managedObjectContext, self.managedObjectContext)
+                        }// .sheet
+                        
+                    } else {
+                        // If not in edit mode, when crop is selected, close sheet because that returns to crop list view
+                        Button {
+                            self.isPresentedAddHarvest = false
+                        } label: {
+                            HStack {
+                                Text("Choose a crop:")
+                                Spacer()
+                                Text(chosenCrop?.cropName ?? "...")
+                            }
                         }
                     }
-                    
-                    
-                    
                     
                 } // End select crop section
                 
@@ -195,18 +223,27 @@ struct AddHarvestView: View {
                     Button(action: {
                         
                         if self.chosenCrop != nil {
-                            self.addHarvestAction()
                             
+                            if(inEditMode){
+                                self.updateHarvestAction()
+                            } else {
+                                self.addHarvestAction()
+                            }
                         } else {
                             print("Chosen crop is nil")
                             self.showingNoCropAlert.toggle()
                         }
                     },
-                    
-                    
                     label: {
-                        Image(systemName: "plus")
-                        Text("Add Harvest")
+                        
+                        if(inEditMode){
+                            Image(systemName: "checkmark.circle")
+                            Text("Save edits")
+                        } else {
+                            Image(systemName: "plus")
+                            Text("Add Harvest")
+                        }
+
                     })
                     .foregroundColor(Color.white)
                     .padding()
@@ -222,7 +259,6 @@ struct AddHarvestView: View {
             }
             //        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
             .navigationBarItems(leading:
-                                    
                                     // Add Cancel button
                                     Button(action: {
                                         print("tapped cancel")
@@ -254,6 +290,25 @@ struct AddHarvestView: View {
                            tag: chosenTags,
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
+        
+        // Close sheet once harvest is added
+        self.isPresentedAddHarvest = false
+        //        self.isPresentedChooseCrop = false
+        //        self.presentation.wrappedValue.dismiss()
+        
+    }
+    
+    private func updateHarvestAction() {
+        
+        // Add harvest to database
+        Harvest.updateHarvest(harvest: chosenHarvest!,
+                              crop: chosenCrop,
+                              amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
+                              harvestDate: chosenHarvestDate,
+                              unit: chosenUnit,
+                              tag: chosenTags,
+                              isPresented: $isPresentedAddHarvest,
+                              in: self.managedObjectContext)
         
         // Close sheet once harvest is added
         self.isPresentedAddHarvest = false

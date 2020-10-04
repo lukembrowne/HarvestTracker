@@ -67,9 +67,10 @@ struct HarvestListView: View {
               .sheet(isPresented: $isPresentedEditHarvest) {
 
                   AddHarvestView(harvest: $chosenHarvest,
-                                 chosenCrop: $chosenCrop,
+                                 chosenCrop: chosenCrop,
                                  isPresentedAddHarvest: $isPresentedEditHarvest,
-                                 settings: settings)
+                                 settings: settings,
+                                 inEditMode: true)
                       .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
               }// .sheet
             .onAppear() {

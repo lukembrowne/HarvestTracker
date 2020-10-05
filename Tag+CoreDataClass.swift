@@ -13,7 +13,7 @@ import SwiftUI
 
 @objc(Tag)
 public class Tag: NSManagedObject {
-
+    
     
     
     // Add Tag
@@ -25,7 +25,24 @@ public class Tag: NSManagedObject {
         
         newTag.tagName = tagName
         newTag.tagColorHex = UIColor(tagColor).toHexString() // Convert from SwiftUI color to hex
-
+        
+        // Save
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+    
+    // Update Tag
+    static func updateTag(tag: Tag,
+                          tagName: String,
+                          tagColor: Color,
+                          in managedObjectContext: NSManagedObjectContext) {
+        
+        tag.tagName = tagName
+        tag.tagColorHex = UIColor(tagColor).toHexString() // Convert from SwiftUI color to hex
+        
         // Save
         do {
             try managedObjectContext.save()
@@ -35,20 +52,20 @@ public class Tag: NSManagedObject {
     }
     
     // Delete Harvest
-        static func deleteTag(tag: Tag, in managedObjectContext: NSManagedObjectContext ) {
-            
-            // Delete
-            managedObjectContext.delete(tag)
-            
-            // Save
-            do {
-                try managedObjectContext.save()
-            } catch {
-                print("Error saving managed object context: \(error)")
-            }
-            
+    static func deleteTag(tag: Tag, in managedObjectContext: NSManagedObjectContext ) {
+        
+        // Delete
+        managedObjectContext.delete(tag)
+        
+        // Save
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
         }
-
+        
+    }
+    
     
     
 }

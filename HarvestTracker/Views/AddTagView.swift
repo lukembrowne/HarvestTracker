@@ -16,7 +16,7 @@ struct AddTagView: View {
     @State var inEditMode: Bool
     @Binding var isPresentedAddTag: Bool
     
-    var tagBeingEdited: Tag?
+    @Binding var tagBeingEdited: Tag?
     
     @State var tagName: String = ""
     static let defaultTagName = "default new tag"
@@ -27,8 +27,12 @@ struct AddTagView: View {
     @State var chosenCostPerUnit = ""
     static let defaultCostPerUnit = "1"
     
+    //    @State private var tagColor =
+    //        Color(.sRGB, red: 0.964, green: 0.91, blue: 0.35)
+    
     @State private var tagColor =
-           Color(.sRGB, red: 0.964, green: 0.91, blue: 0.35)
+        Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5)
+    
     
     
     
@@ -37,6 +41,7 @@ struct AddTagView: View {
          isPresentedAddTag: Binding<Bool>){
         self._isPresentedAddTag = isPresentedAddTag
         self._inEditMode = State(initialValue: inEditMode)
+        self._tagBeingEdited = Binding.constant(nil)
     }
     
     
@@ -45,25 +50,13 @@ struct AddTagView: View {
          inEditMode: Bool,
          isPresentedAddTag: Binding<Bool>) {
         
-        let tagWrapped = tagBeingEdited.wrappedValue
-        // Testing
-        if let a = tagWrapped {
-            print("Tag wrapped not nil!")
-        } else {
-            print("Tag wrapped is nil!")
-        }
-        self._tagName = State(initialValue: tagWrapped?.tagName ?? "...")
-        self.tagBeingEdited = tagWrapped
+        self._tagBeingEdited = tagBeingEdited
         self._isPresentedAddTag = isPresentedAddTag
         self._inEditMode = State(initialValue: inEditMode)
         
     }
     
     
-    
-    
-    
-
     var body: some View {
         
         VStack {
@@ -101,36 +94,59 @@ struct AddTagView: View {
                 Section(header: Text("Tag")) {
                     
                     TextField("Tag Name", text: $tagName)
-            
+                    
                 }
+                
                 
                 
                 // Pick color
                 Section(header: Text("Choose a color")) {
                     
                     ColorPicker("Color", selection: $tagColor)
-
+                    
                 }
-
+                
                 
                 
                 // Add tag button
                 HStack {
                     Spacer()
-                    Button(action: addTagAction, label: {
-                        Image(systemName: "plus")
-                        Text("Add Tag")
+                    Button(action: {
+                        
+                        if(inEditMode) {
+                            self.updateTagAction()
+                        } else {
+                            self.addTagAction()
+                        }
+                        
+                    }, label: {
+                        
+                        if(inEditMode){
+                            Image(systemName: "checkmark.circle")
+                            Text("Save edits")
+                        } else {
+                            Image(systemName: "plus")
+                            Text("Add Tag")
+                        }
+                        
                     })
-                        .foregroundColor(Color.white)
-                        .padding()
-                        .background(Color.green)
-                        .cornerRadius(5)
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(5)
                     Spacer()
                 }
                 
             }
             
         } // End Vstack
+        // Need to set states on appearance of view bc setting these states in initializer was not working - work around for potential bug
+        .onAppear {
+            if(inEditMode) {
+                self.tagName = tagBeingEdited?.tagName ?? ""
+                self.tagColor = Color(UIColor(hexString: tagBeingEdited?.tagColorHex ?? "000000"))
+            }
+        }
     } // End body
     
     private func addTagAction() {
@@ -143,7 +159,21 @@ struct AddTagView: View {
                    in: self.managedObjectContext)
         
         self.isPresentedAddTag.toggle() // close sheet
-
+        
+    }
+    
+    private func updateTagAction() {
+        
+        print("Update tag button pressed")
+        
+        // Add tag to database
+        Tag.updateTag(tag: tagBeingEdited!,
+                      tagName: tagName,
+                      tagColor: tagColor,
+                      in: self.managedObjectContext)
+        
+        self.isPresentedAddTag.toggle() // close sheet
+        
     }
 }
 

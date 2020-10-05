@@ -27,7 +27,7 @@ struct AddHarvestView: View {
     
     // Initialize and set defaults
     @State var chosenCrop: Crop?
-    var chosenHarvest: Harvest?
+    @Binding var chosenHarvest: Harvest?
     
     @State var chosenAmount = ""
     static let defaultAmount = "1"
@@ -56,6 +56,7 @@ struct AddHarvestView: View {
         self._chosenCrop = State(initialValue: chosenCrop)
         self._isPresentedAddHarvest = isPresentedAddHarvest
         self._chosenUnit = State(initialValue: settings.unitString)
+        self._chosenHarvest = Binding.constant(nil)
         
     }
     
@@ -67,7 +68,7 @@ struct AddHarvestView: View {
          inEditMode: Bool){
         
         let harvestWrapped = harvest.wrappedValue
-        self.chosenHarvest = harvestWrapped
+        self._chosenHarvest = harvest
         self._chosenCrop = State(initialValue: chosenCrop)
         if let chosenAmount = harvestWrapped?.amountEntered {
             self._chosenAmount = State(initialValue: "\(chosenAmount)")

@@ -37,27 +37,36 @@ struct TagListView: View {
             
             // Testing
             Button(action: {print(self.tagBeingEdited)}, label: {Text("Print tag being edited")})
-                .sheet(isPresented: $isPresentedEditTag) {
-  
-                        AddTagView(tagBeingEdited: $tagBeingEdited,
-                                   inEditMode: true,
-                                   isPresentedAddTag: $isPresentedEditTag)
-                            .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-                }// .sheet
+            
+            Button(action: {self.isPresentedEditTag = true}, label: {Text("Open Edit sheet")})
+
             
             List {
                 
-                // Display crops in list
+                // Display tags in list
                 ForEach(tags, id: \.self) { tag in
                     TagView(tag: tag,
                             tagBeingEdited: self.$tagBeingEdited,
                             isPresentedEditTag: self.$isPresentedEditTag,
                             inEditMode: true)
+
                 }
                 .onDelete(perform: deleteTag)
                 
             } // list
             // When tag is tapped, open up editing mode
+            .sheet(isPresented: self.$isPresentedEditTag) {
+
+//                TestView(tagBeingEdited: self.$tagBeingEdited)
+//                TestView2(tagBeingEdited: self.$tagBeingEdited.wrappedValue)
+                AddTagView(tagBeingEdited: self.$tagBeingEdited,
+//                           tag: self.tagBeingEdited,
+                        inEditMode: true,
+                        isPresentedAddTag: self.$isPresentedEditTag)
+//
+                 .environment(\.managedObjectContext, self.managedObjectContext)
+                
+     }// .sheet
             
             // Button to add new tag
             Button(action: { self.isPresentedAddTag.toggle()},

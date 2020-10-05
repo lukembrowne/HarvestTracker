@@ -287,7 +287,7 @@ struct AddHarvestView: View {
                            amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                            harvestDate: chosenHarvestDate,
                            unit: chosenUnit,
-                           tag: chosenTags,
+                           chosenTags: chosenTags,
                            isPresented: $isPresentedAddHarvest,
                            in: self.managedObjectContext)
         
@@ -306,7 +306,7 @@ struct AddHarvestView: View {
                               amountEntered: chosenAmount.isEmpty ? AddHarvestView.defaultAmount : chosenAmount,
                               harvestDate: chosenHarvestDate,
                               unit: chosenUnit,
-                              tag: chosenTags,
+                              chosenTags: chosenTags,
                               isPresented: $isPresentedAddHarvest,
                               in: self.managedObjectContext)
         

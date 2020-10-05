@@ -11,15 +11,15 @@ import SwiftUI
 struct TagView: View {
     
     var tag: Tag
-    @State var isSelected = false
     @Binding var chosenTags: [Tag]
     
-    
+    // Init when tags are just displayed
     init(tag: Tag ) {
         self.tag = tag
         self._chosenTags = Binding.constant([Tag]()) // Initialize empty binding that's never used if not
     }
     
+    // Init when tags are interactive for selecting in AddHarvestView
     init(tag: Tag, chosenTags: Binding<[Tag]>) {
         self.tag = tag
         self._chosenTags = chosenTags
@@ -30,9 +30,6 @@ struct TagView: View {
     var body: some View {
         
         Button(action: {
-            
-            // Adds checkmark to tag
-            isSelected.toggle()
             
             // If tag is already chosen, remove from chosen tags array
             if chosenTags.contains(self.tag) {
@@ -50,8 +47,8 @@ struct TagView: View {
                 // Tag name
                 Text(tag.tagName ?? "")
                 
-                // Add check mark when selected
-                if(isSelected) {
+                // Add check mark if already part of chosen tags
+                if chosenTags.contains(self.tag) {
                     Image(systemName: "checkmark.circle.fill")
                 }
             }

@@ -25,7 +25,7 @@ public class Harvest: NSManagedObject {
                            amountEntered: String,
                            harvestDate: Date,
                            unit: String,
-                           tag: [Tag],
+                           chosenTags: [Tag],
                            isPresented: Binding<Bool>,
                            in managedObjectContext: NSManagedObjectContext) {
         
@@ -37,12 +37,12 @@ public class Harvest: NSManagedObject {
         newHarvest.unitEntered = unit
         
         // Loop over tags in set and
-        tag.forEach {tag in
+        chosenTags.forEach {tag in
             print("Adding tag \(tag)")
             tag.addToHarvestArray(newHarvest)
-
+            
         }
-
+        
         // Standardize amount
         switch unit {
         case "oz":
@@ -78,44 +78,47 @@ public class Harvest: NSManagedObject {
     // Update Harvest
     static func updateHarvest(harvest: Harvest,
                               crop: Crop?,
-                           amountEntered: String,
-                           harvestDate: Date,
-                           unit: String,
-                           tag: [Tag],
-                           isPresented: Binding<Bool>,
-                           in managedObjectContext: NSManagedObjectContext) {
+                              amountEntered: String,
+                              harvestDate: Date,
+                              unit: String,
+                              chosenTags: [Tag],
+                              isPresented: Binding<Bool>,
+                              in managedObjectContext: NSManagedObjectContext) {
         
-
+        
         harvest.crop = crop
         harvest.amountEntered = Double(amountEntered) ?? 0.0
         harvest.harvestDate = harvestDate
         harvest.unitEntered = unit
         
-        // Loop over tags in set and
-        tag.forEach {tag in
-            print("Adding tag \(tag)")
-            tag.addToHarvestArray(harvest)
-
+        // Remove all old tags
+        harvest.tagArray?.forEach { tag in
+            tag.removeFromHarvestArray(harvest)
         }
-
+        
+        //         Loop over new tags in set and add to harvest
+        chosenTags.forEach {tag in
+            tag.addToHarvestArray(harvest)
+        }
+        
         // Standardize amount
         switch unit {
         case "oz":
             //            print("oz selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
-                                                        unit: UnitMass.ounces).converted(to: UnitMass.grams).value
+                                                     unit: UnitMass.ounces).converted(to: UnitMass.grams).value
         case "lb":
             //            print("lb selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
-                                                        unit: UnitMass.pounds).converted(to: UnitMass.grams).value
+                                                     unit: UnitMass.pounds).converted(to: UnitMass.grams).value
         case "g":
             //            print("g selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
-                                                        unit: UnitMass.grams).converted(to: UnitMass.grams).value
+                                                     unit: UnitMass.grams).converted(to: UnitMass.grams).value
         case "kg":
             //            print("kg selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
-                                                        unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
+                                                     unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
         default:
             print("Unrecognized unit")
         }
@@ -131,7 +134,7 @@ public class Harvest: NSManagedObject {
     
     
     
-// Delete Harvest
+    // Delete Harvest
     static func deleteHarvest(harvest: Harvest, in managedObjectContext: NSManagedObjectContext ) {
         
         // Delete

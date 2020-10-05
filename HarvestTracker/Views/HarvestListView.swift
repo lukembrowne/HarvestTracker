@@ -64,6 +64,7 @@ struct HarvestListView: View {
        
 
             } // End List View
+              // When harvest is tapped, open up editing mode
               .sheet(isPresented: $isPresentedEditHarvest) {
 
                   AddHarvestView(harvest: $chosenHarvest,

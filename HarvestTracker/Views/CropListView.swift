@@ -67,7 +67,7 @@ struct CropListView: View {
                 
                 
             } // list
-            // Display addharvestview when crop is selected
+            // Display addharvestview when crop is finally selected
             .sheet(isPresented: $isPresentedAddHarvest) {
                     AddHarvestView(chosenCrop: chosenCrop,
                                    isPresentedAddHarvest: $isPresentedAddHarvest,

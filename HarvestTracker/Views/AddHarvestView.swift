@@ -229,6 +229,7 @@ struct AddHarvestView: View {
                             } else {
                                 self.addHarvestAction()
                             }
+                            
                         } else {
                             print("Chosen crop is nil")
                             self.showingNoCropAlert.toggle()

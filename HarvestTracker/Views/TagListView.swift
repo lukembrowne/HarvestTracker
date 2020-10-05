@@ -21,6 +21,10 @@ struct TagListView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
+    
+    @State var isPresentedAddTag = false
+    @State var isPresentedEditTag = false
+    @State var tagBeingEdited: Tag?
  
     
     var body: some View {
@@ -31,20 +35,45 @@ struct TagListView: View {
             Text("Tag list")
                 .font(.title)
             
+            // Testing
+            Button(action: {print(self.tagBeingEdited)}, label: {Text("Print tag being edited")})
+                .sheet(isPresented: $isPresentedEditTag) {
+  
+                        AddTagView(tagBeingEdited: $tagBeingEdited,
+                                   inEditMode: true,
+                                   isPresentedAddTag: $isPresentedEditTag)
+                            .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+                }// .sheet
+            
             List {
                 
                 // Display crops in list
                 ForEach(tags, id: \.self) { tag in
-                    TagView(tag: tag)
+                    TagView(tag: tag,
+                            tagBeingEdited: self.$tagBeingEdited,
+                            isPresentedEditTag: self.$isPresentedEditTag,
+                            inEditMode: true)
                 }
                 .onDelete(perform: deleteTag)
                 
             } // list
+            // When tag is tapped, open up editing mode
             
-            
-            AddTagView()
-                .environment(\.managedObjectContext, self.managedObjectContext)
-            
+            // Button to add new tag
+            Button(action: { self.isPresentedAddTag.toggle()},
+                   label: {
+                    Image(systemName: "plus")
+                    Text("Add New Tag")
+                   })
+                .foregroundColor(Color.white)
+                .padding()
+                .background(Color.green)
+                .cornerRadius(5)
+                .sheet(isPresented: $isPresentedAddTag) {
+                    AddTagView(inEditMode: false,
+                               isPresentedAddTag: $isPresentedAddTag)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
+                }
             
         } // vstack
         .padding()

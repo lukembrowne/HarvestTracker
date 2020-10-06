@@ -68,7 +68,6 @@ struct HarvestListView: View {
               .sheet(isPresented: $isPresentedEditHarvest) {
 
                   AddHarvestView(harvest: $chosenHarvest,
-                                 chosenCrop: chosenCrop,
                                  isPresentedAddHarvest: $isPresentedEditHarvest,
                                  settings: settings,
                                  inEditMode: true)

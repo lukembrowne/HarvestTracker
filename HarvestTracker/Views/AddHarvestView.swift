@@ -62,21 +62,13 @@ struct AddHarvestView: View {
     
     // Entering edit mode from tapping on harvest list row
     init(harvest: Binding<Harvest?>,
-         chosenCrop: Crop?,
          isPresentedAddHarvest: Binding<Bool>,
          settings: UserSettings,
          inEditMode: Bool){
         
-        let harvestWrapped = harvest.wrappedValue
         self._chosenHarvest = harvest
-        self._chosenCrop = State(initialValue: chosenCrop)
-        if let chosenAmount = harvestWrapped?.amountEntered {
-            self._chosenAmount = State(initialValue: "\(chosenAmount)")
-        }
-        self._chosenHarvestDate = State(initialValue: harvestWrapped?.harvestDate ?? Date())
         self._isPresentedAddHarvest = isPresentedAddHarvest
-        self._chosenUnit = State(initialValue: harvestWrapped?.unitEntered ?? settings.unitString)
-        self._chosenTags = State(initialValue: harvestWrapped?.tagArray ?? [Tag]())
+        self._chosenUnit = State(initialValue: harvest.wrappedValue?.unitEntered ?? settings.unitString)
         self._inEditMode = State(initialValue: inEditMode)
     }
     
@@ -275,9 +267,22 @@ struct AddHarvestView: View {
             )
             
         }
-        
-        
-        
+        // Need to set states on appearance of view bc setting these states in initializer was not working - work around for potential bug
+        .onAppear {
+            
+            if(inEditMode){
+                
+                
+                self.chosenCrop = chosenHarvest?.crop
+                if let amount = chosenHarvest?.amountEntered {
+                    self.chosenAmount = String("\(amount)")
+                }
+                self.chosenHarvestDate = chosenHarvest?.harvestDate ?? Date()
+                self.chosenTags = chosenHarvest?.tagArray ?? [Tag]()
+                self.chosenUnit = chosenHarvest?.unitEntered ?? settings.unitString
+                
+            }
+        }
     } // End Body
     
     

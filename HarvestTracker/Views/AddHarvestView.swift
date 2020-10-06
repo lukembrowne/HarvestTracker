@@ -124,7 +124,7 @@ struct AddHarvestView: View {
                         }
                         .sheet(isPresented: $isPresentedCropList) {
                             
-                            CropListView(inEditMode: $inEditMode,
+                            CropListView(harvestEditMode: $inEditMode,
                                          cropBeingEdited: $chosenCrop).environment(\.managedObjectContext, self.managedObjectContext)
                         }// .sheet
                         

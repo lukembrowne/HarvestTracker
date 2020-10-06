@@ -17,7 +17,9 @@ struct CropRowView: View {
     @Binding var chosenCrop: Crop?
     @Binding var cropBeingEdited: Crop?
     @Binding var isPresentedAddHarvest: Bool
-    @Binding var inEditMode: Bool
+    @Binding var isPresentedAddCrop: Bool
+    var cropEditMode: Bool
+    @Binding var harvestEditMode: Bool
     
     var body: some View {
         
@@ -27,18 +29,16 @@ struct CropRowView: View {
             Spacer()
         }.onTapGesture {
             self.chosenCrop = self.crop
-            if(inEditMode) {self.cropBeingEdited = self.crop}
+            if(harvestEditMode) {self.cropBeingEdited = self.crop}
             print("Chosen crop is: \(self.chosenCrop?.cropName ?? "nil")")
-//            self.isPresentedChooseCrop = false
-            
-            // If in editmode, dismiss sheet and return to edit harvest, or else navigate to add harvest sheet
-            if(inEditMode) {
-                
-                self.presentationMode.wrappedValue.dismiss()
 
+            // If in editmode, dismiss sheet and return to edit harvest, or else navigate to add harvest sheet
+            if(harvestEditMode) {
+                self.presentationMode.wrappedValue.dismiss()
+            } else if(cropEditMode){
+                self.isPresentedAddCrop = true
             } else {
                 self.isPresentedAddHarvest = true
-
             }
         }
     }

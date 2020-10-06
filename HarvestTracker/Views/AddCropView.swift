@@ -14,6 +14,8 @@ struct AddCropView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @EnvironmentObject var settings: UserSettings
+    
     @State var cropName: String = ""
     static let defaultCropName = "default new crop"
     
@@ -23,7 +25,23 @@ struct AddCropView: View {
     @State var chosenCostPerUnit = ""
     static let defaultCostPerUnit = "1"
     
+    var titleText = "Add Crop"
     
+    @State var inEditMode = false
+    @Binding var cropBeingEdited: Crop?
+    
+    init() {
+        self._cropBeingEdited = Binding.constant(nil)
+    }
+    
+    init(cropBeingEdited: Binding<Crop?>,
+         inEditMode: Bool) {
+        
+        self._cropBeingEdited = cropBeingEdited
+        self._inEditMode = State(initialValue: inEditMode)
+        self.titleText = "Edit Crop"
+        
+    }
     
     
     var body: some View {
@@ -59,49 +77,85 @@ struct AddCropView: View {
                 // Add crop button
                 HStack {
                     Spacer()
-                    Button(action: addCropAction, label: {
-                        Image(systemName: "plus")
-                        Text("Add Crop")
+                    Button(action: {
+                        if(inEditMode){
+                            self.updateCropAction()
+                        } else {
+                            
+                            self.addCropAction()
+                        }
+                        
+                    }, label: {
+                        
+                        if(inEditMode){
+                            Image(systemName: "checkmark.circle")
+                            Text("Save edits")
+                        } else {
+                            Image(systemName: "plus")
+                            Text("Add Crop")
+                        }
+
                     })
-                        .foregroundColor(Color.white)
-                        .padding()
-                        .background(Color.green)
-                        .cornerRadius(5)
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(5)
                     Spacer()
                 }
                 
             }
-            .navigationBarTitle(Text("Add Crop"), displayMode: .inline)
+            .navigationBarTitle(Text(titleText),
+                                displayMode: .inline)
             .navigationBarItems(leading:
-                
-                // Add Cancel button
-                Button(action: {
-                    print("tapped cancel")
-                    self.presentation.wrappedValue.dismiss()
-                }, label: {
-                    Text("Cancel")
-                }
-                )
+                                    
+                                    // Add Cancel button
+                                    Button(action: {
+                                        print("tapped cancel")
+                                        self.presentation.wrappedValue.dismiss()
+                                    }, label: {
+                                        Text("Cancel")
+                                    }
+                                    )
             )
             
         } // End Navigation View
+        // Need to set states on appearance of view bc setting these states in initializer was not working - work around for potential bug
+        .onAppear {
+            if(inEditMode) {
+                self.cropName = cropBeingEdited?.cropName ?? ""
+                self.chosenUnit = cropBeingEdited?.unit ?? settings.unitString
+                if let cpu = cropBeingEdited?.costPerUnit {
+                    self.chosenCostPerUnit = String("\(cpu)")
+                }
+            }
+        }
     } // End body
     
     private func addCropAction() {
-        
-        print("Add crop button pressed")
-        
         
         // Add crop to database
         Crop.addCrop(cropName: cropName.isEmpty ? AddCropView.defaultCropName : cropName,
                      costPerUnit: chosenCostPerUnit.isEmpty ? AddCropView.defaultCostPerUnit : chosenCostPerUnit,
                      unit: chosenUnit,
                      in: self.managedObjectContext)
-        
         // Close sheet
         self.presentation.wrappedValue.dismiss()
         
+    }
+    
+    
+    private func updateCropAction() {
+        
+        // Add crop to database
+        Crop.updateCrop(crop: cropBeingEdited!,
+                        cropName: cropName.isEmpty ? AddCropView.defaultCropName : cropName,
+                        costPerUnit: chosenCostPerUnit.isEmpty ? AddCropView.defaultCostPerUnit : chosenCostPerUnit,
+                        unit: chosenUnit,
+                        in: self.managedObjectContext)
+        // Close sheet
+        self.presentation.wrappedValue.dismiss()
         
     }
+    
 }
 

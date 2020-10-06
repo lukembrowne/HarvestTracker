@@ -10,7 +10,9 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
+    
     var units = ["oz", "lb", "g", "kg"]
     
     
@@ -18,40 +20,42 @@ struct SettingsView: View {
         
         NavigationView {
             
-        Form {
-            
-            // Change default unit of weight
-            Section(header: Text("Change default unit").font(.headline)) {
+            Form {
                 
-                Picker("units", selection: $settings.unitString) {
-                    ForEach(0 ..< units.count) { index in
-                        Text(self.units[index])
-                            .tag(self.units[index])
+                // Change default unit of weight
+                Section(header: Text("Change default unit").font(.headline)) {
+                    
+                    Picker("units", selection: $settings.unitString) {
+                        ForEach(0 ..< units.count) { index in
+                            Text(self.units[index])
+                                .tag(self.units[index])
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                }
+                
+                // Edit crop list
+                Section(header: Text("Crops").font(.headline)) {
+                    
+                    NavigationLink(destination: CropListView(cropEditMode: true).environment(\.managedObjectContext, self.managedObjectContext)) {
+                        Text("Edit Crop list")
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-
+                
+                // About section
+                Section(header: Text("About").font(.headline)) {
+                    
+                    
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text("0.1")
+                    }
+                }
             }
+            .navigationBarTitle("Settings")
             
-            // Edit crop list
-            Section(header: Text("Edit crop list").font(.headline)) {
-                
-                Text("Button to edit crop list")
-            }
-            
-            // About section
-            Section(header: Text("About").font(.headline)) {
-                
-                
-                HStack {
-                     Text("Version")
-                     Spacer()
-                     Text("0.1")
-                 }
-            }
-        }
-        .navigationBarTitle("Settings")
-
         }
         
     }

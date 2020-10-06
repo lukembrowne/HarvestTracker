@@ -28,24 +28,37 @@ struct CropListView: View {
     
     @State var isPresentedAddCrop = false
     @State var isPresentedAddHarvest = false
-    @Binding var inEditMode: Bool
+    var cropEditMode: Bool
+    @Binding var harvestEditMode: Bool
+
     
-    // Set up two initializers - depending on whether in edit harvest mode or not
+    // Set up three initializers
+    
+    // Basic initializer when adding a new harvest
     init(){
-        self._inEditMode = Binding.constant(false)
+        self._harvestEditMode = Binding.constant(false)
         self._cropBeingEdited = Binding.constant(nil)
+        self.cropEditMode = false
     }
     
-    init(inEditMode: Binding<Bool>,
+    // Editing mode initializer when editing a harvest and choosing a new crop
+    init(harvestEditMode: Binding<Bool>,
          cropBeingEdited: Binding<Crop?>){
-        self._inEditMode = inEditMode
+        self._harvestEditMode = harvestEditMode
         self._cropBeingEdited = cropBeingEdited
+        self.cropEditMode = false
+    }
+    
+    // Editing mode intializer when editing the crop list directly
+    init(cropEditMode: Bool){
+        self.cropEditMode = cropEditMode
+        self._harvestEditMode = Binding.constant(false)
+        self._cropBeingEdited = Binding.constant(nil)
     }
     
     
     
     var body: some View {
-        
         
         VStack {
             
@@ -60,8 +73,9 @@ struct CropListView: View {
                                 chosenCrop: $chosenCrop,
                                 cropBeingEdited: $cropBeingEdited,
                                 isPresentedAddHarvest:  $isPresentedAddHarvest,
-                                inEditMode: $inEditMode)
-                    
+                                isPresentedAddCrop: $isPresentedAddCrop,
+                                cropEditMode: cropEditMode,
+                                harvestEditMode: $harvestEditMode)
                 }
                 .onDelete(perform: deleteCrop)
                 
@@ -76,7 +90,10 @@ struct CropListView: View {
             } // .sheet
             
             // Button to add new crop
-            Button(action: { self.isPresentedAddCrop.toggle()},
+            Button(action: {
+                    self.isPresentedAddCrop = true
+                
+            },
                    label: {
                     Image(systemName: "plus")
                     Text("Add New Crop")
@@ -86,10 +103,17 @@ struct CropListView: View {
                 .background(Color.green)
                 .cornerRadius(5)
                 .sheet(isPresented: $isPresentedAddCrop) {
-                    AddCropView()
-                        .environment(\.managedObjectContext, self.managedObjectContext)
+                    
+                    if(cropEditMode) {
+                        AddCropView(cropBeingEdited: self.$chosenCrop,
+                                        inEditMode: true)
+                            .environment(\.managedObjectContext, self.managedObjectContext)
+                        
+                    } else {
+                        AddCropView()
+                            .environment(\.managedObjectContext, self.managedObjectContext)
+                    }
                 }
-            
             
         } // vstack
         .padding()

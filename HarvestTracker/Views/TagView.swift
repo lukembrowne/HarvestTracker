@@ -86,7 +86,7 @@ struct TagView: View {
                 }
             }
         }
-        .padding(5)
+        .padding(8)
         .foregroundColor(.white)
         .background(Color(UIColor(hexString: tag.tagColorHex ?? "000000",
                                   alpha: 0.9)))

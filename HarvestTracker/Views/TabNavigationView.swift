@@ -47,6 +47,12 @@ struct TabNavigationView: View {
                     Text("Settings")
                 }.tag(4)
             
+            TagFlexibleView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Tag test")
+                }.tag(5)
+            
         }
         
     }

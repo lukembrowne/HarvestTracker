@@ -26,6 +26,10 @@
 		A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */; };
 		A395A1EA25220B340062983D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395A1E925220B340062983D /* SettingsView.swift */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
+		A3BB4474252DEF6D00A01665 /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */; };
+		A3BB4475252DEF6D00A01665 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4472252DEF6D00A01665 /* FlexibleView.swift */; };
+		A3BB4476252DEF6D00A01665 /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4473252DEF6D00A01665 /* SizeReader.swift */; };
+		A3BB4479252DEFAD00A01665 /* TagFlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4478252DEFAD00A01665 /* TagFlexibleView.swift */; };
 		A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */; };
 		A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */; };
 		A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B33251CB5B80021FAF0 /* BarChartView.swift */; };
@@ -62,6 +66,10 @@
 		A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A395A1E925220B340062983D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
+		A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FlexibleView.swift; sourceTree = "<group>"; };
+		A3BB4472252DEF6D00A01665 /* FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		A3BB4473252DEF6D00A01665 /* SizeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
+		A3BB4478252DEFAD00A01665 /* TagFlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFlexibleView.swift; sourceTree = "<group>"; };
 		A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		A3C12B33251CB5B80021FAF0 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 		A32029D524FE74F900DD1643 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3BB4470252DEF3D00A01665 /* FlexibleView */,
 				A3C12B2C251CB5810021FAF0 /* BarCharts */,
 				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
 				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
@@ -119,6 +128,7 @@
 				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
 				A3490F1E252384E2002B7E15 /* TagListView.swift */,
 				2FD077AE2523F6D20086BBDD /* TagView.swift */,
+				A3BB4478252DEFAD00A01665 /* TagFlexibleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +154,16 @@
 				A31E05232523520A00448C45 /* UserSettings.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A3BB4470252DEF3D00A01665 /* FlexibleView */ = {
+			isa = PBXGroup;
+			children = (
+				A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */,
+				A3BB4472252DEF6D00A01665 /* FlexibleView.swift */,
+				A3BB4473252DEF6D00A01665 /* SizeReader.swift */,
+			);
+			path = FlexibleView;
 			sourceTree = "<group>";
 		};
 		A3C12B2C251CB5810021FAF0 /* BarCharts */ = {
@@ -341,6 +361,7 @@
 				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
 				A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
+				A3BB4474252DEF6D00A01665 /* _FlexibleView.swift in Sources */,
 				2FD077AF2523F6D20086BBDD /* TagView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
 				A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */,
@@ -348,15 +369,18 @@
 				A3490F1F252384E2002B7E15 /* TagListView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
+				A3BB4475252DEF6D00A01665 /* FlexibleView.swift in Sources */,
 				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,
 				A37236D52508F9A400BFF24C /* Crop+CoreDataProperties.swift in Sources */,
 				A3D98B7024FA83F0003ED12E /* HarvestListView.swift in Sources */,
+				A3BB4476252DEF6D00A01665 /* SizeReader.swift in Sources */,
 				A320188E250B9D5A0010943E /* TabNavigationView.swift in Sources */,
 				A3C12B3F251CC92A0021FAF0 /* HarvestCalculator.swift in Sources */,
 				A3490F2825238B9C002B7E15 /* Tag+CoreDataProperties.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 				A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */,
 				A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */,
+				A3BB4479252DEFAD00A01665 /* TagFlexibleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

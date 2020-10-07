@@ -166,7 +166,7 @@ struct AddHarvestView: View {
                 }
                 
                 // Enter harvest date
-                Section {
+                Section(header: Text("Enter harvest date")) {
                     DatePicker(
                         selection: $chosenHarvestDate,
                         displayedComponents: .date) {
@@ -176,36 +176,20 @@ struct AddHarvestView: View {
                 }
                 
                 // Add tags to harvest
-                Section {
-                    
-                    HStack {
-                        ForEach(tags, id: \.self) { tag in
-                            
-                            TagView(tag: tag,
-                                    chosenTags: $chosenTags)
-                        }
-                        
-                    }
-                    
-                    // Testing
-                    Button(action: {print(chosenTags)}, label: {Text("Print chosen tags")})
-                    
-                    
-                }
-                
-                Section {
+                Section(header: Text("Choose tags")) {
                     
                     ScrollView {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(tags, id: \.self) { tag in
-                                TagView(tag: tag,
-                                        chosenTags: $chosenTags)
-                            }
-                        }
-                        .padding(.horizontal)
+                      FlexibleView(
+                        data: tags,
+                        spacing: CGFloat(8),
+                        alignment: .leading
+                      ) { tag in
+                        TagView(tag: tag,
+                                chosenTags: $chosenTags)
+
+                      }
+                      .padding(.horizontal, CGFloat(8))
                     }
-                    
-                    
                     
                 }
                 

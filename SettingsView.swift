@@ -43,9 +43,16 @@ struct SettingsView: View {
                     }
                 }
                 
+                // Edit tag list
+                Section(header: Text("Tags").font(.headline)) {
+                    
+                    NavigationLink(destination: TagListView().environment(\.managedObjectContext, self.managedObjectContext)) {
+                        Text("Edit Tag list")
+                    }
+                }
+                
                 // About section
                 Section(header: Text("About").font(.headline)) {
-                    
                     
                     HStack {
                         Text("Version")

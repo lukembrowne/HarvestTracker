@@ -62,9 +62,44 @@ struct CropListView: View {
         
         VStack {
             
-            Text("Choose a crop")
-                .font(.title)
-            
+            VStack {
+                
+                HStack {
+                    
+                    Spacer()
+                    Text("Choose crop")
+                        .font(.title)
+                    Spacer()
+                    
+                }
+                
+                HStack {
+                    Spacer()
+                    Button(action: {
+                            self.isPresentedAddCrop = true
+                        
+                    },
+                           label: {
+                            Image(systemName: "plus")
+                            Text("New crop")
+                           })
+                    .padding(5)
+                        .sheet(isPresented: $isPresentedAddCrop) {
+                            
+                            if(cropEditMode) {
+                                AddCropView(cropBeingEdited: self.$chosenCrop,
+                                                inEditMode: true)
+                                    .environment(\.managedObjectContext, self.managedObjectContext)
+                                
+                            } else {
+                                AddCropView()
+                                    .environment(\.managedObjectContext, self.managedObjectContext)
+                            }
+                        }
+                    Spacer()
+                }
+            }
+
             List {
                 
                 // Display crops in list
@@ -90,33 +125,34 @@ struct CropListView: View {
             } // .sheet
             
             // Button to add new crop
-            Button(action: {
-                    self.isPresentedAddCrop = true
-                
-            },
-                   label: {
-                    Image(systemName: "plus")
-                    Text("Add New Crop")
-                   })
-                .foregroundColor(Color.white)
-                .padding()
-                .background(Color.green)
-                .cornerRadius(5)
-                .sheet(isPresented: $isPresentedAddCrop) {
-                    
-                    if(cropEditMode) {
-                        AddCropView(cropBeingEdited: self.$chosenCrop,
-                                        inEditMode: true)
-                            .environment(\.managedObjectContext, self.managedObjectContext)
-                        
-                    } else {
-                        AddCropView()
-                            .environment(\.managedObjectContext, self.managedObjectContext)
-                    }
-                }
+//            Button(action: {
+//                    self.isPresentedAddCrop = true
+//
+//            },
+//                   label: {
+//                    Image(systemName: "plus")
+//                    Text("Add New Crop")
+//                   })
+//                .foregroundColor(Color.white)
+//                .padding()
+//                .background(Color.green)
+//                .cornerRadius(5)
+//                .sheet(isPresented: $isPresentedAddCrop) {
+//
+//                    if(cropEditMode) {
+//                        AddCropView(cropBeingEdited: self.$chosenCrop,
+//                                        inEditMode: true)
+//                            .environment(\.managedObjectContext, self.managedObjectContext)
+//
+//                    } else {
+//                        AddCropView()
+//                            .environment(\.managedObjectContext, self.managedObjectContext)
+//                    }
+//                }
             
         } // vstack
         .padding()
+        .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
         
     } // view
     

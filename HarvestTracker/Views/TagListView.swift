@@ -32,15 +32,35 @@ struct TagListView: View {
         
         VStack {
             
-            Text("Tag list")
-                .font(.title)
+            VStack {
+                
+                // Title
+                HStack {
+                    Spacer()
+                    Text("Tag list")
+                        .font(.title)
+                    Spacer()
+                }
+                
+                // New tag button
+                HStack {
+                    Spacer()
+                    Button(action: { self.isPresentedAddTag.toggle()},
+                           label: {
+                            Image(systemName: "plus")
+                            Text("New Tag")
+                           })
+                        .padding(5)
+                        .sheet(isPresented: $isPresentedAddTag) {
+                            AddTagView(inEditMode: false,
+                                       isPresentedAddTag: $isPresentedAddTag)
+                                .environment(\.managedObjectContext, self.managedObjectContext)
+                        }
+                    Spacer()
+                }
+            }
             
-            // Testing
-            Button(action: {print(self.tagBeingEdited)}, label: {Text("Print tag being edited")})
-            
-            Button(action: {self.isPresentedEditTag = true}, label: {Text("Open Edit sheet")})
-
-            
+            // Start tag list
             List {
                 
                 // Display tags in list
@@ -69,23 +89,24 @@ struct TagListView: View {
      }// .sheet
             
             // Button to add new tag
-            Button(action: { self.isPresentedAddTag.toggle()},
-                   label: {
-                    Image(systemName: "plus")
-                    Text("Add New Tag")
-                   })
-                .foregroundColor(Color.white)
-                .padding()
-                .background(Color.green)
-                .cornerRadius(5)
-                .sheet(isPresented: $isPresentedAddTag) {
-                    AddTagView(inEditMode: false,
-                               isPresentedAddTag: $isPresentedAddTag)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
-                }
+//            Button(action: { self.isPresentedAddTag.toggle()},
+//                   label: {
+//                    Image(systemName: "plus")
+//                    Text("Add New Tag")
+//                   })
+//                .foregroundColor(Color.white)
+//                .padding()
+//                .background(Color.green)
+//                .cornerRadius(5)
+//                .sheet(isPresented: $isPresentedAddTag) {
+//                    AddTagView(inEditMode: false,
+//                               isPresentedAddTag: $isPresentedAddTag)
+//                        .environment(\.managedObjectContext, self.managedObjectContext)
+//                }
             
         } // vstack
         .padding()
+        .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
         
     } // view
     

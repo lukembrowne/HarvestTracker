@@ -63,6 +63,8 @@ struct AddTagView: View {
             
             // Title bar with cancel button
             ZStack{
+                
+                // Cancel button
                 HStack{
                     Button(action: {
                         self.isPresentedAddTag.toggle()
@@ -74,15 +76,37 @@ struct AddTagView: View {
                     
                 }
                 
+                // Title
                 HStack{
                     if(inEditMode) {
                         Text("Edit tag")
                             .font(.headline)
                     } else {
-                        Text("Add a new tag")
+                        Text("Add tag")
                             .font(.headline)
                     }
                 }
+                
+                // Save button
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        
+                        if(inEditMode) {
+                            self.updateTagAction()
+                        } else {
+                            self.addTagAction()
+                        }
+                        
+                    },
+                    label: {
+                        Image(systemName: "checkmark.circle")
+                        Text("Save")
+                    })
+                }
+                
+                
+                
             }.padding()
             
             // Testing
@@ -94,6 +118,9 @@ struct AddTagView: View {
                 Section(header: Text("Tag")) {
                     
                     TextField("Tag Name", text: $tagName)
+                        .introspectTextField { textField in
+                            textField.becomeFirstResponder()
+                        }
                     
                 }
                 
@@ -109,33 +136,33 @@ struct AddTagView: View {
                 
                 
                 // Add tag button
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        
-                        if(inEditMode) {
-                            self.updateTagAction()
-                        } else {
-                            self.addTagAction()
-                        }
-                        
-                    }, label: {
-                        
-                        if(inEditMode){
-                            Image(systemName: "checkmark.circle")
-                            Text("Save edits")
-                        } else {
-                            Image(systemName: "plus")
-                            Text("Add Tag")
-                        }
-                        
-                    })
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(5)
-                    Spacer()
-                }
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//                        
+//                        if(inEditMode) {
+//                            self.updateTagAction()
+//                        } else {
+//                            self.addTagAction()
+//                        }
+//                        
+//                    }, label: {
+//                        
+//                        if(inEditMode){
+//                            Image(systemName: "checkmark.circle")
+//                            Text("Save edits")
+//                        } else {
+//                            Image(systemName: "plus")
+//                            Text("Add Tag")
+//                        }
+//                        
+//                    })
+//                    .foregroundColor(Color.white)
+//                    .padding()
+//                    .background(Color.green)
+//                    .cornerRadius(5)
+//                    Spacer()
+//                }
                 
             }
             

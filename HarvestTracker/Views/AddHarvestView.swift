@@ -83,26 +83,52 @@ struct AddHarvestView: View {
             
             // Title bar with cancel button
             ZStack{
+                
+                // Cancel button
                 HStack{
                     Button(action: {
                         self.isPresentedAddHarvest.toggle()
                     }, label: {
                         Text("Cancel")
-                        
                     })
                     Spacer()
-                    
                 }
                 
+                // Title
                 HStack{
                     if(inEditMode) {
                         Text("Edit harvest")
                             .font(.headline)
                     } else {
-                        Text("Add a new harvest")
+                        Text("Add harvest")
                             .font(.headline)
                     }
                 }
+                
+                // Save button
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        
+                        if self.chosenCrop != nil {
+                            
+                            if(inEditMode){
+                                self.updateHarvestAction()
+                            } else {
+                                self.addHarvestAction()
+                            }
+                            
+                        } else {
+                            print("Chosen crop is nil")
+                            self.showingNoCropAlert.toggle()
+                        }
+                    },
+                    label: {
+                        Image(systemName: "checkmark.circle")
+                        Text("Save")
+                    })
+                }
+                
             }.padding()
             
             
@@ -187,12 +213,12 @@ struct AddHarvestView: View {
                             self.isPresentedAddTag = true
                             
                         }, label: {
-                        
-                        HStack {
-                            Image(systemName: "plus.circle")
-                            Text("Add new tag")
-                        }
-
+                            
+                            HStack {
+                                Image(systemName: "plus.circle")
+                                Text("Add new tag")
+                            }
+                            
                         })
                         .padding(8)
                         .foregroundColor(.white)
@@ -204,85 +230,70 @@ struct AddHarvestView: View {
                                        isPresentedAddTag: $isPresentedAddTag)
                                 .environment(\.managedObjectContext, self.managedObjectContext)
                         }
-                      
-                    // Flexible grid of potential tags
-                      FlexibleView(
-                        data: tags,
-                        spacing: CGFloat(8),
-                        alignment: .leading
-                      ) { tag in
-                        TagView(tag: tag,
-                                chosenTags: $chosenTags)
-
-                      }
-                      .padding(.horizontal, CGFloat(8))
+                        
+                        // Flexible grid of potential tags
+                        FlexibleView(
+                            data: tags,
+                            spacing: CGFloat(8),
+                            alignment: .leading
+                        ) { tag in
+                            TagView(tag: tag,
+                                    chosenTags: $chosenTags)
+                            
+                        }
+                        .padding(.horizontal, CGFloat(8))
                     }
                     
+                }
+                .alert(isPresented: $showingNoCropAlert) {
+                    Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
                 }
                 
                 
                 // Add harvest button
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        
-                        if self.chosenCrop != nil {
-                            
-                            if(inEditMode){
-                                self.updateHarvestAction()
-                            } else {
-                                self.addHarvestAction()
-                            }
-                            
-                        } else {
-                            print("Chosen crop is nil")
-                            self.showingNoCropAlert.toggle()
-                        }
-                    },
-                    label: {
-                        
-                        if(inEditMode){
-                            Image(systemName: "checkmark.circle")
-                            Text("Save edits")
-                        } else {
-                            Image(systemName: "plus")
-                            Text("Add Harvest")
-                        }
-
-                    })
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(5)
-                    .alert(isPresented: $showingNoCropAlert) {
-                        Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
-                    }
-                    Spacer()
-                }
-                
-                
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//
+//                        if self.chosenCrop != nil {
+//
+//                            if(inEditMode){
+//                                self.updateHarvestAction()
+//                            } else {
+//                                self.addHarvestAction()
+//                            }
+//
+//                        } else {
+//                            print("Chosen crop is nil")
+//                            self.showingNoCropAlert.toggle()
+//                        }
+//                    },
+//                    label: {
+//
+//                        if(inEditMode){
+//                            Image(systemName: "checkmark.circle")
+//                            Text("Save edits")
+//                        } else {
+//                            Image(systemName: "plus")
+//                            Text("Add Harvest")
+//                        }
+//
+//                    })
+//                    .foregroundColor(Color.white)
+//                    .padding()
+//                    .background(Color.green)
+//                    .cornerRadius(5)
+//                    .alert(isPresented: $showingNoCropAlert) {
+//                        Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
+//                    }
+//                    Spacer()
+//                }
             }
-            //        .navigationBarTitle(Text("Add Harvest"), displayMode: .inline)
-            .navigationBarItems(leading:
-                                    // Add Cancel button
-                                    Button(action: {
-                                        print("tapped cancel")
-                                        self.presentation.wrappedValue.dismiss()
-                                        //                self.isPresentedChooseCrop = false
-                                        
-                                        self.isPresentedAddHarvest = false
-                                    }, label: {
-                                        Text("Cancel")
-                                    }
-                                    )
-            )
-            
         }
         // Need to set states on appearance of view bc setting these states in initializer was not working - work around for potential bug
         .onAppear {
             
             if(inEditMode){
-                
                 
                 self.chosenCrop = chosenHarvest?.crop
                 if let amount = chosenHarvest?.amountEntered {

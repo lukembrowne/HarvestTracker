@@ -45,6 +45,8 @@ struct AddCropView: View {
     
     
     var body: some View {
+        
+        
         NavigationView {
             
             Form {
@@ -53,6 +55,9 @@ struct AddCropView: View {
                 Section(header: Text("Crop")) {
                     
                     TextField("Crop Name", text: $cropName)
+                        .introspectTextField { textField in
+                            textField.becomeFirstResponder()
+                        }
                     
                 } // End select crop section
                 
@@ -62,6 +67,7 @@ struct AddCropView: View {
                     
                     TextField("Cost Per Unit", text: $chosenCostPerUnit)
                         .keyboardType(.decimalPad)
+                    
                     
                     Picker("units", selection: $chosenUnit) {
                         ForEach(0 ..< units.count) { index in
@@ -75,33 +81,33 @@ struct AddCropView: View {
                 
                 
                 // Add crop button
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        if(inEditMode){
-                            self.updateCropAction()
-                        } else {
-                            
-                            self.addCropAction()
-                        }
-                        
-                    }, label: {
-                        
-                        if(inEditMode){
-                            Image(systemName: "checkmark.circle")
-                            Text("Save edits")
-                        } else {
-                            Image(systemName: "plus")
-                            Text("Add Crop")
-                        }
-
-                    })
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(5)
-                    Spacer()
-                }
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//                        if(inEditMode){
+//                            self.updateCropAction()
+//                        } else {
+//                            
+//                            self.addCropAction()
+//                        }
+//                        
+//                    }, label: {
+//                        
+//                        if(inEditMode){
+//                            Image(systemName: "checkmark.circle")
+//                            Text("Save edits")
+//                        } else {
+//                            Image(systemName: "plus")
+//                            Text("Add Crop")
+//                        }
+//
+//                    })
+//                    .foregroundColor(Color.white)
+//                    .padding()
+//                    .background(Color.green)
+//                    .cornerRadius(5)
+//                    Spacer()
+//                }
                 
             }
             .navigationBarTitle(Text(titleText),
@@ -114,8 +120,24 @@ struct AddCropView: View {
                                         self.presentation.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Cancel")
-                                    }
-                                    )
+                                    }),
+                                
+                                trailing:
+                                
+                                    Button(action: {
+                                        
+                                        if(inEditMode){
+                                            self.updateCropAction()
+                                        } else {
+                                            self.addCropAction()
+                                        }
+                                        
+                                    },
+                                    label: {
+                                        Image(systemName: "checkmark.circle")
+                                        Text("Save")
+                                    })
+                                
             )
             
         } // End Navigation View

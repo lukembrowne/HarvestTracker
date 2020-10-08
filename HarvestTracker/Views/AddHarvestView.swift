@@ -42,6 +42,7 @@ struct AddHarvestView: View {
     @State var showingNoCropAlert = false
     @State var isPresentedCropList = false
     @Binding var isPresentedAddHarvest: Bool
+    @State var isPresentedAddTag = false
     @State var inEditMode = false
     
     let columns = [
@@ -179,6 +180,32 @@ struct AddHarvestView: View {
                 Section(header: Text("Choose tags")) {
                     
                     ScrollView {
+                        
+                        // Button to add new tag
+                        Button(action: {
+                            
+                            self.isPresentedAddTag = true
+                            
+                        }, label: {
+                        
+                        HStack {
+                            Image(systemName: "plus.circle")
+                            Text("Add new tag")
+                        }
+
+                        })
+                        .padding(8)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(20)
+                        .buttonStyle(BorderlessButtonStyle())
+                        .sheet(isPresented: $isPresentedAddTag) {
+                            AddTagView(inEditMode: false,
+                                       isPresentedAddTag: $isPresentedAddTag)
+                                .environment(\.managedObjectContext, self.managedObjectContext)
+                        }
+                      
+                    // Flexible grid of potential tags
                       FlexibleView(
                         data: tags,
                         spacing: CGFloat(8),

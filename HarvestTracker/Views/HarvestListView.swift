@@ -42,15 +42,9 @@ struct HarvestListView: View {
         VStack {
             
             
-            Button(action: {print(harvests)}, label: {Text("Print harvests")})
-
-            
             Text("Recent Harvests")
                 .font(.title)
-            
-            // Testing
-            Button(action: {print(self.chosenHarvest)}, label: {Text("Print chosen harvest")})
-            
+
               List {
                 
                 ForEach(harvests, id: \.self) { harvest in

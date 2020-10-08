@@ -25,14 +25,14 @@ struct HarvestRowView: View {
     var body: some View {
         
         
-        VStack {
+        VStack(spacing: 0) {
             
             HStack {
                 
                 VStack(alignment: .leading) {
                     
                     harvest.crop?.cropName.map(Text.init)
-                        .font(.headline)
+                        .font(.title2)
                     
                     harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
                         .font(.caption)
@@ -46,7 +46,7 @@ struct HarvestRowView: View {
                 
             }
             
-            
+            // If tags exist and are more than 1
             if let tagArray = harvest.tagArray  {
                 
                 if tagArray.count > 0 {
@@ -54,14 +54,15 @@ struct HarvestRowView: View {
                     ScrollView(.horizontal) {
                         LazyHGrid(rows: [GridItem(.flexible())]) {
                             ForEach(harvest.tagArray ?? [Tag](), id: \.self) { tag in
-                                TagView(tag: tag)
+                                TagView(tag: tag,
+                                        fontSize: Font.caption)
                                     .disabled(true)
                             }
                         }
-                    }
+                    } // scrollview
                 }
             }
-        }
+        } // vstack
         .onTapGesture {
             self.chosenHarvest = self.harvest
             self.chosenCrop = self.harvest.crop

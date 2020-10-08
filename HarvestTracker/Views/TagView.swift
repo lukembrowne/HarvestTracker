@@ -15,13 +15,15 @@ struct TagView: View {
     @Binding var tagBeingEdited: Tag?
     @Binding var isPresentedEditTag: Bool
     var inEditMode = false
+    var fontSize: Font?
     
     // Init when tags are just displayed, like in HarvestListView
-    init(tag: Tag) {
+    init(tag: Tag, fontSize: Font) {
         self.tag = tag
         self._chosenTags = Binding.constant([Tag]()) // Initialize empty binding that's never used if not
         self._tagBeingEdited = Binding.constant(nil)
         self._isPresentedEditTag = Binding.constant(false)
+        self.fontSize = fontSize
     }
     
     // Init when tags are interactive for selecting in AddHarvestView
@@ -43,8 +45,7 @@ struct TagView: View {
         self._isPresentedEditTag = isPresentedEditTag
         self.inEditMode = inEditMode
         self._chosenTags = Binding.constant([Tag]()) // Initialize empty binding that's never used if not
- 
-    }
+     }
     
     
     
@@ -79,6 +80,8 @@ struct TagView: View {
             HStack {
                 // Tag name
                 Text(tag.tagName ?? "")
+                    .font(fontSize ?? .body)
+                
                 
                 // Add check mark if already part of chosen tags
                 if chosenTags.contains(self.tag) {

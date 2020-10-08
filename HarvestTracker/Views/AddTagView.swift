@@ -109,8 +109,6 @@ struct AddTagView: View {
                 
             }.padding()
             
-            // Testing
-            Button(action: {print(self.tagBeingEdited)}, label: {Text("Print tag being edited")})
             
             Form {
                 
@@ -139,15 +137,15 @@ struct AddTagView: View {
 //                HStack {
 //                    Spacer()
 //                    Button(action: {
-//                        
+//
 //                        if(inEditMode) {
 //                            self.updateTagAction()
 //                        } else {
 //                            self.addTagAction()
 //                        }
-//                        
+//
 //                    }, label: {
-//                        
+//
 //                        if(inEditMode){
 //                            Image(systemName: "checkmark.circle")
 //                            Text("Save edits")

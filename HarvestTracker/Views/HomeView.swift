@@ -29,43 +29,48 @@ struct HomeView: View {
     var body: some View {
         
         
+        
         GeometryReader { geometry in
             
-            VStack {
+            ZStack {
                 
-                Text("Harvest Tracker")
-                    .font(.largeTitle).fontWeight(.bold)
-                    .padding()
-                    .foregroundColor(Color.white)
+                Color.green.ignoresSafeArea() // to color in notch
                 
-                // Add bar chart view
-                BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
-                             title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
-                    .background(
-                        RoundedRectangle(
-                            cornerRadius: 20
-                        )
+                VStack {
+                    
+                    Text("Harvest Tracker")
+                        .font(.largeTitle).fontWeight(.bold)
+                        .padding([.top, .horizontal])
                         .foregroundColor(Color.white)
-                        .shadow(radius: shadowRadius)
-                        
-                    )
-                    .padding(8)
-                
-                
-                HarvestListView()
-                    .frame(height: geometry.size.height * 0.6)
-                    .cornerRadius(20)
-                    .background(
-                        RoundedRectangle(
-                            cornerRadius: 20
+                    
+                    // Add bar chart view
+                    BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
+                                 title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20
+                            )
+                            .foregroundColor(Color.white)
+                            .shadow(radius: shadowRadius)
+                            
                         )
-                        .foregroundColor(Color.white)
-                        .shadow(radius: shadowRadius)
-                    )
-                    .padding(8)
-                
+                        .padding(8)
+                    
+                    
+                    HarvestListView()
+                        .frame(height: geometry.size.height * 0.6)
+                        .cornerRadius(20)
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20
+                            )
+                            .foregroundColor(Color.white)
+                            .shadow(radius: shadowRadius)
+                        )
+                        .padding(8)
+                    
+                }
             }
-            .background(Color.green)
         }
     }
 }

@@ -43,6 +43,7 @@ struct HarvestListView: View {
             
             Text("Recent Harvests")
                 .font(.title)
+                .padding(3)
             
             Divider()
 

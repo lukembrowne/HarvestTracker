@@ -18,8 +18,13 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
-
-
+    
+    
+    // UI settings
+    let shadowRadius = CGFloat(2)
+    
+    
+    
     
     var body: some View {
         
@@ -31,16 +36,36 @@ struct HomeView: View {
                 Text("Harvest Tracker")
                     .font(.largeTitle).fontWeight(.bold)
                     .padding()
- 
+                    .foregroundColor(Color.white)
+                
                 // Add bar chart view
                 BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
                              title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.33, alignment: .center)
+                    .background(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                        .foregroundColor(Color.white)
+                        .shadow(radius: shadowRadius)
+                        
+                    )
+                    .padding(8)
+                
                 
                 HarvestListView()
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.66, alignment: .center)
+                    .frame(height: geometry.size.height * 0.6)
+                    .cornerRadius(20)
+                    .background(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                        .foregroundColor(Color.white)
+                        .shadow(radius: shadowRadius)
+                    )
+                    .padding(8)
                 
             }
+            .background(Color.green)
         }
     }
 }

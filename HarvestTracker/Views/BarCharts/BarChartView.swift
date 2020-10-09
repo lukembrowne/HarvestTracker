@@ -44,10 +44,9 @@ public struct BarChartView : View {
     }
     
     public var body: some View {
+        
         ZStack{
-            Rectangle()
-                .fill(Color.white)
-                .cornerRadius(20)
+
             VStack(alignment: .leading){
                 
                 // Title text
@@ -66,7 +65,7 @@ public struct BarChartView : View {
                             touchLocation: self.$touchLocation)
                 
             }
-        }
+        } // Zstack
         .gesture(DragGesture()
                     .onChanged({ value in
                         self.touchLocation = value.location.x/self.formSize.width
@@ -84,7 +83,10 @@ public struct BarChartView : View {
         )
         .gesture(TapGesture()
         )
-    }
+    } // End view
+    
+    
+    
     
     func getArrowOffset(touchLocation:CGFloat) -> Binding<CGFloat> {
         let realLoc = (self.touchLocation * self.formSize.width) - 50

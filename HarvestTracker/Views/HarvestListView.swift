@@ -41,9 +41,10 @@ struct HarvestListView: View {
         
         VStack {
             
-            
             Text("Recent Harvests")
                 .font(.title)
+            
+            Divider()
 
               List {
                 
@@ -76,6 +77,7 @@ struct HarvestListView: View {
             } // End on Appear
             
         }
+        .background(Color.white)
 
     } // End Body
     

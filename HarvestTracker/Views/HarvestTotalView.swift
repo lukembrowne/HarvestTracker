@@ -35,10 +35,6 @@ struct HarvestTotalView: View {
         
         ZStack {
             
-            RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(Color.green.opacity(0.85))
-                .padding()
-            
             HStack {
                 
                 // Total harvest amount

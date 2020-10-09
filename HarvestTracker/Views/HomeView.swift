@@ -34,7 +34,7 @@ struct HomeView: View {
             
             ZStack {
                 
-                Color.green.ignoresSafeArea() // to color in notch
+                settings.bgColor.ignoresSafeArea() // to color in notch
                 
                 VStack {
                     

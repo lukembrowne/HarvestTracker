@@ -222,7 +222,7 @@ struct AddHarvestView: View {
                         })
                         .padding(8)
                         .foregroundColor(.white)
-                        .background(Color.green)
+                        .background(settings.bgColor)
                         .cornerRadius(20)
                         .buttonStyle(BorderlessButtonStyle())
                         .sheet(isPresented: $isPresentedAddTag) {

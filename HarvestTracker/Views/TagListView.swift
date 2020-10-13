@@ -29,6 +29,9 @@ struct TagListView: View {
     
     var body: some View {
         
+        ZStack {
+            
+            settings.bgColor.ignoresSafeArea() // to color in notch
         
         VStack {
             
@@ -38,7 +41,8 @@ struct TagListView: View {
                 HStack {
                     Spacer()
                     Text("Tag list")
-                        .font(.title)
+                        .font(.largeTitle)
+                        .foregroundColor(Color.white)
                     Spacer()
                 }
                 
@@ -48,14 +52,23 @@ struct TagListView: View {
                     Button(action: { self.isPresentedAddTag.toggle()},
                            label: {
                             Image(systemName: "plus")
+                                .foregroundColor(Color.white)
                             Text("New Tag")
+                                .foregroundColor(Color.white)
                            })
-                        .padding(5)
+                        .padding(settings.cardPadding)
                         .sheet(isPresented: $isPresentedAddTag) {
                             AddTagView(inEditMode: false,
                                        isPresentedAddTag: $isPresentedAddTag)
                                 .environment(\.managedObjectContext, self.managedObjectContext)
                         }
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20
+                            )
+                            .foregroundColor(settings.lightAccentColor)
+                            .shadow(radius: settings.cardShadowRadius)
+                        )
                     Spacer()
                 }
             }
@@ -87,6 +100,14 @@ struct TagListView: View {
                  .environment(\.managedObjectContext, self.managedObjectContext)
                 
      }// .sheet
+            .cornerRadius(20)
+            .background(
+                RoundedRectangle(
+                    cornerRadius: 20
+                )
+                .foregroundColor(Color.white)
+                .shadow(radius: 2)
+            )
             
             // Button to add new tag
 //            Button(action: { self.isPresentedAddTag.toggle()},
@@ -105,8 +126,11 @@ struct TagListView: View {
 //                }
             
         } // vstack
-        .padding()
         .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
+        .padding(settings.cardPadding)
+        .padding(.bottom, settings.cardPadding - 2)
+            
+        } // Zstack
         
     } // view
     

@@ -68,6 +68,7 @@ struct CropListView: View {
                 
                 VStack {
                     
+                    // Title
                     HStack {
                         
                         Spacer()
@@ -78,8 +79,11 @@ struct CropListView: View {
                         
                     }
                     
+                    // Button to add new crop
                     HStack {
+                        
                         Spacer()
+                        
                         Button(action: {
                             self.isPresentedAddCrop = true
                             
@@ -110,8 +114,6 @@ struct CropListView: View {
                             .foregroundColor(settings.lightAccentColor)
                             .shadow(radius: settings.cardShadowRadius)
                         )
-                        
-                        
                         
                         Spacer()
                     }

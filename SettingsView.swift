@@ -23,7 +23,10 @@ struct SettingsView: View {
             Form {
                 
                 // Change default unit of weight
-                Section(header: Text("Change default unit").font(.headline)) {
+                Section(header: Text("Change default unit")
+                            .font(.headline)
+//                            .foregroundColor(Color.white)
+                ) {
                     
                     Picker("units", selection: $settings.unitString) {
                         ForEach(0 ..< units.count) { index in
@@ -36,7 +39,10 @@ struct SettingsView: View {
                 }
                 
                 // Edit crop list
-                Section(header: Text("Crops").font(.headline)) {
+                Section(header: Text("Crops")
+                            .font(.headline)
+//                            .foregroundColor(Color.white)
+                ) {
                     
                     NavigationLink(destination: CropListView(cropEditMode: true).environment(\.managedObjectContext, self.managedObjectContext)) {
                         Text("Edit Crop list")
@@ -44,7 +50,10 @@ struct SettingsView: View {
                 }
                 
                 // Edit tag list
-                Section(header: Text("Tags").font(.headline)) {
+                Section(header: Text("Tags")
+                            .font(.headline)
+//                            .foregroundColor(Color.white)
+                ) {
                     
                     NavigationLink(destination: TagListView().environment(\.managedObjectContext, self.managedObjectContext)) {
                         Text("Edit Tag list")
@@ -52,7 +61,10 @@ struct SettingsView: View {
                 }
                 
                 // About section
-                Section(header: Text("About").font(.headline)) {
+                Section(header: Text("About")
+                            .font(.headline)
+//                            .foregroundColor(Color.white)
+                ) {
                     
                     HStack {
                         Text("Version")
@@ -62,6 +74,9 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings")
+//            .onAppear {
+//                UITableView.appearance().backgroundColor = UIColor(settings.bgColor)
+//            }
             
         }
         

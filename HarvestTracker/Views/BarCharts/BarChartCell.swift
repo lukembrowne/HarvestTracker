@@ -21,6 +21,7 @@ import SwiftUI
 
 public struct BarChartCell : View {
     
+    @EnvironmentObject var settings: UserSettings
     
     var value: Double
     var label: String
@@ -31,6 +32,7 @@ public struct BarChartCell : View {
         return Double(width)/(Double(numberOfDataPoints) * 1.5)
     }
     
+    
     @State var scaleValue: Double = 0
     @Binding var touchLocation: CGFloat
     public var body: some View {
@@ -38,7 +40,7 @@ public struct BarChartCell : View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(LinearGradient(gradient: Gradient(colors: [.white, .green]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(gradient: Gradient(colors: [.white, settings.bgColor]), startPoint: .bottom, endPoint: .top))
             }
             .frame(width: CGFloat(self.cellWidth))
             .scaleEffect(CGSize(width: 1, height: self.scaleValue), anchor: .bottom)

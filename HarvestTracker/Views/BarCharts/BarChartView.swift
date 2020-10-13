@@ -50,14 +50,14 @@ public struct BarChartView : View {
             VStack(alignment: .leading){
                 
                 // Title text
-                HStack{
-                    Text(self.title)
-                        .font(.title)
-                    // Harvest total unit here
-                    Text(" \(settings.unitString)")
-                        .font(.caption)
-                    Spacer()
-                }.padding()
+//                HStack{
+//                    Text(self.title)
+//                        .font(.title)
+//                    // Harvest total unit here
+//                    Text(" \(settings.unitString)")
+//                        .font(.caption)
+//                    Spacer()
+//                }.padding()
                 
                 // Plot bars
                 BarChartRow(data: data.points.map{$0.1},
@@ -66,6 +66,7 @@ public struct BarChartView : View {
                 
             }
         } // Zstack
+        .padding()
         .gesture(DragGesture()
                     .onChanged({ value in
                         self.touchLocation = value.location.x/self.formSize.width

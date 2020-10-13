@@ -41,12 +41,6 @@ struct HarvestListView: View {
         
         VStack {
             
-            Text("Recent Harvests")
-                .font(.title)
-                .padding(3)
-            
-            Divider()
-
               List {
                 
                 ForEach(harvests, id: \.self) { harvest in
@@ -79,6 +73,7 @@ struct HarvestListView: View {
             
         }
         .background(Color.white)
+        .padding([.top, .bottom], settings.cardPadding)
 
     } // End Body
     

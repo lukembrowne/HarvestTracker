@@ -18,13 +18,7 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
-    
-    
-    // UI settings
-    let shadowRadius = CGFloat(2)
-    
-    
-    
+         
     
     var body: some View {
         
@@ -51,23 +45,28 @@ struct HomeView: View {
                                 cornerRadius: 20
                             )
                             .foregroundColor(Color.white)
-                            .shadow(radius: shadowRadius)
+                            .shadow(radius: settings.cardShadowRadius)
                             
                         )
-                        .padding(8)
+                        .padding(settings.cardPadding)
                     
+                    
+                    Text("Recent Harvests")
+                        .font(.title)
+                        .foregroundColor(Color.white)
                     
                     HarvestListView()
                         .frame(height: geometry.size.height * 0.6)
-                        .cornerRadius(20)
+                        .cornerRadius(20)    
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20
                             )
                             .foregroundColor(Color.white)
-                            .shadow(radius: shadowRadius)
+                            .shadow(radius: settings.cardShadowRadius)
                         )
-                        .padding(8)
+                        .padding([.bottom, .horizontal], settings.cardPadding)
+                        .padding(.bottom, settings.cardPadding - 2)
                     
                 }
             }

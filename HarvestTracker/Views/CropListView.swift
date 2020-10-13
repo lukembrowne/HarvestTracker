@@ -30,7 +30,7 @@ struct CropListView: View {
     @State var isPresentedAddHarvest = false
     var cropEditMode: Bool
     @Binding var harvestEditMode: Bool
-
+    
     
     // Set up three initializers
     
@@ -60,35 +60,42 @@ struct CropListView: View {
     
     var body: some View {
         
-        VStack {
+        ZStack {
+            
+            settings.bgColor.ignoresSafeArea() // to color in notch
             
             VStack {
                 
-                HStack {
+                VStack {
                     
-                    Spacer()
-                    Text("Choose crop")
-                        .font(.title)
-                    Spacer()
-                    
-                }
-                
-                HStack {
-                    Spacer()
-                    Button(action: {
-                            self.isPresentedAddCrop = true
+                    HStack {
                         
-                    },
-                           label: {
+                        Spacer()
+                        Text("Choose crop")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.white)
+                        Spacer()
+                        
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.isPresentedAddCrop = true
+                            
+                        },
+                        label: {
                             Image(systemName: "plus")
+                                .foregroundColor(Color.white)
                             Text("New crop")
-                           })
-                    .padding(5)
+                                .foregroundColor(Color.white)
+                        })
+                        .padding(settings.cardPadding)
                         .sheet(isPresented: $isPresentedAddCrop) {
                             
                             if(cropEditMode) {
                                 AddCropView(cropBeingEdited: self.$chosenCrop,
-                                                inEditMode: true)
+                                            inEditMode: true)
                                     .environment(\.managedObjectContext, self.managedObjectContext)
                                 
                             } else {
@@ -96,63 +103,84 @@ struct CropListView: View {
                                     .environment(\.managedObjectContext, self.managedObjectContext)
                             }
                         }
-                    Spacer()
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20
+                            )
+                            .foregroundColor(settings.lightAccentColor)
+                            .shadow(radius: settings.cardShadowRadius)
+                        )
+                        
+                        
+                        
+                        Spacer()
+                    }
                 }
-            }
-
-            List {
                 
-                // Display crops in list
-                ForEach(crops, id: \.self) { crop in
-                    CropRowView(crop: crop,
-                                chosenCrop: $chosenCrop,
-                                cropBeingEdited: $cropBeingEdited,
-                                isPresentedAddHarvest:  $isPresentedAddHarvest,
-                                isPresentedAddCrop: $isPresentedAddCrop,
-                                cropEditMode: cropEditMode,
-                                harvestEditMode: $harvestEditMode)
-                }
-                .onDelete(perform: deleteCrop)
-                
-                
-            } // list
-            // Display addharvestview when crop is finally selected
-            .sheet(isPresented: $isPresentedAddHarvest) {
+                List {
+                    
+                    // Display crops in list
+                    ForEach(crops, id: \.self) { crop in
+                        CropRowView(crop: crop,
+                                    chosenCrop: $chosenCrop,
+                                    cropBeingEdited: $cropBeingEdited,
+                                    isPresentedAddHarvest:  $isPresentedAddHarvest,
+                                    isPresentedAddCrop: $isPresentedAddCrop,
+                                    cropEditMode: cropEditMode,
+                                    harvestEditMode: $harvestEditMode)
+                    }
+                    .onDelete(perform: deleteCrop)
+                    
+                    
+                } // list
+                // Display addharvestview when crop is finally selected
+                .sheet(isPresented: $isPresentedAddHarvest) {
                     AddHarvestView(chosenCrop: chosenCrop,
                                    isPresentedAddHarvest: $isPresentedAddHarvest,
                                    settings: settings)
                         .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-            } // .sheet
-            
-            // Button to add new crop
-//            Button(action: {
-//                    self.isPresentedAddCrop = true
-//
-//            },
-//                   label: {
-//                    Image(systemName: "plus")
-//                    Text("Add New Crop")
-//                   })
-//                .foregroundColor(Color.white)
-//                .padding()
-//                .background(Color.green)
-//                .cornerRadius(5)
-//                .sheet(isPresented: $isPresentedAddCrop) {
-//
-//                    if(cropEditMode) {
-//                        AddCropView(cropBeingEdited: self.$chosenCrop,
-//                                        inEditMode: true)
-//                            .environment(\.managedObjectContext, self.managedObjectContext)
-//
-//                    } else {
-//                        AddCropView()
-//                            .environment(\.managedObjectContext, self.managedObjectContext)
-//                    }
-//                }
-            
-        } // vstack
-        .padding()
-        .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
+                } // .sheet
+                .cornerRadius(20)
+                .background(
+                    RoundedRectangle(
+                        cornerRadius: 20
+                    )
+                    .foregroundColor(Color.white)
+                    .shadow(radius: 2)
+                )
+                
+                // Button to add new crop
+                //            Button(action: {
+                //                    self.isPresentedAddCrop = true
+                //
+                //            },
+                //                   label: {
+                //                    Image(systemName: "plus")
+                //                    Text("Add New Crop")
+                //                   })
+                //                .foregroundColor(Color.white)
+                //                .padding()
+                //                .background(Color.green)
+                //                .cornerRadius(5)
+                //                .sheet(isPresented: $isPresentedAddCrop) {
+                //
+                //                    if(cropEditMode) {
+                //                        AddCropView(cropBeingEdited: self.$chosenCrop,
+                //                                        inEditMode: true)
+                //                            .environment(\.managedObjectContext, self.managedObjectContext)
+                //
+                //                    } else {
+                //                        AddCropView()
+                //                            .environment(\.managedObjectContext, self.managedObjectContext)
+                //                    }
+                //                }
+                
+            } // vstack
+            .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
+            .padding(settings.cardPadding)
+            .padding(.bottom, settings.cardPadding - 2)
+        } // ZStack
+        
         
     } // view
     

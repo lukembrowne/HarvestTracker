@@ -174,32 +174,7 @@ struct CropListView: View {
                     .foregroundColor(Color.white)
                     .shadow(radius: settings.cardShadowRadius)
                 )
-                
-                // Button to add new crop
-                //            Button(action: {
-                //                    self.isPresentedAddCrop = true
-                //
-                //            },
-                //                   label: {
-                //                    Image(systemName: "plus")
-                //                    Text("Add New Crop")
-                //                   })
-                //                .foregroundColor(Color.white)
-                //                .padding()
-                //                .background(Color.green)
-                //                .cornerRadius(5)
-                //                .sheet(isPresented: $isPresentedAddCrop) {
-                //
-                //                    if(cropEditMode) {
-                //                        AddCropView(cropBeingEdited: self.$chosenCrop,
-                //                                        inEditMode: true)
-                //                            .environment(\.managedObjectContext, self.managedObjectContext)
-                //
-                //                    } else {
-                //                        AddCropView()
-                //                            .environment(\.managedObjectContext, self.managedObjectContext)
-                //                    }
-                //                }
+
                 } // End if statement
             } // vstack
             .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings

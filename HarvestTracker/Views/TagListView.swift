@@ -127,22 +127,7 @@ struct TagListView: View {
                         .foregroundColor(Color.white)
                         .shadow(radius: settings.cardShadowRadius)
                     )
-                    
-                    // Button to add new tag
-                    //            Button(action: { self.isPresentedAddTag.toggle()},
-                    //                   label: {
-                    //                    Image(systemName: "plus")
-                    //                    Text("Add New Tag")
-                    //                   })
-                    //                .foregroundColor(Color.white)
-                    //                .padding()
-                    //                .background(Color.green)
-                    //                .cornerRadius(5)
-                    //                .sheet(isPresented: $isPresentedAddTag) {
-                    //                    AddTagView(inEditMode: false,
-                    //                               isPresentedAddTag: $isPresentedAddTag)
-                    //                        .environment(\.managedObjectContext, self.managedObjectContext)
-                    //                }
+
                 } // end if statement
             } // vstack
             .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings

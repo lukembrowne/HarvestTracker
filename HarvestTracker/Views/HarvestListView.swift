@@ -49,6 +49,7 @@ struct HarvestListView: View {
                                    chosenCrop: self.$chosenCrop,
                                    chosenHarvest: self.$chosenHarvest,
                                    isPresentedAddHarvest: $isPresentedEditHarvest)
+                        .padding(3)
                 }
                 .onDelete(perform: deleteHarvest)
        

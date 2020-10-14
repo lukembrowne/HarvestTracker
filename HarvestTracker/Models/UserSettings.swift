@@ -33,7 +33,8 @@ class UserSettings: ObservableObject {
     let lightAccentColor = Color(UIColor(hexString: "#79A4D5"))
     
     let cardPadding = CGFloat(12)
-    let cardShadowRadius = CGFloat(2)
+    let cardShadowRadius = CGFloat(5)
+    let buttonShadowRadius = CGFloat(2)
     
     
     // User Settings

@@ -32,7 +32,7 @@ struct HarvestRowView: View {
                 VStack(alignment: .leading) {
                     
                     harvest.crop?.cropName.map(Text.init)
-                        .font(.title2)
+                        .font(.title3)
                     
                     harvest.harvestDate.map { Text(Self.releaseFormatter.string(from: $0)) }
                         .font(.caption)

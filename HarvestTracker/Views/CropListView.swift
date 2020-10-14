@@ -112,7 +112,7 @@ struct CropListView: View {
                                 cornerRadius: 20
                             )
                             .foregroundColor(settings.lightAccentColor)
-                            .shadow(radius: settings.cardShadowRadius)
+                            .shadow(radius: settings.buttonShadowRadius)
                         )
                         
                         Spacer()
@@ -148,7 +148,7 @@ struct CropListView: View {
                         cornerRadius: 20
                     )
                     .foregroundColor(Color.white)
-                    .shadow(radius: 2)
+                    .shadow(radius: settings.cardShadowRadius)
                 )
                 
                 // Button to add new crop

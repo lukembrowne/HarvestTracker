@@ -29,6 +29,8 @@ struct AddCropView: View {
     
     @State var inEditMode = false
     @Binding var cropBeingEdited: Crop?
+    @State var showingNoCropNameAlert = false
+    
     
     init() {
         self._cropBeingEdited = Binding.constant(nil)
@@ -60,7 +62,9 @@ struct AddCropView: View {
                         }
                     
                 } // End select crop section
-                
+                .alert(isPresented: $showingNoCropNameAlert) {
+                    Alert(title: Text("Crop name not entered"), message: Text("Please enter a crop name"), dismissButton: .default(Text("Got it!")))
+                }
                 
                 // Enter amount
                 Section(header: Text("Amount")) {
@@ -79,36 +83,6 @@ struct AddCropView: View {
                 }
                 
                 
-                
-                // Add crop button
-//                HStack {
-//                    Spacer()
-//                    Button(action: {
-//                        if(inEditMode){
-//                            self.updateCropAction()
-//                        } else {
-//                            
-//                            self.addCropAction()
-//                        }
-//                        
-//                    }, label: {
-//                        
-//                        if(inEditMode){
-//                            Image(systemName: "checkmark.circle")
-//                            Text("Save edits")
-//                        } else {
-//                            Image(systemName: "plus")
-//                            Text("Add Crop")
-//                        }
-//
-//                    })
-//                    .foregroundColor(Color.white)
-//                    .padding()
-//                    .background(Color.green)
-//                    .cornerRadius(5)
-//                    Spacer()
-//                }
-                
             }
             .navigationBarTitle(Text(titleText),
                                 displayMode: .inline)
@@ -123,15 +97,19 @@ struct AddCropView: View {
                                     }),
                                 
                                 trailing:
-                                
+                                    
                                     Button(action: {
                                         
-                                        if(inEditMode){
-                                            self.updateCropAction()
+                                        // Check if crop name is entered
+                                        if self.cropName.isEmpty {
+                                            self.showingNoCropNameAlert = true
                                         } else {
-                                            self.addCropAction()
+                                            if(inEditMode){
+                                                self.updateCropAction()
+                                            } else {
+                                                self.addCropAction()
+                                            }
                                         }
-                                        
                                     },
                                     label: {
                                         Image(systemName: "checkmark.circle")

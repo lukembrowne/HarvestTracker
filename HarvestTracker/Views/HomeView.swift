@@ -33,7 +33,7 @@ struct HomeView: View {
                 VStack {
                     
                     Text("Harvest Tracker")
-                        .font(.largeTitle).fontWeight(.bold)
+                        .font(.largeTitle)
                         .padding([.top, .horizontal])
                         .foregroundColor(Color.white)
                     

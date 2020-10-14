@@ -119,6 +119,30 @@ struct CropListView: View {
                     }
                 }
                 
+                // If no crops added yet
+                if(crops.count == 0) {
+                    
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text("No crops added yet!")
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 20)
+                    .cornerRadius(20)
+                    .background(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                        .foregroundColor(Color.white)
+                        .shadow(radius: settings.cardShadowRadius)
+                    )
+                    
+                } else {
+                
                 List {
                     
                     // Display crops in list
@@ -176,7 +200,7 @@ struct CropListView: View {
                 //                            .environment(\.managedObjectContext, self.managedObjectContext)
                 //                    }
                 //                }
-                
+                } // End if statement
             } // vstack
             .navigationBarTitle("", displayMode: .inline) // Avoid large white space if viewing from Settings
             .padding(settings.cardPadding)

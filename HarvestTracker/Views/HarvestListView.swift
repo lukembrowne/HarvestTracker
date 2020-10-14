@@ -22,68 +22,78 @@ struct HarvestListView: View {
     @FetchRequest(entity: Crop.entity(),
                   sortDescriptors: [
                     NSSortDescriptor(keyPath: \Crop.cropName, ascending: true)
-                        ]) var crops: FetchedResults<Crop>
+                  ]) var crops: FetchedResults<Crop>
     
     @Environment(\.managedObjectContext) var managedObjectContext
     // Used to workaround bug that add button doesn't work if sheet has already been presented
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var settings: UserSettings
-
     
-  
+    
+    
     // State variables
     @State var isPresentedEditHarvest = false
     @State var chosenHarvest: Harvest?
     @State var chosenCrop: Crop?
-
-    var body: some View {
     
+    var body: some View {
+        
         
         VStack {
-            
-              List {
+
+            if(harvests.count == 0) {
                 
-                ForEach(harvests, id: \.self) { harvest in
+                HStack {
+                    Spacer()
+                    Text("No harvests added yet!")
+                    Spacer()
+                }
+                
+            } else {
+                
+                List {
                     
-                    HarvestRowView(harvest: harvest,
-                                   chosenCrop: self.$chosenCrop,
-                                   chosenHarvest: self.$chosenHarvest,
-                                   isPresentedAddHarvest: $isPresentedEditHarvest)
-                        .padding(3)
-                }
-                .onDelete(perform: deleteHarvest)
-       
-
-            } // End List View
-              // When harvest is tapped, open up editing mode
-              .sheet(isPresented: $isPresentedEditHarvest) {
-
-                  AddHarvestView(harvest: $chosenHarvest,
-                                 isPresentedAddHarvest: $isPresentedEditHarvest,
-                                 settings: settings,
-                                 inEditMode: true)
-                      .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
-              }// .sheet
-            .onAppear() {
-                
-                if(self.crops.count == 0){
-                    print("No crops found")
-                    Crop.loadDefaultCrops(in: self.managedObjectContext)
-                }
-            } // End on Appear
-            
-        }
+                    ForEach(harvests, id: \.self) { harvest in
+                        
+                        HarvestRowView(harvest: harvest,
+                                       chosenCrop: self.$chosenCrop,
+                                       chosenHarvest: self.$chosenHarvest,
+                                       isPresentedAddHarvest: $isPresentedEditHarvest)
+                            .padding(3)
+                    }
+                    .onDelete(perform: deleteHarvest)
+                    
+                    
+                } // End List View
+                // When harvest is tapped, open up editing mode
+                .sheet(isPresented: $isPresentedEditHarvest) {
+                    
+                    AddHarvestView(harvest: $chosenHarvest,
+                                   isPresentedAddHarvest: $isPresentedEditHarvest,
+                                   settings: settings,
+                                   inEditMode: true)
+                        .environment(\.managedObjectContext, self.managedObjectContext) // To get access to crops
+                } // .sheet
+            } // if statement
+        } // VStack
         .background(Color.white)
         .padding([.top, .bottom], settings.cardPadding)
-
+        .onAppear() {
+            
+            if(self.crops.count == 0){
+                print("No crops found")
+//                Crop.loadDefaultCrops(in: self.managedObjectContext)
+            }
+        } // End on Appear
+        
     } // End Body
     
     // Maybe there is a way to factor this out into Harvest, but not sure how
     func deleteHarvest(at offsets: IndexSet) {
-      offsets.forEach { index in
-        let harvest = self.harvests[index]
-        Harvest.deleteHarvest(harvest: harvest, in: self.managedObjectContext)
-      }
+        offsets.forEach { index in
+            let harvest = self.harvests[index]
+            Harvest.deleteHarvest(harvest: harvest, in: self.managedObjectContext)
+        }
     }
     
 }

@@ -21,146 +21,120 @@ struct CropJSON: Decodable {
 // Raw crop data to initialize database
 let cropJSONRaw = """
     [
-
       {
-        "cropName": "zzz_sorttest",
+        "cropName": "Basil",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "aaa_sorttest",
-        "costPerUnit": 1.99,
-        "unit": "bunch"
-      },
-      {
-        "cropName": "basil",
-        "costPerUnit": 1.99,
-        "unit": "bunch"
-      },
-      {
-        "cropName": "beets",
+        "cropName": "Beets",
         "costPerUnit": 0.124,
         "unit": "oz"
       },
       {
-        "cropName": "carrot - whole",
+        "cropName": "Carrots",
         "costPerUnit": 0.13,
         "unit": "oz"
       },
       {
-        "cropName": "chamomille - dried",
+        "cropName": "Chamomile",
         "costPerUnit": 1.64,
         "unit": "oz"
       },
       {
-        "cropName": "cilantro",
+        "cropName": "Cilantro",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "corn",
+        "cropName": "Corn",
         "costPerUnit": 0.99,
         "unit": "cob"
       },
       {
-        "cropName": "cucumbers",
+        "cropName": "Cucumbers",
         "costPerUnit": 0.249,
         "unit": "oz"
       },
       {
-        "cropName": "eggplant - japanese",
+        "cropName": "Eggplant",
         "costPerUnit": 0.23,
         "unit": "oz"
       },
       {
-        "cropName": "eggplant - normal",
+        "cropName": "Eggplant",
         "costPerUnit": 0.23,
         "unit": "oz"
       },
       {
-        "cropName": "green beans",
+        "cropName": "Green beans",
         "costPerUnit": 0.25,
         "unit": "oz"
       },
       {
-        "cropName": "kale and chard",
+        "cropName": "Kale",
         "costPerUnit": 2.99,
         "unit": "bunch"
       },
       {
-        "cropName": "mixed greens",
+        "cropName": "Mixed greens",
         "costPerUnit": 0.749,
         "unit": "oz"
       },
       {
-        "cropName": "oregano",
+        "cropName": "Oregano",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "parsley",
+        "cropName": "Parsley",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "peppers - banana",
+        "cropName": "Peppers",
         "costPerUnit": 0.156,
         "unit": "oz"
       },
       {
-        "cropName": "peppers - bell",
-        "costPerUnit": 2.5,
-        "unit": "per pepper"
-      },
-      {
-        "cropName": "peppers - sweet mini",
-        "costPerUnit": 0.156,
-        "unit": "oz"
-      },
-      {
-        "cropName": "sage",
+        "cropName": "Sage",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "shelled peas",
+        "cropName": "Peas, shelled",
         "costPerUnit": 0.1,
         "unit": "oz"
       },
       {
-        "cropName": "strawberries",
+        "cropName": "Strawberries",
         "costPerUnit": 0.249,
         "unit": "oz"
       },
       {
-        "cropName": "sugar snap peas",
+        "cropName": "Sugar snap peas",
         "costPerUnit": 0.39,
         "unit": "oz"
       },
       {
-        "cropName": "thyme",
+        "cropName": "Thyme",
         "costPerUnit": 1.99,
         "unit": "bunch"
       },
       {
-        "cropName": "tomatillos",
+        "cropName": "Tomatillos",
         "costPerUnit": 0.249,
         "unit": "oz"
       },
       {
-        "cropName": "tomatos",
+        "cropName": "Tomatos",
         "costPerUnit": 0.3118,
         "unit": "oz"
       },
       {
-        "cropName": "zucchini",
+        "cropName": "Zucchini",
         "costPerUnit": 0.186,
         "unit": "oz"
-      },
-      {
-        "cropName": "zucchini_flowers",
-        "costPerUnit": 0.58,
-        "unit": "one flower"
       }
     ]
 """

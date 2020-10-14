@@ -101,10 +101,14 @@ struct TagListView: View {
                         
                         // Display tags in list
                         ForEach(tags, id: \.self) { tag in
-                            TagView(tag: tag,
-                                    tagBeingEdited: self.$tagBeingEdited,
-                                    isPresentedEditTag: self.$isPresentedEditTag,
-                                    inEditMode: true)
+                            
+                            HStack {
+                                Image(systemName: "chevron.right.circle")
+                                TagView(tag: tag,
+                                        tagBeingEdited: self.$tagBeingEdited,
+                                        isPresentedEditTag: self.$isPresentedEditTag,
+                                        inEditMode: true)
+                            }
                             
                         }
                         .onDelete(perform: deleteTag)

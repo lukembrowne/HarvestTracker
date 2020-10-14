@@ -24,7 +24,7 @@ struct CropRowView: View {
     var body: some View {
         
         HStack {
-            Image(systemName: "sun.max")
+            Image(systemName: "chevron.right.circle")
             Text(verbatim: crop.cropName ?? "")
             Spacer()
         }.onTapGesture {

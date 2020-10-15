@@ -30,11 +30,15 @@ public struct BarChartRow : View {
         guard let max = data.max() else {
             return 1
         }
+        print("max value is \(max)")
+        print("data is:")
+        print(data)
         return max != 0 ? max : 1
     }
     
     
     @Binding var touchLocation: CGFloat
+    
     public var body: some View {
         GeometryReader { geometry in
             
@@ -96,7 +100,7 @@ public struct BarChartRow : View {
                                     BarChartCell(value: self.normalizedValue(index: i),
                                                  label: labels[i],
                                                  index: i,
-                                                 width: Float(geometry.frame(in: .local).width - 52), // Original width offset was 22
+                                                 width: Float(geometry.frame(in: .local).width - 55), // Original width offset was 22
                                                  numberOfDataPoints: self.data.count,
                                                  touchLocation: self.$touchLocation)
                                         

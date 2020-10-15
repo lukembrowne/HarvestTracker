@@ -104,18 +104,18 @@ struct HarvestCalculator {
             } // End harvest loop
         } // End if harvests has elements
         
-        let chartData = ChartData(values: [("J", monthlyTotals[0]),
-                                           ("F", monthlyTotals[1]),
-                                           ("M", monthlyTotals[2]),
-                                           ("A", monthlyTotals[3]),
-                                           ("M", monthlyTotals[4]),
-                                           ("J", monthlyTotals[5]),
-                                           ("J", monthlyTotals[6]),
-                                           ("A", monthlyTotals[7]),
-                                           ("S", monthlyTotals[8]),
-                                           ("O", monthlyTotals[9]),
-                                           ("N", monthlyTotals[10]),
-                                           ("D", monthlyTotals[11])])
+        let chartData = ChartData(values: [("1", monthlyTotals[0]),
+                                           ("2", monthlyTotals[1]),
+                                           ("3", monthlyTotals[2]),
+                                           ("4", monthlyTotals[3]),
+                                           ("5", monthlyTotals[4]),
+                                           ("6", monthlyTotals[5]),
+                                           ("7", monthlyTotals[6]),
+                                           ("8", monthlyTotals[7]),
+                                           ("9", monthlyTotals[8]),
+                                           ("10", monthlyTotals[9]),
+                                           ("11", monthlyTotals[10]),
+                                           ("12", monthlyTotals[11])])
         
         return chartData
         

@@ -24,7 +24,8 @@ public struct BarChartView : View {
     @EnvironmentObject var settings: UserSettings
 
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    private var data: ChartData
+    
+    @ObservedObject private var data: ChartData
     public var formSize:CGSize
     public var valueSpecifier:String
     
@@ -35,6 +36,7 @@ public struct BarChartView : View {
     var isFullWidth:Bool {
         return self.formSize == ChartForm.large
     }
+    
     init(data:ChartData, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f"){
         self.data = data
         self.formSize = form!
@@ -47,7 +49,6 @@ public struct BarChartView : View {
 
             VStack(alignment: .leading){
 
-                
                 // Plot bars
                 BarChartRow(data: data.points.map{$0.1},
                             labels: data.points.map{$0.0},

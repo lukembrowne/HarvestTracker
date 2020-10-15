@@ -32,8 +32,6 @@ public struct BarChartCell : View {
         return Double(width)/(Double(numberOfDataPoints) * 1.5)
     }
     
-    
-    @State var scaleValue: Double = 0
     @Binding var touchLocation: CGFloat
     public var body: some View {
         
@@ -41,18 +39,16 @@ public struct BarChartCell : View {
             ZStack {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(LinearGradient(gradient:
-                                            Gradient(colors: [settings.lightestAccentColor, settings.bgColor]),
+                                            Gradient(colors: [settings.bgColor.opacity(0.40), settings.bgColor]),
                                          startPoint: .bottom, endPoint: .top))
             }
             .frame(width: CGFloat(self.cellWidth))
-            .scaleEffect(CGSize(width: 1, height: self.scaleValue), anchor: .bottom)
-            .onAppear(){
-                self.scaleValue = self.value
-            }
+            .scaleEffect(CGSize(width: 1, height: self.value), anchor: .bottom)
             .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))
             
             Text(label)
                 .font(.footnote)
+
         }
         
         

@@ -29,10 +29,10 @@ struct TabNavigationView: View {
                     Text("Home")
                 }.tag(1)
             
-            TagListView().environment(\.managedObjectContext, self.managedObjectContext)
+            AnalysisView().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "chart.bar")
-                    Text("Reports")
+                    Text("Analysis")
                 }.tag(2)
             
             CropListView().environment(\.managedObjectContext, self.managedObjectContext)

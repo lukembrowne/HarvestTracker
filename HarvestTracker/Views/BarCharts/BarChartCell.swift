@@ -40,7 +40,9 @@ public struct BarChartCell : View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(LinearGradient(gradient: Gradient(colors: [.white, settings.bgColor]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(gradient:
+                                            Gradient(colors: [settings.lightestAccentColor, settings.bgColor]),
+                                         startPoint: .bottom, endPoint: .top))
             }
             .frame(width: CGFloat(self.cellWidth))
             .scaleEffect(CGSize(width: 1, height: self.scaleValue), anchor: .bottom)

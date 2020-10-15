@@ -26,6 +26,7 @@
 		A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */; };
 		A395A1EA25220B340062983D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A395A1E925220B340062983D /* SettingsView.swift */; };
 		A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A739B925011238005A2E5F /* HarvestTotalView.swift */; };
+		A3AB02DD253871A0000783AE /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB02DC253871A0000783AE /* AnalysisView.swift */; };
 		A3BB4474252DEF6D00A01665 /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */; };
 		A3BB4475252DEF6D00A01665 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4472252DEF6D00A01665 /* FlexibleView.swift */; };
 		A3BB4476252DEF6D00A01665 /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4473252DEF6D00A01665 /* SizeReader.swift */; };
@@ -65,6 +66,7 @@
 		A37236D32508F9A400BFF24C /* Harvest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harvest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A395A1E925220B340062983D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		A3A739B925011238005A2E5F /* HarvestTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestTotalView.swift; sourceTree = "<group>"; };
+		A3AB02DC253871A0000783AE /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
 		A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FlexibleView.swift; sourceTree = "<group>"; };
 		A3BB4472252DEF6D00A01665 /* FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		A3BB4473252DEF6D00A01665 /* SizeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				A3D98B8124FA8691003ED12E /* AddHarvestView.swift */,
 				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
 				A3490F2125238622002B7E15 /* AddTagView.swift */,
+				A3AB02DC253871A0000783AE /* AnalysisView.swift */,
 				A36230F024FFBDF800A672FD /* CropListView.swift */,
 				A36230F224FFBF6600A672FD /* CropRowView.swift */,
 				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
@@ -376,6 +379,7 @@
 				A3490F2825238B9C002B7E15 /* Tag+CoreDataProperties.swift in Sources */,
 				A3D98B6E24FA83F0003ED12E /* HarvestTracker.xcdatamodeld in Sources */,
 				A36230EF24FEE89E00A672FD /* CropDataDefault.swift in Sources */,
+				A3AB02DD253871A0000783AE /* AnalysisView.swift in Sources */,
 				A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

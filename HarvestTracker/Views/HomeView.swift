@@ -23,7 +23,6 @@ struct HomeView: View {
     var body: some View {
         
         
-        
         GeometryReader { geometry in
             
             ZStack {
@@ -38,8 +37,7 @@ struct HomeView: View {
                         .foregroundColor(Color.white)
                     
                     // Add bar chart view
-                    BarChartView(data: HarvestCalculator(settings: settings, harvests: harvests).calcTotalByMonth(),
-                                 title: "2019 total: \(HarvestCalculator(settings: settings, harvests: harvests).calcTotalHarvest().rounded(toPlaces: 2))")
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag]()))
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20

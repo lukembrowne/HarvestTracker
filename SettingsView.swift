@@ -45,7 +45,7 @@ struct SettingsView: View {
                 ) {
                     
                     NavigationLink(destination: CropListView(cropEditMode: true).environment(\.managedObjectContext, self.managedObjectContext)) {
-                        Text("Edit Crop list")
+                        Text("Edit Crops")
                     }
                 }
                 
@@ -56,7 +56,7 @@ struct SettingsView: View {
                 ) {
                     
                     NavigationLink(destination: TagListView().environment(\.managedObjectContext, self.managedObjectContext)) {
-                        Text("Edit Tag list")
+                        Text("Edit Tags")
                     }
                 }
                 

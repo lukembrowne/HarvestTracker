@@ -41,55 +41,83 @@ public struct BarChartRow : View {
             HStack(alignment: .bottom, spacing: (geometry.frame(in: .local).width-22)/CGFloat(self.data.count * 3)){
                 
                 // Add y axis
-//                VStack {
-//                    Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: .kilograms).value)) kg")
-//                        .font(.footnote)
-//                    Spacer()
-//
-//                }
-//                .frame(width: CGFloat(25))
+                //                VStack {
+                //                    Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: .kilograms).value)) kg")
+                //                        .font(.footnote)
+                //                    Spacer()
+                //
+                //                }
+                //                .frame(width: CGFloat(25))
                 
-                // Add dashed line
-                ZStack {
+                HStack {
                     
                     HStack {
+                        
+                        // Y axis label at the top
                         VStack {
                             Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
                                 .font(.footnote)
                                 .offset(x: 0, y: -8)
+                            
                             Spacer()
+                            
+                            Text("0 \(settings.unitString)")
+                                .font(.footnote)
                         }
                         
-                        Path{ path in
-                            path.move(to: CGPoint(x: 0, y: 0))
-                            path.addLine(to: CGPoint(x: geometry.frame(in: .local).width-85, y: 0))
-                                }
-                                .stroke(style: StrokeStyle( lineWidth: 2, dash: [5]))
-                        .foregroundColor(Color.black.opacity(0.15))
+                        //                        Path{ path in
+                        //                            path.move(to: CGPoint(x: 0, y: 0))
+                        //                            path.addLine(to: CGPoint(x: geometry.frame(in: .local).width-85, y: 0))
+                        //                                }
+                        //                                .stroke(style: StrokeStyle( lineWidth: 2, dash: [5]))
+                        //                        .foregroundColor(Color.black.opacity(0.15))
                         
                     }
                     
-      
-                    HStack {
-                        ForEach(0..<self.data.count, id: \.self) { i in
+                    ZStack {
+                        
+                        // Add dashed line at the top
+                        Path{ path in
+                            path.move(to: CGPoint(x: 0, y: 0))
+                            path.addLine(to:
+                                            CGPoint(x: geometry.frame(in: .local).width - 60,
+                                                    y: 0))
+                        }
+                        .stroke(style: StrokeStyle( lineWidth: 2, dash: [5]))
+                        .foregroundColor(Color.black.opacity(0.15))
+                        
+                        // Bars
+                        
+                        ZStack {
                             
-                            BarChartCell(value: self.normalizedValue(index: i),
-                                         label: labels[i],
-                                         index: i,
-                                         width: Float(geometry.frame(in: .local).width - 52), // Original width offset was 22
-                                         numberOfDataPoints: self.data.count,
-                                         touchLocation: self.$touchLocation)
-                                
-                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.4, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                .animation(.spring())
-                       }
-                    }
-                    
-                }
-
-                
+                            HStack {
+                                ForEach(0..<self.data.count, id: \.self) { i in
+                                    
+                                    BarChartCell(value: self.normalizedValue(index: i),
+                                                 label: labels[i],
+                                                 index: i,
+                                                 width: Float(geometry.frame(in: .local).width - 52), // Original width offset was 22
+                                                 numberOfDataPoints: self.data.count,
+                                                 touchLocation: self.$touchLocation)
+                                        
+                                        .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.4, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
+                                        .animation(.spring())
+                                } // end foreach
+                            } // end hstack
+                            
+                            
+                            // Year label
+                            VStack {
+                                Spacer()
+                                Text("2020")
+                                    .font(.caption)
+                                    .offset(x: 0, y: 20)
+                            }
+                        } // vstack
+                    } // zstack
+                } // hstack
             }
-            .padding([.top, .leading, .trailing], 10)
+            .padding([.top, .leading, .trailing, .bottom], 10)
         }
     }
     

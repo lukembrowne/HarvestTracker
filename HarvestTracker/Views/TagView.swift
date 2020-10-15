@@ -81,6 +81,7 @@ struct TagView: View {
                 // Tag name
                 Text(tag.tagName ?? "")
                     .font(fontSize ?? .body)
+                    .fontWeight(.semibold)
                 
                 
                 // Add check mark if already part of chosen tags
@@ -89,7 +90,8 @@ struct TagView: View {
                 }
             }
         }
-        .padding(8)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
         .foregroundColor(.white)
         .background(Color(UIColor(hexString: tag.tagColorHex ?? "000000",
                                   alpha: 0.9)))

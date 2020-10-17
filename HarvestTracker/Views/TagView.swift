@@ -48,7 +48,6 @@ struct TagView: View {
      }
     
     
-    
     var body: some View {
         
         Button(action: {
@@ -56,7 +55,6 @@ struct TagView: View {
             // If in edit mode, set the pressed tag as the being edited and open up edit tag sheet
             if(inEditMode){
                 self.tagBeingEdited = self.tag
-                print("Chosen tag is: \(String(describing: self.tagBeingEdited))")
             }
             
             // If tag is already chosen, remove from chosen tags array

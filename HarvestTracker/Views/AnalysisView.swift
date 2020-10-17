@@ -7,13 +7,23 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AnalysisView: View {
     
     // Fetch Harvests
     @FetchRequest(entity: Harvest.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)]
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Harvest.crop?.cropName, ascending: true)]
     ) var harvests: FetchedResults<Harvest>
+    
+    // Fetch request for crops
+    @FetchRequest(entity: Crop.entity(),
+                  sortDescriptors: [
+                    NSSortDescriptor(
+                        key: "cropName",
+                        ascending: true,
+                        selector: #selector(NSString.caseInsensitiveCompare(_:))) // To make case insensitive
+                  ]) var crops: FetchedResults<Crop>
     
     @FetchRequest(entity: Tag.entity(),
                   sortDescriptors: [
@@ -28,8 +38,9 @@ struct AnalysisView: View {
     @EnvironmentObject var settings: UserSettings
     
     @State var chosenTags = [Tag]()
-    
-    
+    @State var chosenCrops = [Crop]()
+    @State var displayedCrops = [Crop]()
+   
     var body: some View {
         
         
@@ -58,8 +69,8 @@ struct AnalysisView: View {
                             
                         )
                         .padding(settings.cardPadding)
-                        .frame(height: geometry.size.height * 0.5)
-                    
+                        .frame(height: geometry.size.height * 0.4)
+
                     
                     // Filters section
                     Text("Filters")
@@ -67,13 +78,40 @@ struct AnalysisView: View {
                         .foregroundColor(Color.white)
                     
                     VStack {
-                        Spacer()
                         
+                        
+                        
+                        // Filter by crop
                         HStack {
-                            Spacer()
-                            Text("Tags")
+                            Text("Filter by crop")
                             Spacer()
                         }
+                        
+                        
+                        Divider()
+                        
+                        // Flexible grid of potential tags
+                        FlexibleView(
+                            data: harvests,
+                            spacing: CGFloat(8),
+                            alignment: .leading
+                        ) { harvest in
+                            
+                                TagViewCrop(crop: harvest.crop!,
+                                            chosenCrops: $chosenCrops,
+                                            displayedCrops: $displayedCrops)
+                        }
+                        .padding(.horizontal, CGFloat(8))
+                        
+                        
+                        // Filter by tags
+                        HStack {
+                            Text("Filter by tags")
+                            Spacer()
+                        }
+                        
+                        
+                        Divider()
                         
                         // Flexible grid of potential tags
                         FlexibleView(
@@ -99,6 +137,24 @@ struct AnalysisView: View {
                         
                     )
                     .padding(settings.cardPadding)
+                    .onAppear {
+                        
+                        print("appeared")
+//                        getCropNames()
+                        
+//                        self.getCropNames()
+//
+//                        for harvest in harvests {
+//
+//                            if let name = harvest.crop?.cropName {
+//                                cropNames.append(name)
+//                            }
+//
+//                        }
+//
+//                       cropNames = Array(Set(cropNames)).sorted()) // To remove duplicate elements and alphabatize
+//
+                    }
                     
                     
                 } // Vstack

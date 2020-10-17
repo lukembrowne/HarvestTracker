@@ -30,9 +30,6 @@ public struct BarChartRow : View {
         guard let max = data.max() else {
             return 1
         }
-        print("max value is \(max)")
-        print("data is:")
-        print(data)
         return max != 0 ? max : 1
     }
     

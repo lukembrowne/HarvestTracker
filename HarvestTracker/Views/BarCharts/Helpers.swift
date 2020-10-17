@@ -7,6 +7,36 @@
 
 import SwiftUI
 import UIKit
+import CoreData
+
+
+
+
+
+
+
+public class Test {
+    
+    func readData() -> [Harvest] {
+        
+        let fetchRequest: NSFetchRequest<Harvest> = Harvest.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Harvest.harvestDate, ascending: false)]
+        
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedObjectContext = appDelegate.persistentContainer.viewContext
+            let harvests = try managedObjectContext.fetch(fetchRequest)
+            return harvests
+          } catch let error as NSError {
+            print("Error fetching Harvests: \(error.localizedDescription), \(error.userInfo)")
+          }
+          return [Harvest]()
+        
+    }
+    
+    
+}
+
 
 
 

@@ -62,11 +62,6 @@ let cropJSONRaw = """
         "unit": "oz"
       },
       {
-        "cropName": "Eggplant",
-        "costPerUnit": 0.23,
-        "unit": "oz"
-      },
-      {
         "cropName": "Green beans",
         "costPerUnit": 0.25,
         "unit": "oz"

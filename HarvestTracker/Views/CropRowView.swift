@@ -30,7 +30,6 @@ struct CropRowView: View {
         }.onTapGesture {
             self.chosenCrop = self.crop
             if(harvestEditMode) {self.cropBeingEdited = self.crop}
-            print("Chosen crop is: \(self.chosenCrop?.cropName ?? "nil")")
 
             // If in editmode, dismiss sheet and return to edit harvest, or else navigate to add harvest sheet
             if(harvestEditMode) {

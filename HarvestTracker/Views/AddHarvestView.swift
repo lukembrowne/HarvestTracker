@@ -233,7 +233,7 @@ struct AddHarvestView: View {
                         
                         // Flexible grid of potential tags
                         FlexibleView(
-                            data: tags,
+                            data: chosenTags,
                             spacing: CGFloat(8),
                             alignment: .leading
                         ) { tag in

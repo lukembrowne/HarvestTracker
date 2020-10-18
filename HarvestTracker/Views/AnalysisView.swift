@@ -40,7 +40,7 @@ struct AnalysisView: View {
     @State var chosenTags = [Tag]()
     @State var chosenCrops = [Crop]()
     @State var displayedCrops = [Crop]()
-   
+    
     var body: some View {
         
         
@@ -70,90 +70,76 @@ struct AnalysisView: View {
                         )
                         .padding(settings.cardPadding)
                         .frame(height: geometry.size.height * 0.4)
-
                     
-                    // Filters section
-                    Text("Filters")
-                        .font(.title)
-                        .foregroundColor(Color.white)
                     
-                    VStack {
+                    NavigationView {
                         
                         
-                        
-                        // Filter by crop
-                        HStack {
-                            Text("Filter by crop")
-                            Spacer()
-                        }
-                        
-                        
-                        Divider()
-                        
-                        // Flexible grid of potential tags
-                        FlexibleView(
-                            data: harvests,
-                            spacing: CGFloat(8),
-                            alignment: .leading
-                        ) { harvest in
+                        Form {
                             
-                                TagViewCrop(crop: harvest.crop!,
-                                            chosenCrops: $chosenCrops,
-                                            displayedCrops: $displayedCrops)
-                        }
-                        .padding(.horizontal, CGFloat(8))
-                        
-                        
-                        // Filter by tags
-                        HStack {
-                            Text("Filter by tags")
-                            Spacer()
-                        }
-                        
-                        
-                        Divider()
-                        
-                        // Flexible grid of potential tags
-                        FlexibleView(
-                            data: tags,
-                            spacing: CGFloat(8),
-                            alignment: .leading
-                        ) { tag in
-                            TagView(tag: tag,
-                                    chosenTags: $chosenTags)
+                            
+                            Section(header: Text("Filter by crop:")
+                                        .font(.headline)
+                                    
+                            ) {
+                                VStack {
+                                    NavigationLink(destination: CropListFilterView(chosenCrops: $chosenCrops).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                        Text("Choose Crops")
+                                    }
+                                    HStack {
+                                        
+                                        // Flexible grid of cropnames
+                                        FlexibleView(
+                                            data: chosenCrops,
+                                            spacing: CGFloat(8),
+                                            alignment: .leading
+                                        ) { crop in
+                                            
+                                            Text("\(crop.cropName ?? "...")")
+                                            
+                                        }
+                                        .padding(.horizontal, CGFloat(8))
+                                        
+                                        
+                                    }
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                            // Filtering by tags
+                            Section(header: Text("Filter by tag:")
+                                        .font(.headline)
+                                    
+                            ) {
+                                
+                                NavigationLink(destination: TagListFilterView(chosenTags: $chosenTags).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                    Text("Choose Tags")
+                                }
+                                
+                                HStack {
+                                    
+                                    // Flexible grid of potential tags
+                                    FlexibleView(
+                                        data: chosenTags,
+                                        spacing: CGFloat(8),
+                                        alignment: .leading
+                                    ) { tag in
+                                        TagView(tag: tag,
+                                                fontSize: .body)
+                                            .disabled(true) // turn off button action
+                                        
+                                    }
+                                    .padding(.horizontal, CGFloat(8))
+                                    
+                                }
+                            }
+                            
                             
                         }
-                        .padding(.horizontal, CGFloat(8))
-                        
-                        Spacer()
-                    }
-                    
-                    .background(
-                        RoundedRectangle(
-                            cornerRadius: 20
-                        )
-                        .foregroundColor(Color.white)
-                        .shadow(radius: settings.cardShadowRadius)
-                        
-                    )
-                    .padding(settings.cardPadding)
-                    .onAppear {
-                        
-                        print("appeared")
-//                        getCropNames()
-                        
-//                        self.getCropNames()
-//
-//                        for harvest in harvests {
-//
-//                            if let name = harvest.crop?.cropName {
-//                                cropNames.append(name)
-//                            }
-//
-//                        }
-//
-//                       cropNames = Array(Set(cropNames)).sorted()) // To remove duplicate elements and alphabatize
-//
+                        .navigationBarTitle("Filters", displayMode: .inline) // Avoid large white space if viewing from Settings
+                        .foregroundColor(Color.black)
                     }
                     
                     
@@ -162,9 +148,3 @@ struct AnalysisView: View {
         } // Geometry reader
     } // View
 } // struct
-
-//struct AnalysisView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AnalysisView()
-//    }
-//}

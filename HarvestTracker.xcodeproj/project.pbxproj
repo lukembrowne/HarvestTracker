@@ -31,6 +31,10 @@
 		A3BB4474252DEF6D00A01665 /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */; };
 		A3BB4475252DEF6D00A01665 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4472252DEF6D00A01665 /* FlexibleView.swift */; };
 		A3BB4476252DEF6D00A01665 /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BB4473252DEF6D00A01665 /* SizeReader.swift */; };
+		A3BEF322253C60D7004409F0 /* CropListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BEF321253C60D7004409F0 /* CropListFilterView.swift */; };
+		A3BEF325253C61D2004409F0 /* CropRowFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BEF324253C61D2004409F0 /* CropRowFilterView.swift */; };
+		A3BEF328253C653C004409F0 /* TagListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BEF327253C653C004409F0 /* TagListFilterView.swift */; };
+		A3BEF32B253C6609004409F0 /* TagRowFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BEF32A253C6609004409F0 /* TagRowFilterView.swift */; };
 		A3C12B2E251CB5AE0021FAF0 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */; };
 		A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */; };
 		A3C12B34251CB5B80021FAF0 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C12B33251CB5B80021FAF0 /* BarChartView.swift */; };
@@ -72,6 +76,10 @@
 		A3BB4471252DEF6C00A01665 /* _FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FlexibleView.swift; sourceTree = "<group>"; };
 		A3BB4472252DEF6D00A01665 /* FlexibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		A3BB4473252DEF6D00A01665 /* SizeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
+		A3BEF321253C60D7004409F0 /* CropListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropListFilterView.swift; sourceTree = "<group>"; };
+		A3BEF324253C61D2004409F0 /* CropRowFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRowFilterView.swift; sourceTree = "<group>"; };
+		A3BEF327253C653C004409F0 /* TagListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListFilterView.swift; sourceTree = "<group>"; };
+		A3BEF32A253C6609004409F0 /* TagRowFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowFilterView.swift; sourceTree = "<group>"; };
 		A3C12B2D251CB5AE0021FAF0 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		A3C12B30251CB5B10021FAF0 /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		A3C12B33251CB5B80021FAF0 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -121,8 +129,10 @@
 				A30D5BFE24FFC615000073AE /* AddCropView.swift */,
 				A3490F2125238622002B7E15 /* AddTagView.swift */,
 				A3AB02DC253871A0000783AE /* AnalysisView.swift */,
+				A3BEF321253C60D7004409F0 /* CropListFilterView.swift */,
 				A36230F024FFBDF800A672FD /* CropListView.swift */,
 				A36230F224FFBF6600A672FD /* CropRowView.swift */,
+				A3BEF324253C61D2004409F0 /* CropRowFilterView.swift */,
 				A3D98B6F24FA83F0003ED12E /* HarvestListView.swift */,
 				A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */,
 				A3A739B925011238005A2E5F /* HarvestTotalView.swift */,
@@ -130,6 +140,8 @@
 				A395A1E925220B340062983D /* SettingsView.swift */,
 				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
 				A3490F1E252384E2002B7E15 /* TagListView.swift */,
+				A3BEF327253C653C004409F0 /* TagListFilterView.swift */,
+				A3BEF32A253C6609004409F0 /* TagRowFilterView.swift */,
 				2FD077AE2523F6D20086BBDD /* TagView.swift */,
 				A3A97F052539AD2B0010E093 /* TagViewCrop.swift */,
 			);
@@ -352,8 +364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A97F062539AD2B0010E093 /* TagViewCrop.swift in Sources */,
+				A3BEF328253C653C004409F0 /* TagListFilterView.swift in Sources */,
 				A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */,
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
+				A3BEF322253C60D7004409F0 /* CropListFilterView.swift in Sources */,
 				A36230F124FFBDF800A672FD /* CropListView.swift in Sources */,
 				A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
@@ -365,6 +379,7 @@
 				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
 				A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,
+				A3BEF325253C61D2004409F0 /* CropRowFilterView.swift in Sources */,
 				A3BB4474252DEF6D00A01665 /* _FlexibleView.swift in Sources */,
 				2FD077AF2523F6D20086BBDD /* TagView.swift in Sources */,
 				A36230F324FFBF6600A672FD /* CropRowView.swift in Sources */,
@@ -372,6 +387,7 @@
 				A31E05242523520A00448C45 /* UserSettings.swift in Sources */,
 				A3490F1F252384E2002B7E15 /* TagListView.swift in Sources */,
 				A37236D42508F9A400BFF24C /* Crop+CoreDataClass.swift in Sources */,
+				A3BEF32B253C6609004409F0 /* TagRowFilterView.swift in Sources */,
 				A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */,
 				A3BB4475252DEF6D00A01665 /* FlexibleView.swift in Sources */,
 				A3C12B39251CB60C0021FAF0 /* Helpers.swift in Sources */,

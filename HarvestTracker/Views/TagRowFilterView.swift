@@ -12,6 +12,7 @@ struct TagRowFilterView: View {
     
     var tag: Tag
     @Binding var chosenTags: [Tag]
+    @EnvironmentObject var settings: UserSettings
     
     var body: some View {
         
@@ -32,15 +33,23 @@ struct TagRowFilterView: View {
         
                     if chosenTags.contains(self.tag) {
                         Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(settings.bgColor)
                     } else {
                         Image(systemName: "circle")
                     }
         
                     Text(verbatim: tag.tagName ?? "")
-                    Spacer()
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 8)
+                        .foregroundColor(.white)
+                        .background(Color(UIColor(hexString: tag.tagColorHex ?? "000000",
+                                                  alpha: 0.9)))
+                        .cornerRadius(20)
+                        .buttonStyle(BorderlessButtonStyle()) // Bug fix so that entire row doesn't highlight
                 }
                }
         ) // end button
+
 
     }
 }

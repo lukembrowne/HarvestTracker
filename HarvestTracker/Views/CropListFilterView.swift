@@ -26,6 +26,7 @@ struct CropListFilterView: View {
     
     
     var body: some View {
+        
         // If no crops added yet
         if(crops.count == 0) {
             
@@ -53,7 +54,6 @@ struct CropListFilterView: View {
             }
             
         } // list
-
         } // End if statement
     }
 }

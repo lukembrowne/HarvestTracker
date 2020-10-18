@@ -37,7 +37,7 @@ struct HomeView: View {
                         .foregroundColor(Color.white)
                     
                     // Add bar chart view
-                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag]()))
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop]()))
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20

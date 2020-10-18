@@ -44,18 +44,23 @@ struct HarvestCalculator {
     // Returns array of monthly harvest totals by month
     
     // TODO: - make it work by year as well
-    func calcTotalByMonth(filterByTags tags: [Tag]) -> ChartData {
+    func calcTotalByMonth(filterByTags tags: [Tag], filterByCrops crops: [Crop]) -> ChartData {
         
         // Initialize empty array of monthly totals
         var monthlyTotals = [Double](repeating: 0, count: 12)
         
         // Initialize array that will say which harvests to keep
-        var retain = [Bool](repeating: false, count: harvests.count)
+        var retainByTag = [Bool](repeating: false, count: harvests.count)
+        var retainByCrop = [Bool](repeating: false, count: harvests.count)
+        
         
         // Loop over harvests if there are harvests
         if(harvests.count > 0){
             
+            // Start harvest loop
             for harvestIndex in 0...harvests.count - 1 {
+                
+                
                 
                 // Loop over tags if there are tags to filter by
                 if(tags.count > 0) {
@@ -65,26 +70,45 @@ struct HarvestCalculator {
                     // Count number of tags on harvest of interest
                     let harvestTagCount = harvests[harvestIndex].tagArray?.count ?? 0
                     
+                    // If there are tags, loop over them
                     if harvestTagCount > 0 {
-                        
                         for tagIndex in 0...harvestTagCount - 1 {
                             
+                            // If harvest contains the tags to filter by, retainByTag it
                             if let tag = harvests[harvestIndex].tagArray?[tagIndex] {
                                 
                                 if(tags.contains(tag)){
-                                    retain[harvestIndex] = true
+                                    retainByTag[harvestIndex] = true
                                 }
                             }
                         }
                     }
                     
                 } else {
-                    // If no tags to filter by, set all to be retained by filter
-                    retain = [Bool](repeating: true, count: harvests.count)
+                    // If no tags to filter by, set all to be retainByTaged by filter
+                    retainByTag = [Bool](repeating: true, count: harvests.count)
                 }
                 
-                // Add to montly total if retained after filtering
-                if retain[harvestIndex] {
+                // Loop over crops
+                if(crops.count > 0) {
+                    
+                    if let crop = harvests[harvestIndex].crop {
+                        
+                        if(crops.contains(crop)){
+                            retainByCrop[harvestIndex] = true
+                        }
+                    }
+
+                } else {
+                    // If no tags to filter by, set all to be retainByTaged by filter
+                    retainByCrop = [Bool](repeating: true, count: harvests.count)
+                }
+                
+                
+                                
+                
+                // Add to monthly total if retainByTag and retainedByCrop after filtering
+                if retainByTag[harvestIndex] && retainByCrop[harvestIndex] {
                     
                     // Extract year and month from harvest date, if harvest date exists
                     if let date = harvests[harvestIndex].harvestDate {
@@ -98,7 +122,7 @@ struct HarvestCalculator {
                         }
                     } // end if date exists
                     
-                } // end retain if
+                } // end retainByTag if
                 
                 
             } // End harvest loop

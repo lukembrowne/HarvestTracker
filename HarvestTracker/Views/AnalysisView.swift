@@ -59,7 +59,7 @@ struct AnalysisView: View {
                         .foregroundColor(Color.white)
                     
                     // Add bar chart view
-                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags))
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags, filterByCrops: chosenCrops))
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20
@@ -82,36 +82,33 @@ struct AnalysisView: View {
                                         .font(.headline)
                                     
                             ) {
-                                VStack {
-                                    NavigationLink(destination: CropListFilterView(chosenCrops: $chosenCrops).environment(\.managedObjectContext, self.managedObjectContext)) {
-                                        Text("Choose Crops")
-                                    }
-                                    HStack {
-                                        
-                                        // Flexible grid of cropnames
-                                        FlexibleView(
-                                            data: chosenCrops,
-                                            spacing: CGFloat(8),
-                                            alignment: .leading
-                                        ) { crop in
-                                            
-                                            Text("\(crop.cropName ?? "...")")
-                                            
-                                        }
-                                        .padding(.horizontal, CGFloat(8))
-                                        
-                                        
-                                    }
-                                    
+                                NavigationLink(destination: CropListFilterView(chosenCrops: $chosenCrops).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                    Text("Choose Crops")
                                 }
-                                
-                                
-                            }
+                                HStack {
+                                    // Flexible grid of cropnames
+                                    FlexibleView(
+                                        data: chosenCrops,
+                                        spacing: CGFloat(8),
+                                        alignment: .leading
+                                    ) { crop in
+                                        
+                                        Text("\(crop.cropName ?? "...")")
+                                            .padding(.vertical, 6)
+                                            .padding(.horizontal, 8)
+                                            .foregroundColor(.white)
+                                            .background(settings.bgColor.opacity(0.9))
+                                            .cornerRadius(20)
+                                            .buttonStyle(BorderlessButtonStyle()) // Bug fix so that entire row doesn't highlight
+                                        
+                                    }
+                                    .padding(.horizontal, CGFloat(8))
+                                }
+                            } // end section
                             
                             // Filtering by tags
                             Section(header: Text("Filter by tag:")
                                         .font(.headline)
-                                    
                             ) {
                                 
                                 NavigationLink(destination: TagListFilterView(chosenTags: $chosenTags).environment(\.managedObjectContext, self.managedObjectContext)) {
@@ -119,7 +116,6 @@ struct AnalysisView: View {
                                 }
                                 
                                 HStack {
-                                    
                                     // Flexible grid of potential tags
                                     FlexibleView(
                                         data: chosenTags,
@@ -132,9 +128,8 @@ struct AnalysisView: View {
                                         
                                     }
                                     .padding(.horizontal, CGFloat(8))
-                                    
                                 }
-                            }
+                            } // end section
                             
                             
                         }

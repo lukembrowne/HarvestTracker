@@ -12,7 +12,7 @@ struct CropRowFilterView: View {
     
     var crop: Crop
     @Binding var chosenCrops: [Crop]
-    
+    @EnvironmentObject var settings: UserSettings
     
     
     var body: some View {
@@ -34,6 +34,7 @@ struct CropRowFilterView: View {
                     
                     if chosenCrops.contains(self.crop) {
                         Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(settings.bgColor)
                     } else {
                         Image(systemName: "circle")
                     }

@@ -94,6 +94,7 @@ struct AnalysisView: View {
                                     ) { crop in
                                         
                                         Text("\(crop.cropName ?? "...")")
+                                            .fontWeight(.semibold)
                                             .padding(.vertical, 6)
                                             .padding(.horizontal, 8)
                                             .foregroundColor(.white)

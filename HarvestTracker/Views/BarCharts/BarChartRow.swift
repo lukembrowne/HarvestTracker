@@ -30,7 +30,6 @@ public struct BarChartRow : View {
         guard let max = data.max() else {
             return 1
         }
-        print("maxvalue is: \(max)")
         return max != 0 ? max : 1
     }
     
@@ -59,20 +58,29 @@ public struct BarChartRow : View {
                         
                     } else {
                         
-                        
+                        // Y axis labels
                         HStack {
                             
                             VStack {
                                 // Y axis label at the top
                                 Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
-                                    .font(.footnote)
+                                    .font(.caption2)
                                     .offset(x: 0, y: -8)
                                 
                                 Spacer()
                                 
+                                Text("Amount")
+                                    .rotationEffect(.degrees(-90))
+                                    .font(.caption2)
+                                    .offset(x: -25, y: -4)
+                                
+                                Spacer()
+                                
+                                
+                                
                                 // Y axis lab at bottom
                                 Text("0 \(settings.unitString)")
-                                    .font(.footnote)
+                                    .font(.caption2)
                             }
                         }
                             
@@ -97,14 +105,14 @@ public struct BarChartRow : View {
                                             BarChartCell(value: self.normalizedValue(index: i),
                                                          label: labels[i],
                                                          index: i,
-                                                         width: Float(geometry.frame(in: .local).width - 55), // Original width offset was 22
+                                                         width: Float(geometry.frame(in: .local).width - 55), // Original width offset was 22, changed to 55
                                                          numberOfDataPoints: self.data.count,
                                                          touchLocation: self.$touchLocation)
                                                 
                                                 .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.4, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
                                                 .animation(.spring())
                                         } // end foreach
-                                    } // end hstack
+                                    } // end hstack                               
                                     
                                     
                                     // Year label
@@ -116,8 +124,9 @@ public struct BarChartRow : View {
                                     }// vstack
                                 } // zstack
                             } // zstack
-                        } // hstack
-                    } // if else
+
+                        } // if else
+                    }
                 }
                 .padding([.top, .leading, .trailing, .bottom], 10)
             }

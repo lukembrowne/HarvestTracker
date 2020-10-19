@@ -36,6 +36,7 @@ public struct BarChartCell : View {
     public var body: some View {
         
         VStack {
+            
             ZStack {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(LinearGradient(gradient:
@@ -47,11 +48,14 @@ public struct BarChartCell : View {
             .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))
             
             Text(label)
-                .font(.footnote)
+//                .font(.caption)
+                .font(.system(size: 10))
+//                .frame(width: CGFloat(self.cellWidth + 5), height: CGFloat(5))
+                .rotationEffect(.degrees(-45))
+//                .offset(x:0, y:10)
+                .fixedSize(horizontal: true, vertical: true)
 
         }
-        
-        
     }
     
 }

@@ -128,18 +128,31 @@ struct HarvestCalculator {
             } // End harvest loop
         } // End if harvests has elements
         
-        let chartData = ChartData(values: [("1", monthlyTotals[0]),
-                                           ("2", monthlyTotals[1]),
-                                           ("3", monthlyTotals[2]),
-                                           ("4", monthlyTotals[3]),
-                                           ("5", monthlyTotals[4]),
-                                           ("6", monthlyTotals[5]),
-                                           ("7", monthlyTotals[6]),
-                                           ("8", monthlyTotals[7]),
-                                           ("9", monthlyTotals[8]),
-                                           ("10", monthlyTotals[9]),
-                                           ("11", monthlyTotals[10]),
-                                           ("12", monthlyTotals[11])])
+        let chartData = ChartData(values: [("Jan", monthlyTotals[0]),
+                                           ("Feb", monthlyTotals[1]),
+                                           ("Mar", monthlyTotals[2]),
+                                           ("Apr", monthlyTotals[3]),
+                                           ("May", monthlyTotals[4]),
+                                           ("Jun", monthlyTotals[5]),
+                                           ("Jul", monthlyTotals[6]),
+                                           ("Aug", monthlyTotals[7]),
+                                           ("Sep", monthlyTotals[8]),
+                                           ("Oct", monthlyTotals[9]),
+                                           ("Nov", monthlyTotals[10]),
+                                           ("Dec", monthlyTotals[11])])
+        
+//        let chartData = ChartData(values: [("1", monthlyTotals[0]),
+//                                           ("2", monthlyTotals[1]),
+//                                           ("3", monthlyTotals[2]),
+//                                           ("4", monthlyTotals[3]),
+//                                           ("5", monthlyTotals[4]),
+//                                           ("6", monthlyTotals[5]),
+//                                           ("7", monthlyTotals[6]),
+//                                           ("8", monthlyTotals[7]),
+//                                           ("9", monthlyTotals[8]),
+//                                           ("10", monthlyTotals[9]),
+//                                           ("11", monthlyTotals[10]),
+//                                           ("12", monthlyTotals[11])])
         
         return chartData
         

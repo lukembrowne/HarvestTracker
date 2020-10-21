@@ -44,7 +44,6 @@ public struct BarChartView : View {
                     // Plot bars
                     BarChartRow(data: data.points.map{$0.1},
                                 labels: data.points.map{$0.0})
-                    
                 }
             } // Zstack
             .padding()

@@ -24,6 +24,7 @@ public struct BarChartCell : View {
     @EnvironmentObject var settings: UserSettings
     
     var value: Double
+    var rawValue: Double
     var label: String
     var index: Int = 0
     var width: Float
@@ -33,20 +34,40 @@ public struct BarChartCell : View {
     }
     
     @Binding var touchLocation: CGFloat
+    @Binding var showValue: Bool
     
     public var body: some View {
         
         VStack {
             
             ZStack {
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(LinearGradient(gradient:
-                                            Gradient(colors: [settings.bgColor.opacity(0.40), settings.bgColor]),
-                                         startPoint: .bottom, endPoint: .top))
+                
+                ZStack {
+                    
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(LinearGradient(gradient:
+                                                Gradient(colors: [settings.bgColor.opacity(0.40), settings.bgColor]),
+                                             startPoint: .bottom, endPoint: .top))
+                }
+                .frame(width: CGFloat(self.cellWidth))
+                .scaleEffect(CGSize(width: 1, height: self.value), anchor: .bottom)
+                .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))
+                
+                
+                if showValue {
+                    VStack{
+                        Text("\(Int(Measurement(value: rawValue, unit: UnitMass.grams).converted(to: settings.unitMass).value))")
+                            .font(.caption2)
+                            .fixedSize()
+                            .frame(width: CGFloat(self.cellWidth))
+                            .offset(x: 0, y: -15)
+                        Spacer()
+                            .zIndex(999)
+                    }
+                }
             }
-            .frame(width: CGFloat(self.cellWidth))
-            .scaleEffect(CGSize(width: 1, height: self.value), anchor: .bottom)
-            .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))
+            
+            
             
             Text(label)
                 .font(.caption2)
@@ -60,10 +81,10 @@ public struct BarChartCell : View {
     
 }
 
-#if DEBUG
-struct ChartCell_Previews : PreviewProvider {
-    static var previews: some View {
-        BarChartCell(value: Double(0.75), label: "Test", width: 320, numberOfDataPoints: 12, touchLocation: .constant(-1))
-    }
-}
-#endif
+//#if DEBUG
+//struct ChartCell_Previews : PreviewProvider {
+//    static var previews: some View {
+//        BarChartCell(value: Double(0.75), label: "Test", width: 320, numberOfDataPoints: 12, touchLocation: .constant(-1))
+//    }
+//}
+//#endif

@@ -33,6 +33,7 @@ public struct BarChartCell : View {
     }
     
     @Binding var touchLocation: CGFloat
+    
     public var body: some View {
         
         VStack {

@@ -31,24 +31,12 @@ struct HomeView: View {
                 
                 VStack {
                     
-                    Text("Harvest Tracker")
-                        .font(.largeTitle)
-                        .padding([.top, .horizontal])
-                        .foregroundColor(Color.white)
+//                    Text("Harvest")
+//                        .font(.largeTitle)
+//                        .padding([.top, .horizontal])
+//                        .foregroundColor(Color.white)
                     
-                    // Add bar chart view
-                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop]()))
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 20
-                            )
-                            .foregroundColor(Color.white)
-                            .shadow(radius: settings.cardShadowRadius)
-                            
-                        )
-                        .padding(settings.cardPadding)
-                    
-                    
+                   
                     Text("Recent Harvests")
                         .font(.title)
                         .foregroundColor(Color.white)
@@ -64,7 +52,22 @@ struct HomeView: View {
                             .shadow(radius: settings.cardShadowRadius)
                         )
                         .padding([.bottom, .horizontal], settings.cardPadding)
-                        .padding(.bottom, settings.cardPadding - 2)
+//                        .padding(.bottom, settings.cardPadding - 2)
+                    
+                    
+                    // Add bar chart view
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop]()))
+                        .background(
+                            RoundedRectangle(
+                                cornerRadius: 20
+                            )
+                            .foregroundColor(Color.white)
+                            .shadow(radius: settings.cardShadowRadius)
+                            
+                        )
+                        .padding([.horizontal, .bottom], settings.cardPadding)
+                    
+                    
                     
                 }
             }

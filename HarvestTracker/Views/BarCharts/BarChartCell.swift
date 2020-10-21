@@ -63,6 +63,7 @@ public struct BarChartCell : View {
                             .fixedSize()
                             .frame(width: CGFloat(self.cellWidth))
                             .offset(x: 0, y: -15)
+                            .opacity(opacity)
                         Spacer()
                             .zIndex(999)
                     }
@@ -78,6 +79,7 @@ public struct BarChartCell : View {
                 .rotationEffect(.degrees(-45))
                 .fixedSize(horizontal: true, vertical: true)
                 .padding([.bottom, .top], 5)
+                .opacity(opacity)
         }
     }
     

@@ -116,9 +116,8 @@ public struct BarChartRow : View {
                                                          touchLocation: self.$touchLocation,
                                                          showValue: self.$showValue,
                                                          opacity: self.$opacity[i])
-                                                
-                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                                .animation(.spring())
+//                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
+//                                                .animation(.spring())
                                         } // end foreach
                                         
                                         

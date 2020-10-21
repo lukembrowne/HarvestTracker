@@ -65,25 +65,16 @@ struct CropListView: View {
             settings.bgColor.ignoresSafeArea() // to color in notch
             
             VStack {
-                
-                VStack {
-                    
+                                    
                     // Title
                     HStack {
                         
-                        Spacer()
+//                        Spacer()
                         Text("Choose crop")
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
+                            .padding(.leading)
                         Spacer()
-                        
-                    }
-                    
-                    // Button to add new crop
-                    HStack {
-                        
-                        Spacer()
-                        
                         Button(action: {
                             self.isPresentedAddCrop = true
                             
@@ -114,9 +105,8 @@ struct CropListView: View {
                             .foregroundColor(settings.lightAccentColor)
                             .shadow(radius: settings.buttonShadowRadius)
                         )
-                        
                         Spacer()
-                    }
+                        
                 }
                 
                 // If no crops added yet

@@ -35,6 +35,7 @@ public struct BarChartCell : View {
     
     @Binding var touchLocation: CGFloat
     @Binding var showValue: Bool
+    @Binding var opacity: Double
     
     public var body: some View {
         
@@ -49,6 +50,7 @@ public struct BarChartCell : View {
                                                 Gradient(colors: [settings.bgColor.opacity(0.40), settings.bgColor]),
                                              startPoint: .bottom, endPoint: .top))
                 }
+                .opacity(opacity)
                 .frame(width: CGFloat(self.cellWidth))
                 .scaleEffect(CGSize(width: 1, height: self.value), anchor: .bottom)
                 .animation(Animation.spring().delay(self.touchLocation < 0 ?  Double(self.index) * 0.04 : 0))

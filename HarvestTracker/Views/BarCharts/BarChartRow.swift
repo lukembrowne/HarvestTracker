@@ -25,6 +25,7 @@ public struct BarChartRow : View {
     
     var data: [Double]
     var labels: [String]
+    @State var opacity = [Double](repeating: 1.0, count: 12)
     
     var maxValue: Double {
         guard let max = data.max() else {
@@ -113,33 +114,33 @@ public struct BarChartRow : View {
                                                          width: Float(geometry.size.width),
                                                          numberOfDataPoints: self.data.count,
                                                          touchLocation: self.$touchLocation,
-                                                         showValue: self.$showValue)
+                                                         showValue: self.$showValue,
+                                                         opacity: self.$opacity[i])
                                                 
                                                 .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
                                                 .animation(.spring())
                                         } // end foreach
-                                                                           
+                                        
                                         
                                     } // end hstack
-                                    .gesture(DragGesture()
+                                    .contentShape(Rectangle())
+                                    
+                                    .gesture(DragGesture(minimumDistance: 0)
                                                 .onChanged({ value in
                                                     self.touchLocation = value.location.x/geometry.size.width
                                                     self.showValue = true
-                                                    self.currentValue = self.getCurrentValue(width: geometry.size.width) ?? 0
-                                                    print("touch location is: \(self.touchLocation)")
-                                                    print("currentValue is: \(self.currentValue)")
+                                                    let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
+                                                    self.currentValue = self.data[currentIndex]
+                                                    self.opacity = [Double](repeating: 0.35, count: 12)
+                                                    self.opacity[currentIndex] = 1.0
                                                     
-                                                    //                                                    if(self.data.valuesGiven && self.formSize == ChartForm.medium) {
-                                                    //                                                        self.showLabelValue = true
-                                                    //                                                    }
                                                 })
                                                 .onEnded({ value in
                                                     self.showValue = false
                                                     self.showLabelValue = false
                                                     self.touchLocation = -1
+                                                    self.opacity = [Double](repeating: 1.0, count: 12)
                                                 })
-                                    )
-                                    .gesture(TapGesture()
                                     )
                                     
                                     
@@ -152,7 +153,11 @@ public struct BarChartRow : View {
                                     } // vstack
                                     
                                 } // zstack with year label
+                                
+                                
                             } // zstack
+                            
+                            
                         } // zstack
                     } // if else for no harvest data
                 }
@@ -181,5 +186,16 @@ public struct BarChartRow : View {
         
         return self.data[index]
     }
+    
+    func getCurrentIndex(width: CGFloat) -> Int? {
+        
+        guard self.data.count > 0 else { return nil}
+        
+        let index = max(0,min(self.data.count-1,Int(floor((self.touchLocation*width)/(width/CGFloat(self.data.count))))))
+        
+        return index
+    }
+    
+    
 }
 

@@ -112,7 +112,6 @@ public struct BarChartRow : View {
                                             BarChartCell(value: self.normalizedValue(index: i),
                                                          label: labels[i],
                                                          index: i,
-//                                                         width: Float(geometry.frame(in: .local).width - 55),// Original width offset was 22, changed to 55
                                                          width: Float(geometry.size.width),
                                                          numberOfDataPoints: self.data.count,
                                                          touchLocation: self.$touchLocation)
@@ -142,9 +141,7 @@ public struct BarChartRow : View {
                                     .gesture(TapGesture()
                                     )
                                     
-                                    
 
-                                
                                 // Year label
                                 VStack {
                                     Spacer()
@@ -152,11 +149,11 @@ public struct BarChartRow : View {
                                         .font(.caption)
                                         .offset(x: 0, y: 20)
                                 }// vstack
-                                }
+                                    
+                                } // zstack with year label
                             } // zstack
                         } // zstack
-                        
-                    } // if else
+                    } // if else for no harvest data
                 }
             }
             .padding([.top, .leading, .trailing, .bottom], 10)

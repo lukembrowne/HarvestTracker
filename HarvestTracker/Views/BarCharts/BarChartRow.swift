@@ -34,9 +34,18 @@ public struct BarChartRow : View {
         return max != 0 ? max : 1
     }
     
+    var maxValueDisplay: Double {
+        guard let max = data.max() else {
+            return 1
+        }
+//        return max != 0 ? max : 1
+        return Measurement(value: max, unit: UnitMass.grams).converted(to: settings.unitMass).value
+    }
+    
     // For dragging gesture
     @State private var touchLocation: CGFloat = -1.0
-    @State private var showValue: Bool = false
+//    @State private var showValue: Bool = false
+    @State private var showValue = [Bool](repeating: false, count: 12)
     @State private var showLabelValue: Bool = false
     @State private var currentValue: Double = 0
     @Binding var year: Int
@@ -69,7 +78,8 @@ public struct BarChartRow : View {
                             
                             VStack {
                                 // Y axis label at the top
-                                Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
+//                                Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
+                                Text("\(maxValueDisplay, specifier: "%.1f") \(settings.unitString)")
                                     .font(.caption2)
                                     .offset(x: 0, y: -8)
                                 
@@ -115,7 +125,7 @@ public struct BarChartRow : View {
                                                          width: Float(geometry.size.width),
                                                          numberOfDataPoints: self.data.count,
                                                          touchLocation: self.$touchLocation,
-                                                         showValue: self.$showValue,
+                                                         showValue: self.$showValue[i],
                                                          opacity: self.$opacity[i])
 //                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
 //                                                .animation(.spring())
@@ -128,15 +138,17 @@ public struct BarChartRow : View {
                                     .gesture(DragGesture(minimumDistance: 0)
                                                 .onChanged({ value in
                                                     self.touchLocation = value.location.x/geometry.size.width
-                                                    self.showValue = true
                                                     let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
                                                     self.currentValue = self.data[currentIndex]
+                                                    self.showValue = [Bool](repeating: false, count: 12)
+                                                    self.showValue[currentIndex] = true
                                                     self.opacity = [Double](repeating: 0.35, count: 12)
                                                     self.opacity[currentIndex] = 1.0
                                                     
                                                 })
                                                 .onEnded({ value in
-                                                    self.showValue = false
+                                                    let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
+                                                    self.showValue[currentIndex] = false
                                                     self.showLabelValue = false
                                                     self.touchLocation = -1
                                                     self.opacity = [Double](repeating: 1.0, count: 12)

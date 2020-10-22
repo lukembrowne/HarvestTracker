@@ -32,6 +32,9 @@ public struct BarChartCell : View {
     var cellWidth: Double {
         return Double(width)/(Double(numberOfDataPoints) * 1.5)
     }
+    var rawValueDisplay: Double {
+        return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: settings.unitMass).value
+    }
     
     @Binding var touchLocation: CGFloat
     @Binding var showValue: Bool
@@ -58,7 +61,7 @@ public struct BarChartCell : View {
                 
                 if showValue {
                     VStack{
-                        Text("\(Int(Measurement(value: rawValue, unit: UnitMass.grams).converted(to: settings.unitMass).value))")
+                        Text("\(rawValueDisplay, specifier: "%.1f")")
                             .font(.caption2)
                             .fixedSize()
                             .frame(width: CGFloat(self.cellWidth))

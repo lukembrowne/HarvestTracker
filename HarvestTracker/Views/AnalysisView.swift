@@ -87,7 +87,7 @@ struct AnalysisView: View {
                                             
                                             Spacer()
                                             
-                                            if chosenCrops.count > 1 {
+                                            if chosenCrops.count > 0 {
                                                 Button(action: {
                                                     self.chosenCrops = [Crop]()
                                                 }, label: {
@@ -130,7 +130,7 @@ struct AnalysisView: View {
                                 
                                 Spacer()
                                 
-                                if chosenTags.count > 1 {
+                                if chosenTags.count > 0 {
                                     Button(action: {
                                         self.chosenTags = [Tag]()
                                     }, label: {

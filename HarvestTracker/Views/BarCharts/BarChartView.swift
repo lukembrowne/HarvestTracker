@@ -30,12 +30,14 @@ public struct BarChartView : View {
     public var formSize:CGSize
     public var valueSpecifier:String
     @Binding var year: Int
+    @Binding var chosenUnit: String
     
-    init(data:ChartData, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f", year: Binding<Int>){
+    init(data:ChartData, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f", year: Binding<Int>, chosenUnit: Binding<String>){
         self.data = data
         self.formSize = form!
         self.valueSpecifier = valueSpecifier!
         self._year = year
+        self._chosenUnit = chosenUnit
     }
     
     public var body: some View {
@@ -47,7 +49,8 @@ public struct BarChartView : View {
                     // Plot bars
                     BarChartRow(data: data.points.map{$0.1},
                                 labels: data.points.map{$0.0},
-                                year: $year)
+                                year: $year,
+                                chosenUnit: $chosenUnit)
                 }
             } // Zstack
             .padding()

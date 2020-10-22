@@ -33,12 +33,41 @@ public struct BarChartCell : View {
         return Double(width)/(Double(numberOfDataPoints) * 1.5)
     }
     var rawValueDisplay: Double {
-        return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: settings.unitMass).value
+        // Update unitMass to convert to proper unit
+        switch chosenUnit {
+        
+        case "oz":
+            //                print("Default unit set to oz")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "lb":
+            //                print("Default unit set to lb")
+            let unitMass = UnitMass.pounds
+            return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "g":
+            //                print("Default unit set to g")
+            let unitMass = UnitMass.grams
+            return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "kg":
+            //                print("Default unit set to kg")
+            let unitMass = UnitMass.kilograms
+            return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        default:
+            //                print("No default unit chosen")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
+        }
     }
     
     @Binding var touchLocation: CGFloat
     @Binding var showValue: Bool
     @Binding var opacity: Double
+    @Binding var chosenUnit: String
+
     
     public var body: some View {
         

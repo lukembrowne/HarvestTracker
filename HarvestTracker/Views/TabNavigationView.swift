@@ -23,13 +23,13 @@ struct TabNavigationView: View {
         
         TabView(selection: $selectedTab) {
             
-            HomeView()
+            HomeView(settings: settings)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }.tag(1)
             
-            AnalysisView().environment(\.managedObjectContext, self.managedObjectContext)
+            AnalysisView(settings: settings).environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Analysis")

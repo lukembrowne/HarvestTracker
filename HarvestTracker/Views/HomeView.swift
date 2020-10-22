@@ -20,6 +20,11 @@ struct HomeView: View {
     @EnvironmentObject var settings: UserSettings
     
     @State var currentYear = Binding.constant(Calendar.current.component(.year, from: Date()))
+    @State var chosenUnit: String
+    
+    init(settings: UserSettings){
+        self._chosenUnit = State(initialValue: settings.unitString)
+    }
          
     
     var body: some View {
@@ -59,7 +64,7 @@ struct HomeView: View {
                     
                     // Add bar chart view
                     BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop](), filterByYear: currentYear),
-                                 year: currentYear) // Get current year
+                                 year: currentYear, chosenUnit: $chosenUnit ) // Get current year
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20
@@ -70,17 +75,8 @@ struct HomeView: View {
                         )
                         .padding([.horizontal, .bottom], settings.cardPadding)
                     
-                    
-                    
                 }
             }
         }
-    }
-}
-
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView().environmentObject(UserSettings())
     }
 }

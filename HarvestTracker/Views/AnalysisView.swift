@@ -42,6 +42,14 @@ struct AnalysisView: View {
     @State var displayedCrops = [Crop]()
     @State var chosenYear = Calendar.current.component(.year, from: Date()) // get current year
     
+    @State var chosenUnit: String
+    var units = ["oz", "lb", "g", "kg"]
+    
+    
+    init(settings: UserSettings){
+        self._chosenUnit = State(initialValue: settings.unitString)
+    }
+    
     var body: some View {
         
         
@@ -62,7 +70,8 @@ struct AnalysisView: View {
                     // Add bar chart view
                     BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags,
                                                                                               filterByCrops: chosenCrops, filterByYear: $chosenYear),
-                                 year: $chosenYear)
+                                 year: $chosenYear,
+                                 chosenUnit: $chosenUnit)
                                     .background(
                                         RoundedRectangle(
                                             cornerRadius: 20
@@ -163,6 +172,21 @@ struct AnalysisView: View {
                             // Enter harvest date
                             Section(header: Text("Filter by year:").font(.headline)) {
                                 Stepper(String(chosenYear), value: $chosenYear, in: 1950...2040)
+                            }
+                            
+                            // Change displayed unit of weight
+                            Section(header: Text("Change display unit")
+                                        .font(.headline)
+                            ) {
+                                
+                                Picker("units", selection: $chosenUnit) {
+                                    ForEach(0 ..< units.count) { index in
+                                        Text(self.units[index])
+                                            .tag(self.units[index])
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+                                
                             }
                             
                         

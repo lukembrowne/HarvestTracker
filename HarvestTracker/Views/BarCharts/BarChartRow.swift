@@ -38,17 +38,46 @@ public struct BarChartRow : View {
         guard let max = data.max() else {
             return 1
         }
-//        return max != 0 ? max : 1
-        return Measurement(value: max, unit: UnitMass.grams).converted(to: settings.unitMass).value
+        
+        // Update unitMass to convert to proper unit
+        switch chosenUnit {
+        
+        case "oz":
+            //                print("Default unit set to oz")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "lb":
+            //                print("Default unit set to lb")
+            let unitMass = UnitMass.pounds
+            return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "g":
+            //                print("Default unit set to g")
+            let unitMass = UnitMass.grams
+            return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "kg":
+            //                print("Default unit set to kg")
+            let unitMass = UnitMass.kilograms
+            return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        default:
+            //                print("No default unit chosen")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
+        }
+        
     }
     
     // For dragging gesture
     @State private var touchLocation: CGFloat = -1.0
-//    @State private var showValue: Bool = false
+    //    @State private var showValue: Bool = false
     @State private var showValue = [Bool](repeating: false, count: 12)
     @State private var showLabelValue: Bool = false
     @State private var currentValue: Double = 0
     @Binding var year: Int
+    @Binding var chosenUnit: String
     
     public var body: some View {
         
@@ -78,8 +107,8 @@ public struct BarChartRow : View {
                             
                             VStack {
                                 // Y axis label at the top
-//                                Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
-                                Text("\(maxValueDisplay, specifier: "%.1f") \(settings.unitString)")
+                                //                                Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
+                                Text("\(maxValueDisplay, specifier: "%.1f") \(chosenUnit)")
                                     .font(.caption2)
                                     .offset(x: 0, y: -8)
                                 
@@ -93,7 +122,7 @@ public struct BarChartRow : View {
                                 Spacer()
                                 
                                 // Y axis lab at bottom
-                                Text("0 \(settings.unitString)")
+                                Text("0 \(chosenUnit)")
                                     .font(.caption2)
                             }
                         }
@@ -126,9 +155,10 @@ public struct BarChartRow : View {
                                                          numberOfDataPoints: self.data.count,
                                                          touchLocation: self.$touchLocation,
                                                          showValue: self.$showValue[i],
-                                                         opacity: self.$opacity[i])
-//                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
-//                                                .animation(.spring())
+                                                         opacity: self.$opacity[i],
+                                                         chosenUnit: $chosenUnit)
+                                            //                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
+                                            //                                                .animation(.spring())
                                         } // end foreach
                                         
                                         

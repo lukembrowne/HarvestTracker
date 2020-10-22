@@ -44,7 +44,7 @@ struct HarvestCalculator {
     // Returns array of monthly harvest totals by month
     
     // TODO: - make it work by year as well
-    func calcTotalByMonth(filterByTags tags: [Tag], filterByCrops crops: [Crop]) -> ChartData {
+    func calcTotalByMonth(filterByTags tags: [Tag], filterByCrops crops: [Crop], filterByYear yearFilter: Binding<Int>) -> ChartData {
         
         // Initialize empty array of monthly totals
         var monthlyTotals = [Double](repeating: 0, count: 12)
@@ -59,7 +59,6 @@ struct HarvestCalculator {
             
             // Start harvest loop
             for harvestIndex in 0...harvests.count - 1 {
-                
                 
                 
                 // Loop over tags if there are tags to filter by
@@ -115,10 +114,16 @@ struct HarvestCalculator {
                         
                         let yearMonth = Calendar.current.dateComponents([.year, .month], from: date)
                         
-                        if let month = yearMonth.month {
+                        
+                        // Filter by year
+                        if yearMonth.year ?? 0 == yearFilter.wrappedValue {
                             
-                            // Add to monthly totals
-                            monthlyTotals[month - 1] += harvests[harvestIndex].amountStandardized
+                            if let month = yearMonth.month {
+                                
+                                // Add to monthly totals
+                                monthlyTotals[month - 1] += harvests[harvestIndex].amountStandardized
+                            }
+                            
                         }
                     } // end if date exists
                     

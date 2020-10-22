@@ -26,13 +26,16 @@ public struct BarChartView : View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     @ObservedObject private var data: ChartData
+    
     public var formSize:CGSize
     public var valueSpecifier:String
+    @Binding var year: Int
     
-    init(data:ChartData, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f"){
+    init(data:ChartData, legend: String? = nil, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage:Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f", year: Binding<Int>){
         self.data = data
         self.formSize = form!
         self.valueSpecifier = valueSpecifier!
+        self._year = year
     }
     
     public var body: some View {
@@ -43,7 +46,8 @@ public struct BarChartView : View {
 
                     // Plot bars
                     BarChartRow(data: data.points.map{$0.1},
-                                labels: data.points.map{$0.0})
+                                labels: data.points.map{$0.0},
+                                year: $year)
                 }
             } // Zstack
             .padding()
@@ -76,12 +80,3 @@ public struct BarChartView : View {
 //        return self.data.points[index]
 //    }
 }
-
-#if DEBUG
-struct ChartView_Previews : PreviewProvider {
-    static var previews: some View {
-        BarChartView(data: TestData.values ,
-                     valueSpecifier: "%.0f").environmentObject(UserSettings())
-    }
-}
-#endif

@@ -40,6 +40,7 @@ struct AnalysisView: View {
     @State var chosenTags = [Tag]()
     @State var chosenCrops = [Crop]()
     @State var displayedCrops = [Crop]()
+    @State var chosenYear = Calendar.current.component(.year, from: Date()) // get current year
     
     var body: some View {
         
@@ -59,13 +60,15 @@ struct AnalysisView: View {
                         .foregroundColor(Color.white)
                     
                     // Add bar chart view
-                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags, filterByCrops: chosenCrops))
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 20
-                            )
-                            .foregroundColor(Color.white)
-                            .shadow(radius: settings.cardShadowRadius)
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags,
+                                                                                              filterByCrops: chosenCrops, filterByYear: $chosenYear),
+                                 year: $chosenYear)
+                                    .background(
+                                        RoundedRectangle(
+                                            cornerRadius: 20
+                                        )
+                                        .foregroundColor(Color.white)
+                                        .shadow(radius: settings.cardShadowRadius)
                             
                         )
                         .padding(settings.cardPadding)
@@ -132,6 +135,12 @@ struct AnalysisView: View {
                                 }
                             } // end section
                             
+                            // Enter harvest date
+                            Section(header: Text("Filter by year:").font(.headline)) {
+                                Stepper(String(chosenYear), value: $chosenYear, in: 1950...2040)
+                            }
+                            
+                        
                             
                         }
                         .navigationBarTitle("Filters", displayMode: .inline) // Avoid large white space if viewing from Settings

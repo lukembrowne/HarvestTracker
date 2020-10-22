@@ -39,6 +39,7 @@ public struct BarChartRow : View {
     @State private var showValue: Bool = false
     @State private var showLabelValue: Bool = false
     @State private var currentValue: Double = 0
+    @Binding var year: Int
     
     public var body: some View {
         
@@ -146,7 +147,7 @@ public struct BarChartRow : View {
                                     // Year label
                                     VStack {
                                         Spacer()
-                                        Text("2020")
+                                        Text(String(year))
                                             .font(.caption)
                                             .offset(x: 0, y: 20)
                                     } // vstack

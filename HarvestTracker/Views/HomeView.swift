@@ -18,6 +18,8 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var settings: UserSettings
+    
+    @State var currentYear = Binding.constant(Calendar.current.component(.year, from: Date()))
          
     
     var body: some View {
@@ -56,7 +58,8 @@ struct HomeView: View {
                     
                     
                     // Add bar chart view
-                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop]()))
+                    BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: [Tag](), filterByCrops: [Crop](), filterByYear: currentYear),
+                                 year: currentYear) // Get current year
                         .background(
                             RoundedRectangle(
                                 cornerRadius: 20

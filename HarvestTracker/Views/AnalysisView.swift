@@ -81,12 +81,24 @@ struct AnalysisView: View {
                         Form {
                             
                             
-                            Section(header: Text("Filter by crop:")
-                                        .font(.headline)
-                                    
+                            Section(header:
+                                        HStack {Text("Filter by crop:")
+                                            .font(.headline)
+                                            
+                                            Spacer()
+                                            
+                                            if chosenCrops.count > 1 {
+                                                Button(action: {
+                                                    self.chosenCrops = [Crop]()
+                                                }, label: {
+                                                    Text("Deselect all")
+                                                })
+                                            }
+                                        }
                             ) {
                                 NavigationLink(destination: CropListFilterView(chosenCrops: $chosenCrops).environment(\.managedObjectContext, self.managedObjectContext)) {
-                                    Text("Choose Crops")
+                                        Text("Choose Crops")
+
                                 }
                                 HStack {
                                     // Flexible grid of cropnames
@@ -107,12 +119,25 @@ struct AnalysisView: View {
                                         
                                     }
                                     .padding(.horizontal, CGFloat(8))
+                                    
                                 }
                             } // end section
                             
                             // Filtering by tags
-                            Section(header: Text("Filter by tag:")
-                                        .font(.headline)
+                            Section(header:  HStack {
+                                Text("Filter by tag:")
+                                .font(.headline)
+                                
+                                Spacer()
+                                
+                                if chosenTags.count > 1 {
+                                    Button(action: {
+                                        self.chosenTags = [Tag]()
+                                    }, label: {
+                                        Text("Deselect all")
+                                    })
+                                }
+                            }
                             ) {
                                 
                                 NavigationLink(destination: TagListFilterView(chosenTags: $chosenTags).environment(\.managedObjectContext, self.managedObjectContext)) {

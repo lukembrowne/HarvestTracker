@@ -69,8 +69,7 @@ struct CropListView: View {
                     // Title
                     HStack {
                         
-//                        Spacer()
-                        Text("Choose crop")
+                        Text("Choose a crop")
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                             .padding(.leading)
@@ -80,12 +79,12 @@ struct CropListView: View {
                             
                         },
                         label: {
-                            Image(systemName: "plus")
+                            Image(systemName: "plus.circle")
                                 .foregroundColor(Color.white)
-                            Text("New crop")
+                            Text("Add crop")
                                 .foregroundColor(Color.white)
                         })
-                        .padding(settings.cardPadding)
+                        .padding(settings.cardPadding - 2)
                         .sheet(isPresented: $isPresentedAddCrop) {
                             
                             if(cropEditMode) {
@@ -105,8 +104,6 @@ struct CropListView: View {
                             .foregroundColor(settings.lightAccentColor)
                             .shadow(radius: settings.buttonShadowRadius)
                         )
-                        Spacer()
-                        
                 }
                 
                 // If no crops added yet

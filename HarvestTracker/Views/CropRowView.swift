@@ -11,6 +11,7 @@ import SwiftUI
 struct CropRowView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var settings: UserSettings
 
     
     var crop: Crop
@@ -24,7 +25,8 @@ struct CropRowView: View {
     var body: some View {
         
         HStack {
-            Image(systemName: "chevron.right.circle")
+            Image(systemName: "chevron.right.circle.fill")
+                .foregroundColor(settings.bgColor)
             Text(verbatim: crop.cropName ?? "")
             Spacer()
         }.onTapGesture {

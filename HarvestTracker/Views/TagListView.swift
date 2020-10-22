@@ -35,27 +35,23 @@ struct TagListView: View {
             
             VStack {
                 
-                VStack {
                     // Title
                     HStack {
-                        Spacer()
-                        Text("Tag list")
+                        Text("Tags")
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
+                            .padding(.leading)
                         Spacer()
-                    }
                     
                     // New tag button
-                    HStack {
-                        Spacer()
                         Button(action: { self.isPresentedAddTag.toggle()},
                                label: {
-                                Image(systemName: "plus")
+                                Image(systemName: "plus.circle")
                                     .foregroundColor(Color.white)
-                                Text("New Tag")
+                                Text("Add Tag")
                                     .foregroundColor(Color.white)
                                })
-                            .padding(settings.cardPadding)
+                            .padding(settings.cardPadding - 2)
                             .sheet(isPresented: $isPresentedAddTag) {
                                 AddTagView(inEditMode: false,
                                            isPresentedAddTag: $isPresentedAddTag)
@@ -68,9 +64,7 @@ struct TagListView: View {
                                 .foregroundColor(settings.lightAccentColor)
                                 .shadow(radius: settings.buttonShadowRadius)
                             )
-                        Spacer()
                     }
-                }
                 
                 // If no tags added yet
                 if(tags.count == 0) {
@@ -103,7 +97,8 @@ struct TagListView: View {
                         ForEach(tags, id: \.self) { tag in
                             
                             HStack {
-                                Image(systemName: "chevron.right.circle")
+                                Image(systemName: "chevron.right.circle.fill")
+                                    .foregroundColor(settings.bgColor)
                                 TagView(tag: tag,
                                         tagBeingEdited: self.$tagBeingEdited,
                                         isPresentedEditTag: self.$isPresentedEditTag,

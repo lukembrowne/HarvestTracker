@@ -71,6 +71,14 @@ struct SettingsView: View {
                         Spacer()
                         Text("0.1")
                     }
+                    HStack {
+                        Link("App Icon by Ewa Mazur", destination: URL(string: "https://www.iconfinder.com/mypoint13k")!)
+                        Spacer()
+                    }
+                    HStack {
+                        Link("Graph based on ChartView", destination: URL(string: "https://github.com/AppPear/ChartView")!)
+                        Spacer()
+                    }
                 }
             }
             .navigationBarTitle("Settings")

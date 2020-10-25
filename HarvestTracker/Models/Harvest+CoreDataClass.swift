@@ -35,10 +35,8 @@ public class Harvest: NSManagedObject {
         newHarvest.amountEntered = Double(amountEntered) ?? 0.0
         newHarvest.harvestDate = harvestDate
         newHarvest.unitEntered = unit
-        
         // Loop over tags in set and
         chosenTags.forEach {tag in
-            print("Adding tag \(tag)")
             tag.addToHarvestArray(newHarvest)
             
         }

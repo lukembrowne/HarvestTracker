@@ -39,10 +39,11 @@ struct HarvestRowView: View {
                 }
                 Spacer()
                 
-                Text(String(harvest.amountEntered))
+                Text("\(harvest.amountEntered, specifier: "%.1f")")
                     .font(.title)
                 Text(String(harvest.unitEntered ?? "def"))
                     .font(.caption)
+                
                 
             }
             

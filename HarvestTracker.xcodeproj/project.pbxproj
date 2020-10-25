@@ -50,6 +50,9 @@
 		A3D98B7824FA83F4003ED12E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3D98B7624FA83F4003ED12E /* LaunchScreen.storyboard */; };
 		A3D98B8024FA85F1003ED12E /* HarvestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */; };
 		A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D98B8124FA8691003ED12E /* AddHarvestView.swift */; };
+		A3EFDB77254591B500D84A61 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFDB76254591B500D84A61 /* OnboardingView.swift */; };
+		A3EFDB7A254591D700D84A61 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFDB79254591D700D84A61 /* ViewRouter.swift */; };
+		A3EFDB7D2545921200D84A61 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EFDB7C2545921200D84A61 /* MotherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +101,9 @@
 		A3D98B7924FA83F4003ED12E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRowView.swift; sourceTree = "<group>"; };
 		A3D98B8124FA8691003ED12E /* AddHarvestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvestView.swift; sourceTree = "<group>"; };
+		A3EFDB76254591B500D84A61 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A3EFDB79254591D700D84A61 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		A3EFDB7C2545921200D84A61 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		B73BC71BFA6627FB1BA3953B /* Pods-HarvestTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HarvestTracker.debug.xcconfig"; path = "Target Support Files/Pods-HarvestTracker/Pods-HarvestTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		F7F8D4207FBB68E47F972F7A /* Pods_HarvestTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HarvestTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,6 +145,8 @@
 				A3D98B7F24FA85F1003ED12E /* HarvestRowView.swift */,
 				A3A739B925011238005A2E5F /* HarvestTotalView.swift */,
 				A32CEFE72514D3560085A2EF /* HomeView.swift */,
+				A3EFDB7C2545921200D84A61 /* MotherView.swift */,
+				A3EFDB76254591B500D84A61 /* OnboardingView.swift */,
 				A395A1E925220B340062983D /* SettingsView.swift */,
 				A320188D250B9D5A0010943E /* TabNavigationView.swift */,
 				A3490F1E252384E2002B7E15 /* TagListView.swift */,
@@ -169,6 +177,7 @@
 				A36230EE24FEE89E00A672FD /* CropDataDefault.swift */,
 				A3C12B3E251CC92A0021FAF0 /* HarvestCalculator.swift */,
 				A31E05232523520A00448C45 /* UserSettings.swift */,
+				A3EFDB79254591D700D84A61 /* ViewRouter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,10 +376,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A97F062539AD2B0010E093 /* TagViewCrop.swift in Sources */,
+				A3EFDB7D2545921200D84A61 /* MotherView.swift in Sources */,
 				A3BEF328253C653C004409F0 /* TagListFilterView.swift in Sources */,
 				A30D5BFF24FFC615000073AE /* AddCropView.swift in Sources */,
 				A3D98B6924FA83F0003ED12E /* AppDelegate.swift in Sources */,
 				A3BEF322253C60D7004409F0 /* CropListFilterView.swift in Sources */,
+				A3EFDB7A254591D700D84A61 /* ViewRouter.swift in Sources */,
 				A36230F124FFBDF800A672FD /* CropListView.swift in Sources */,
 				A3C12B31251CB5B10021FAF0 /* BarChartRow.swift in Sources */,
 				A3D98B8224FA8691003ED12E /* AddHarvestView.swift in Sources */,
@@ -379,6 +390,7 @@
 				A32CEFE82514D3560085A2EF /* HomeView.swift in Sources */,
 				A37236D62508F9A400BFF24C /* Harvest+CoreDataClass.swift in Sources */,
 				A37236D72508F9A400BFF24C /* Harvest+CoreDataProperties.swift in Sources */,
+				A3EFDB77254591B500D84A61 /* OnboardingView.swift in Sources */,
 				A395A1EA25220B340062983D /* SettingsView.swift in Sources */,
 				A3490F2725238B9C002B7E15 /* Tag+CoreDataClass.swift in Sources */,
 				A3A739BA25011238005A2E5F /* HarvestTotalView.swift in Sources */,

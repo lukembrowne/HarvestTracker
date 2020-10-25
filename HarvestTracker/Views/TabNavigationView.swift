@@ -18,7 +18,6 @@ struct TabNavigationView: View {
     @State private var selectedTab = 1
     @State var isPresentedChooseCrop = false
 
-
     var body: some View {
         
         TabView(selection: $selectedTab) {

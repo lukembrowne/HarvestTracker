@@ -40,6 +40,8 @@ struct AddHarvestView: View {
     @State var chosenTags = [Tag]()
     
     @State var showingNoCropAlert = false
+    @State var showingInvalidAmountAlert = false
+    
     @State var isPresentedCropList = false
     @Binding var isPresentedAddHarvest: Bool
     @State var isPresentedAddTag = false
@@ -110,7 +112,7 @@ struct AddHarvestView: View {
                     Spacer()
                     Button(action: {
                         
-                        if self.chosenCrop != nil {
+                        if self.chosenCrop != nil && Double(self.chosenAmount) != nil {
                             
                             if(inEditMode){
                                 self.updateHarvestAction()
@@ -118,9 +120,13 @@ struct AddHarvestView: View {
                                 self.addHarvestAction()
                             }
                             
-                        } else {
+                        } else if self.chosenCrop == nil {
                             print("Chosen crop is nil")
                             self.showingNoCropAlert.toggle()
+                            
+                        } else if Double(self.chosenAmount) == nil {
+                            print("Entered amount is nil")
+                            self.showingInvalidAmountAlert.toggle()
                         }
                     },
                     label: {
@@ -233,7 +239,7 @@ struct AddHarvestView: View {
                         
                         // Flexible grid of potential tags
                         FlexibleView(
-                            data: chosenTags,
+                            data: tags,
                             spacing: CGFloat(8),
                             alignment: .leading
                         ) { tag in
@@ -246,7 +252,10 @@ struct AddHarvestView: View {
                     
                 }
                 .alert(isPresented: $showingNoCropAlert) {
-                    Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("No crop chosen 😬"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
+                }
+                .alert(isPresented: $showingInvalidAmountAlert) {
+                    Alert(title: Text("Invalid amount 😬"), message: Text("Sometimes an extra decimal or two gets thrown in there. Or maybe it's empty!"), dismissButton: .default(Text("Got it!")))
                 }
                 
                 

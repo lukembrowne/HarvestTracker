@@ -156,7 +156,7 @@ class Testing {
         let arc4 = GKARC4RandomSource()
         let amountRng = GKGaussianDistribution(randomSource: arc4, mean: 10, deviation: 3)
         let dayRng = GKGaussianDistribution(lowestValue: 1, highestValue: 27)
-        let monthRng = GKGaussianDistribution(randomSource: arc4, mean: 6, deviation: 1.5)
+        let monthRng = GKGaussianDistribution(randomSource: arc4, mean: 7, deviation: 1.5)
                 
         let nSims = 100
         print("Generating data for \(nSims) simulated harvests")

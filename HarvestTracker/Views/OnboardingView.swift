@@ -21,15 +21,21 @@ struct OnboardingView: View {
     init() {
         
         self.pages = [IntroPage]()
-        self.pages.append(IntroPage(imageName: "AppIcon_nobg",
-                                    title: "Track your harvests",
-                                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"))
-        self.pages.append(IntroPage(imageName: "AppIcon_nobg",
-                                    title: "Add your own crops and tags",
-                                    description: "Harvest Tracker comes with many common vegetables and crops pre-loaded, but you can add and customize your list of crops however you'd like. "))
-        self.pages.append(IntroPage(imageName: "AppIcon_nobg",
+        self.pages.append(IntroPage(imageName: "OnboardingScreen1",
+                                    title: "Welcome!",
+                                    description: "The purpose of Harvest Tracker is to provide a tool to keep track of and better understand the timing and amounts of harvests coming from your garden. Use it to optimize your planting, or just satisfy your curiosity."))
+        self.pages.append(IntroPage(imageName: "OnboardingScreen2",
+                                    title: "Add your harvests",
+                                    description: "The first step is to add some harvest data - choose the crop, weight, date, and any tags that may apply."))
+        self.pages.append(IntroPage(imageName: "OnboardingScreen3",
+                                    title: "Add your own crops",
+                                    description: "Harvest Tracker comes with many common crops pre-loaded, but you can add and customize your list of crops however you'd like."))
+        self.pages.append(IntroPage(imageName: "OnboardingScreen4",
+                                    title: "Add your own tags",
+                                    description: "You can add tags to every harvest as another useful way to organize and visualize patterns in your harvest data. You can customize your tags however you'd like."))
+        self.pages.append(IntroPage(imageName: "OnboardingScreen5",
                                     title: "Visualize your harvest data",
-                                    description: "Once you have some harvests entered, you'll be able to your harvest amounts over time and filter based on date, crop type, and tag."))
+                                    description: "Once you have some harvests entered, you'll be able to visualize your harvest amounts over time, filtering based on date, crop type, and tag."))
         
     }
     
@@ -101,26 +107,50 @@ struct IntroPageView: View {
     
     var body: some View {
         
+//        VStack {
+//            Spacer()
+//            Image(self.page.imageName)
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//            Spacer()
+//            Group {
+//                HStack {
+//                    Text(self.page.title)
+//                        .font(.title)
+//                        .foregroundColor(Color.white)
+//                    Spacer()
+//                }
+//                HStack {
+//                    Text(self.page.description)
+//                        .foregroundColor(Color.white)
+//                    Spacer()
+//                }
+//            }
+//            .padding()
+//        }
+        
         VStack {
-            Spacer()
-            Image(self.page.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            Spacer()
-            Group {
-                HStack {
-                    Text(self.page.title)
-                        .font(.title)
-                        .foregroundColor(Color.white)
-                    Spacer()
-                }
-                HStack {
-                    Text(self.page.description)
-                        .foregroundColor(Color.white)
-                    Spacer()
-                }
-            }
-            .padding()
-        }
+                   Spacer()
+            Text(self.page.title)
+                .font(.title)
+                .foregroundColor(Color.white)
+                   Spacer()
+                   Group {
+                       HStack {
+                        Spacer()
+                           
+                        Image(self.page.imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                           Spacer()
+                       }
+                       HStack {
+                           Text(self.page.description)
+                               .foregroundColor(Color.white)
+                           Spacer()
+                       }
+                   }
+                   .padding()
+               }
     }
 }

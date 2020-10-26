@@ -28,6 +28,8 @@ struct CropListView: View {
     
     @State var isPresentedAddCrop = false
     @State var isPresentedAddHarvest = false
+    @State var isPresentedConfirmDelete = false
+    @State private var deleteIndexSet: IndexSet?
     var cropEditMode: Bool
     @Binding var harvestEditMode: Bool
     
@@ -142,8 +144,10 @@ struct CropListView: View {
                                     cropEditMode: cropEditMode,
                                     harvestEditMode: $harvestEditMode)
                     }
-                    .onDelete(perform: deleteCrop)
-                    
+                    .onDelete(perform: { indexSet in
+                        self.isPresentedConfirmDelete.toggle()
+                        self.deleteIndexSet = indexSet
+                    })
                     
                 } // list
                 // Display addharvestview when crop is finally selected
@@ -168,16 +172,32 @@ struct CropListView: View {
             .padding(settings.cardPadding)
             .padding(.bottom, settings.cardPadding - 2)
         } // ZStack
+        .actionSheet(isPresented: $isPresentedConfirmDelete) {
+            
+            let indexSet = self.deleteIndexSet!
+            let crop = self.crops[indexSet.first ?? 0] // is this a dangerous potential for a bug?
+
+            return ActionSheet(title: Text("Are you sure you want to delete \(crop.cropName!)?"), message: Text("Any harvests from this crop will no longer be associated with any crop!"),
+                               buttons: [
+                                .destructive(Text("Yes, delete \(crop.cropName!)")) {
+                                                self.deleteCrop(at: indexSet)
+                                            },
+                                .cancel()
+                               ])
+        } // end action sheet
         
         
     } // view
     
     // Maybe there is a way to factor this out into Crop, but not sure how
     func deleteCrop(at offsets: IndexSet) {
+        
         offsets.forEach { index in
             let crop = self.crops[index]
             Crop.deleteCrop(crop: crop, in: self.managedObjectContext)
         }
+        
+        
     }
 }
 

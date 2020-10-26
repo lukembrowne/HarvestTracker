@@ -36,6 +36,9 @@ struct HarvestListView: View {
     @State var chosenHarvest: Harvest?
     @State var chosenCrop: Crop?
     
+    @State var isPresentedConfirmDelete = false
+    @State private var deleteIndexSet: IndexSet?
+    
     var body: some View {
         
         
@@ -61,8 +64,10 @@ struct HarvestListView: View {
                                        isPresentedAddHarvest: $isPresentedEditHarvest)
                             .padding(3)
                     }
-                    .onDelete(perform: deleteHarvest)
-                    
+                    .onDelete(perform: { indexSet in
+                        self.isPresentedConfirmDelete.toggle()
+                        self.deleteIndexSet = indexSet
+                    })
                     
                 } // End List View
                 // When harvest is tapped, open up editing mode
@@ -85,6 +90,18 @@ struct HarvestListView: View {
                 Crop.loadDefaultCrops(in: self.managedObjectContext)
             }
         } // End on Appear
+        .actionSheet(isPresented: $isPresentedConfirmDelete) {
+            
+            let indexSet = self.deleteIndexSet!
+
+            return ActionSheet(title: Text("Are you sure you want to delete this harvest?"), message: Text("The data will be lost forever!"),
+                               buttons: [
+                                .destructive(Text("Yes, please delete")) {
+                                                self.deleteHarvest(at: indexSet)
+                                            },
+                                .cancel()
+                               ])
+        } // end action sheet
         
     } // End Body
     

@@ -26,6 +26,9 @@ struct TagListView: View {
     @State var isPresentedEditTag = false
     @State var tagBeingEdited: Tag?
     
+    @State var isPresentedConfirmDelete = false
+    @State private var deleteIndexSet: IndexSet?
+    
     
     var body: some View {
         
@@ -105,7 +108,10 @@ struct TagListView: View {
                             }
                             
                         }
-                        .onDelete(perform: deleteTag)
+                        .onDelete(perform: { indexSet in
+                            self.isPresentedConfirmDelete.toggle()
+                            self.deleteIndexSet = indexSet
+                        })
                         
                     } // list
                     // When tag is tapped, open up editing mode
@@ -133,6 +139,19 @@ struct TagListView: View {
             .padding(.bottom, settings.cardPadding - 2)
             
         } // Zstack
+        .actionSheet(isPresented: $isPresentedConfirmDelete) {
+            
+            let indexSet = self.deleteIndexSet!
+            let tag = self.tags[indexSet.first ?? 0]
+
+            return ActionSheet(title: Text("Are you sure you want to delete the \(tag.tagName!) tag?"), message: Text("Any harvests with this tag will lose its tag!"),
+                               buttons: [
+                                .destructive(Text("Yes, please delete \(tag.tagName!)")) {
+                                                self.deleteTag(at: indexSet)
+                                            },
+                                .cancel()
+                               ])
+        } // end action sheet
         
     } // view
     

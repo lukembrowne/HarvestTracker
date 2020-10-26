@@ -35,6 +35,7 @@ public struct BarChartRow : View {
     }
     
     var maxValueDisplay: Double {
+        
         guard let max = data.max() else {
             return 1
         }
@@ -70,6 +71,43 @@ public struct BarChartRow : View {
         
     }
     
+    var totalValueDisplay: Double {
+        
+        let total = data.reduce(0, +)
+        
+        // Update unitMass to convert to proper unit
+        switch chosenUnit {
+        
+        case "oz":
+            //                print("Default unit set to oz")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "lb":
+            //                print("Default unit set to lb")
+            let unitMass = UnitMass.pounds
+            return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "g":
+            //                print("Default unit set to g")
+            let unitMass = UnitMass.grams
+            return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        case "kg":
+            //                print("Default unit set to kg")
+            let unitMass = UnitMass.kilograms
+            return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
+            
+        default:
+            //                print("No default unit chosen")
+            let unitMass = UnitMass.ounces
+            return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
+        }
+    }
+    
+    
+    
+    
     // For dragging gesture
     @State private var touchLocation: CGFloat = -1.0
     //    @State private var showValue: Bool = false
@@ -94,8 +132,7 @@ public struct BarChartRow : View {
                         HStack {
                             
                             VStack {
-                                // Y axis label at the top
-                                //                                Text("\(Int(Measurement(value: maxValue, unit: UnitMass.grams).converted(to: settings.unitMass).value)) \(settings.unitString)")
+
                                 Text("\(maxValueDisplay, specifier: "%.1f") \(chosenUnit)")
                                     .font(.caption2)
                                     .offset(x: 0, y: -8)
@@ -193,32 +230,50 @@ public struct BarChartRow : View {
                 }
                 .padding([.top, .leading, .trailing, .bottom], 10)
                 
-                // Year label
-                HStack {
-                    Button(action: {
-                        print("subtract")
-                        self.year = self.year - 1
-                    }, label: {
-                        Image(systemName: "minus.circle")
-                            .foregroundColor(settings.bgColor)
+                // Year label and total harvest amount
+                ZStack  {
+                    
+                    // Total harvest amount
+                    HStack {
+                        Text("Total:")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                        
+                        Text("\(totalValueDisplay, specifier: "%.1f") \(chosenUnit)")
+                            .font(.caption)
+                        
+                        Spacer()
+                    }
+                    
+                    // Year label
+                    HStack {
+                        Button(action: {
+                            self.year = self.year - 1
+                        }, label: {
+                            Image(systemName: "minus.circle")
+                                .foregroundColor(settings.bgColor)
+                                
+                            })
+                        
+                        
+                        Text(String(year))
+                            .font(.caption)
+                        
+                        Button(action: {
+                            self.year = self.year + 1
+                            
+                        }, label: {
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(settings.bgColor)
                             
                         })
-                    
-                    
-                    Text(String(year))
-                        .font(.caption)
-                    
-                    Button(action: {
-                        print("add")
-                        self.year = self.year + 1
                         
-                    }, label: {
-                        Image(systemName: "plus.circle")
-                            .foregroundColor(settings.bgColor)
-                        
-                    })
+                    }
+                    
                     
                 }
+                
+               
                 
                 
             }

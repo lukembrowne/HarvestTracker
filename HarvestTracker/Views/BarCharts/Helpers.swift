@@ -156,6 +156,7 @@ class Testing {
         let arc4 = GKARC4RandomSource()
         let amountRng = GKGaussianDistribution(randomSource: arc4, mean: 10, deviation: 3)
         let dayRng = GKGaussianDistribution(lowestValue: 1, highestValue: 27)
+        let yearRng = GKGaussianDistribution(lowestValue: 2015, highestValue: 2020)
         let monthRng = GKGaussianDistribution(randomSource: arc4, mean: 7, deviation: 1.5)
                 
         let nSims = 100
@@ -188,7 +189,7 @@ class Testing {
             }
             
             // Simulate date
-            let simDate =  "2019-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
+            let simDate =  String(yearRng.nextInt()) + "-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
             
             
             Harvest.addHarvest(crop: crops.randomElement(),

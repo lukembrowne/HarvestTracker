@@ -169,10 +169,10 @@ struct AnalysisView: View {
                                 }
                             } // end section
                             
-                            // Enter harvest date
-                            Section(header: Text("Filter by year:").font(.headline)) {
-                                Stepper(String(chosenYear), value: $chosenYear, in: 1950...2040)
-                            }
+//                            // Enter harvest date
+//                            Section(header: Text("Filter by year:").font(.headline)) {
+//                                Stepper(String(chosenYear), value: $chosenYear, in: 1950...2040)
+//                            }
                             
                             // Change displayed unit of weight
                             Section(header: Text("Change display unit")

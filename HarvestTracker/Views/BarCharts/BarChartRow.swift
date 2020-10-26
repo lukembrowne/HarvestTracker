@@ -83,24 +83,12 @@ public struct BarChartRow : View {
         
         GeometryReader { geometry in
             
-            HStack(alignment: .bottom, spacing: (geometry.frame(in: .local).width-22)/CGFloat(self.data.count * 3)){
+            // Vstack with main graph on top and year label on bottom
+            VStack {
                 
-                HStack {
+                HStack(alignment: .bottom, spacing: (geometry.frame(in: .local).width-22)/CGFloat(self.data.count * 3)){
                     
-                    // If no harvest data found, display text in center of view
-                    if data.max() == 0 {
-                        
-                        HStack{
-                            Spacer()
-                            VStack {
-                                Spacer()
-                                Text("No harvest data found!")
-                                Spacer()
-                            }
-                            Spacer()
-                        }
-                        
-                    } else {
+                    HStack {
                         
                         // Y axis labels
                         HStack {
@@ -129,6 +117,20 @@ public struct BarChartRow : View {
                         
                         ZStack {
                             
+                            // If no harvest data found, display text in center of view
+                            if(data.max() == 0 ) {
+                                HStack{
+                                    Spacer()
+                                    VStack {
+                                        Spacer()
+                                        Text("No harvest data yet!")
+                                        Spacer()
+                                    }
+                                    Spacer()
+                                }
+                            }
+                            
+                            
                             // Add dashed line at the top
                             Path{ path in
                                 path.move(to: CGPoint(x: 0, y: 0))
@@ -142,69 +144,87 @@ public struct BarChartRow : View {
                             // Bars
                             GeometryReader { geometry in
                                 
-                                ZStack {
-                                    
-                                    HStack {
-                                        ForEach(0..<self.data.count, id: \.self) { i in
-                                            
-                                            BarChartCell(value: self.normalizedValue(index: i),
-                                                         rawValue: data[i],
-                                                         label: labels[i],
-                                                         index: i,
-                                                         width: Float(geometry.size.width),
-                                                         numberOfDataPoints: self.data.count,
-                                                         touchLocation: self.$touchLocation,
-                                                         showValue: self.$showValue[i],
-                                                         opacity: self.$opacity[i],
-                                                         chosenUnit: $chosenUnit)
-                                            //                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                            //                                                .animation(.spring())
-                                        } // end foreach
+                                HStack {
+                                    ForEach(0..<self.data.count, id: \.self) { i in
                                         
-                                        
-                                    } // end hstack
-                                    .contentShape(Rectangle())
-                                    
-                                    .gesture(DragGesture(minimumDistance: 0)
-                                                .onChanged({ value in
-                                                    self.touchLocation = value.location.x/geometry.size.width
-                                                    let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
-                                                    self.currentValue = self.data[currentIndex]
-                                                    self.showValue = [Bool](repeating: false, count: 12)
-                                                    self.showValue[currentIndex] = true
-                                                    self.opacity = [Double](repeating: 0.35, count: 12)
-                                                    self.opacity[currentIndex] = 1.0
-                                                    
-                                                })
-                                                .onEnded({ value in
-                                                    let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
-                                                    self.showValue[currentIndex] = false
-                                                    self.showLabelValue = false
-                                                    self.touchLocation = -1
-                                                    self.opacity = [Double](repeating: 1.0, count: 12)
-                                                })
-                                    )
+                                        BarChartCell(value: self.normalizedValue(index: i),
+                                                     rawValue: data[i],
+                                                     label: labels[i],
+                                                     index: i,
+                                                     width: Float(geometry.size.width),
+                                                     numberOfDataPoints: self.data.count,
+                                                     touchLocation: self.$touchLocation,
+                                                     showValue: self.$showValue[i],
+                                                     opacity: self.$opacity[i],
+                                                     chosenUnit: $chosenUnit)
+                                        //                                                .scaleEffect(self.touchLocation > CGFloat(i)/CGFloat(self.data.count) && self.touchLocation < CGFloat(i+1)/CGFloat(self.data.count) ? CGSize(width: 1.05, height: 1.05) : CGSize(width: 1, height: 1), anchor: .bottom)
+                                        //                                                .animation(.spring())
+                                    } // end foreach
                                     
                                     
-                                    // Year label
-                                    VStack {
-                                        Spacer()
-                                        Text(String(year))
-                                            .font(.caption)
-                                            .offset(x: 0, y: 20)
-                                    } // vstack
-                                    
-                                } // zstack with year label
+                                } // end hstack
+                                .contentShape(Rectangle())
                                 
+                                .gesture(DragGesture(minimumDistance: 0)
+                                            .onChanged({ value in
+                                                self.touchLocation = value.location.x/geometry.size.width
+                                                let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
+                                                self.currentValue = self.data[currentIndex]
+                                                self.showValue = [Bool](repeating: false, count: 12)
+                                                self.showValue[currentIndex] = true
+                                                self.opacity = [Double](repeating: 0.35, count: 12)
+                                                self.opacity[currentIndex] = 1.0
+                                                
+                                            })
+                                            .onEnded({ value in
+                                                let currentIndex = self.getCurrentIndex(width: geometry.size.width) ?? 0
+                                                self.showValue[currentIndex] = false
+                                                self.showLabelValue = false
+                                                self.touchLocation = -1
+                                                self.opacity = [Double](repeating: 1.0, count: 12)
+                                            })
+                                )
                                 
                             } // zstack
                             
                             
                         } // zstack
-                    } // if else for no harvest data
+                    }
                 }
+                .padding([.top, .leading, .trailing, .bottom], 10)
+                
+                // Year label
+                HStack {
+                    Button(action: {
+                        print("subtract")
+                        self.year = self.year - 1
+                    }, label: {
+                        Image(systemName: "minus.circle")
+                            .foregroundColor(settings.bgColor)
+                            
+                        })
+                    
+                    
+                    Text(String(year))
+                        .font(.caption)
+                    
+                    Button(action: {
+                        print("add")
+                        self.year = self.year + 1
+                        
+                    }, label: {
+                        Image(systemName: "plus.circle")
+                            .foregroundColor(settings.bgColor)
+                        
+                    })
+                    
+                }
+                
+                
             }
-            .padding([.top, .leading, .trailing, .bottom], 10)
+            
+            
+            
         }
     }
     

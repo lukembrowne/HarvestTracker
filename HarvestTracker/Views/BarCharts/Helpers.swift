@@ -188,7 +188,7 @@ class Testing {
             }
             
             // Simulate date
-            let simDate =  "2020-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
+            let simDate =  "2019-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
             
             
             Harvest.addHarvest(crop: crops.randomElement(),

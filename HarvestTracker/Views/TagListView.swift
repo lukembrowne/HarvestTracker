@@ -97,8 +97,7 @@ struct TagListView: View {
                         ForEach(tags, id: \.self) { tag in
                             
                             HStack {
-                                Image(systemName: "chevron.right.circle.fill")
-                                    .foregroundColor(settings.bgColor)
+                                Image(systemName: "chevron.right")
                                 TagView(tag: tag,
                                         tagBeingEdited: self.$tagBeingEdited,
                                         isPresentedEditTag: self.$isPresentedEditTag,

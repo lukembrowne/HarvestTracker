@@ -25,8 +25,7 @@ struct CropRowView: View {
     var body: some View {
         
         HStack {
-            Image(systemName: "chevron.right.circle.fill")
-                .foregroundColor(settings.bgColor)
+            Image(systemName: "chevron.right")
             Text(verbatim: crop.cropName ?? "")
             Spacer()
         }.onTapGesture {

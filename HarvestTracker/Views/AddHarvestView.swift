@@ -223,6 +223,7 @@ struct AddHarvestView: View {
                             HStack {
                                 Image(systemName: "plus.circle")
                                 Text("Add new tag")
+                                    .fontWeight(.semibold)
                             }
                             
                         })

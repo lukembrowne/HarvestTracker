@@ -62,10 +62,15 @@ struct AnalysisView: View {
                 
                 VStack {
                     
-//                    Text("Analysis")
-//                        .font(.largeTitle)
-//                        .padding([.top, .horizontal])
-//                        .foregroundColor(Color.white)
+                    
+                    HStack {
+                        Text("Analysis")
+                            .font(.title)
+                            .foregroundColor(Color.white)
+                            .padding(.leading)
+                        Spacer()
+                    }
+
                     
                     // Add bar chart view
                     BarChartView(data: HarvestCalculator(harvests: harvests).calcTotalByMonth(filterByTags: chosenTags,

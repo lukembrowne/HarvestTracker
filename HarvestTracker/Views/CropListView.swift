@@ -72,7 +72,7 @@ struct CropListView: View {
                     HStack {
                         
                         Text("Choose a crop")
-                            .font(.largeTitle)
+                            .font(.title)
                             .foregroundColor(Color.white)
                             .padding(.leading)
                         Spacer()
@@ -83,7 +83,7 @@ struct CropListView: View {
                         label: {
                             Image(systemName: "plus.circle")
                                 .foregroundColor(Color.white)
-                            Text("Add crop")
+                            Text("New crop")
                                 .foregroundColor(Color.white)
                         })
                         .padding(settings.cardPadding - 2)

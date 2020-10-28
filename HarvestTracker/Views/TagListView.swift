@@ -41,7 +41,7 @@ struct TagListView: View {
                     // Title
                     HStack {
                         Text("Tags")
-                            .font(.largeTitle)
+                            .font(.title)
                             .foregroundColor(Color.white)
                             .padding(.leading)
                         Spacer()
@@ -51,7 +51,7 @@ struct TagListView: View {
                                label: {
                                 Image(systemName: "plus.circle")
                                     .foregroundColor(Color.white)
-                                Text("Add Tag")
+                                Text("New Tag")
                                     .foregroundColor(Color.white)
                                })
                             .padding(settings.cardPadding - 2)

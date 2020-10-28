@@ -38,15 +38,13 @@ struct HomeView: View {
                 
                 VStack {
                     
-//                    Text("Harvest")
-//                        .font(.largeTitle)
-//                        .padding([.top, .horizontal])
-//                        .foregroundColor(Color.white)
-                    
-                   
-                    Text("Recent Harvests")
-                        .font(.title)
-                        .foregroundColor(Color.white)
+                    HStack {
+                        Text("Recent Harvests")
+                            .font(.title)
+                            .foregroundColor(Color.white)
+                            .padding(.leading)
+                        Spacer()
+                    }
                     
                     HarvestListView()
                         .frame(height: geometry.size.height * 0.6)

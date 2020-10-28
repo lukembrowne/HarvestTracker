@@ -23,7 +23,7 @@ struct OnboardingView: View {
         self.pages = [IntroPage]()
         self.pages.append(IntroPage(imageName: "OnboardingScreen1",
                                     title: "Welcome!",
-                                    description: "The purpose of Harvest Tracker is to provide a tool to keep track of and better understand the timing and amounts of harvests coming from your garden. Use it to optimize your planting, or just satisfy your curiosity."))
+                                    description: "The purpose of Harvest Tracker is to provide a tool to better understand the harvests coming from your garden. Use it to optimize your planting, or just satisfy your curiosity. Swipe left to continue the tutorial."))
         self.pages.append(IntroPage(imageName: "OnboardingScreen2",
                                     title: "Add your harvests",
                                     description: "The first step is to add some harvest data - choose the crop, weight, date, and any tags that may apply."))
@@ -35,7 +35,7 @@ struct OnboardingView: View {
                                     description: "You can add tags to every harvest as another useful way to organize and visualize patterns in your harvest data. You can customize your tags however you'd like."))
         self.pages.append(IntroPage(imageName: "OnboardingScreen5",
                                     title: "Visualize your harvest data",
-                                    description: "Once you have some harvests entered, you'll be able to visualize your harvest amounts over time, filtering based on date, crop type, and tag."))
+                                    description: "Once you have some harvests entered, you'll be able to create graphs of your harvest amounts over time, filtering based on date, crop type, and tag."))
         
     }
     
@@ -107,50 +107,42 @@ struct IntroPageView: View {
     
     var body: some View {
         
-//        VStack {
-//            Spacer()
-//            Image(self.page.imageName)
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//            Spacer()
-//            Group {
-//                HStack {
-//                    Text(self.page.title)
-//                        .font(.title)
-//                        .foregroundColor(Color.white)
-//                    Spacer()
-//                }
-//                HStack {
-//                    Text(self.page.description)
-//                        .foregroundColor(Color.white)
-//                    Spacer()
-//                }
-//            }
-//            .padding()
-//        }
-        
         VStack {
-                   Spacer()
+            Spacer()
             Text(self.page.title)
                 .font(.title)
                 .foregroundColor(Color.white)
-                   Spacer()
-                   Group {
-                       HStack {
-                        Spacer()
-                           
-                        Image(self.page.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                           Spacer()
-                       }
-                       HStack {
-                           Text(self.page.description)
-                               .foregroundColor(Color.white)
-                           Spacer()
-                       }
-                   }
-                   .padding()
-               }
+            Spacer()
+                        
+            HStack {
+                Text(self.page.description)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
+                        
+            //            HStack {
+            //                Spacer()
+            //                Image("AppIcon_nobg")
+            //                    .resizable()
+            //                    .aspectRatio(contentMode: .fit)
+            //                    .frame(height: 50)
+            //
+            //                Spacer()
+            //            }
+            
+            
+            
+            HStack {
+                Spacer()
+                
+                Image(self.page.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(20)
+                Spacer()
+            }
+            .padding()
+        }
     }
 }

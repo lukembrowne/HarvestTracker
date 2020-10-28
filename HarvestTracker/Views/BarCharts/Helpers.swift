@@ -140,6 +140,14 @@ class Testing {
         Tag.addTag(tagName: "Backyard",
                    tagColor: Color(UIColor(hexString: "#4585F6")),
                    in: managedObjectContext)
+        // Add tag to database
+        Tag.addTag(tagName: "Heirloom",
+                   tagColor: Color(UIColor(hexString: "#8C33B6")),
+                   in: managedObjectContext)
+        // Add tag to database
+        Tag.addTag(tagName: "Porch",
+                   tagColor: Color(UIColor(hexString: "#479FD3")),
+                   in: managedObjectContext)
         
     }
     

@@ -99,10 +99,10 @@ struct AddHarvestView: View {
                 // Title
                 HStack{
                     if(inEditMode) {
-                        Text("Edit harvest")
+                        Text("Edit harvest details")
                             .font(.headline)
                     } else {
-                        Text("Add harvest")
+                        Text("Enter harvest details")
                             .font(.headline)
                     }
                 }

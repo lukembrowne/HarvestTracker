@@ -175,16 +175,15 @@ struct AddHarvestView: View {
                 } // End select crop section
                 
                 
-                
                 // Enter amount
                 Section(header: Text("Amount")) {
                     
                     TextField("Amount", text: $chosenAmount)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.decimalPad)
-                        .introspectTextField { textField in
-                            textField.becomeFirstResponder()
-                        }
+//                        .introspectTextField { textField in
+//                            textField.becomeFirstResponder()
+//                        }
                     
                     
                     Picker("units", selection: $chosenUnit) {

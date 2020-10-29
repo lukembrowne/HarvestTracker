@@ -22,9 +22,6 @@ class ViewRouter: ObservableObject {
             currentPage = "tabNavigationView"
         }
         
-        // For testing onboarding
-            currentPage = "onboardingView"
-        
     }
     
 }

@@ -121,127 +121,127 @@ extension UIColor {
 }
 
 
-
-class Testing {
-    
-    
-    // Create tags
-    func createTags(in managedObjectContext: NSManagedObjectContext) {
-        
-        // Add tag to database
-        Tag.addTag(tagName: "Organic",
-                   tagColor: Color(UIColor(hexString: "#86B953")),
-                   in: managedObjectContext)
-        // Add tag to database
-        Tag.addTag(tagName: "Container",
-                   tagColor: Color(UIColor(hexString: "#D03A20")),
-                   in: managedObjectContext)
-        // Add tag to database
-        Tag.addTag(tagName: "Backyard",
-                   tagColor: Color(UIColor(hexString: "#4585F6")),
-                   in: managedObjectContext)
-        // Add tag to database
-        Tag.addTag(tagName: "Heirloom",
-                   tagColor: Color(UIColor(hexString: "#8C33B6")),
-                   in: managedObjectContext)
-        // Add tag to database
-        Tag.addTag(tagName: "Porch",
-                   tagColor: Color(UIColor(hexString: "#479FD3")),
-                   in: managedObjectContext)
-        
-    }
-    
-    
-    // Create harvests
-    func createHarvests(in managedObjectContext: NSManagedObjectContext) {
-        
-        var crops = [Crop]()
-        var tags = [Tag]()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let arc4 = GKARC4RandomSource()
-        let amountRng = GKGaussianDistribution(randomSource: arc4, mean: 10, deviation: 3)
-        let dayRng = GKGaussianDistribution(lowestValue: 1, highestValue: 27)
-        let yearRng = GKGaussianDistribution(lowestValue: 2015, highestValue: 2020)
-        let monthRng = GKGaussianDistribution(randomSource: arc4, mean: 7, deviation: 1.5)
-                
-        let nSims = 100
-        print("Generating data for \(nSims) simulated harvests")
-        
-        for _ in 1...nSims {
-            
-            var tagsToApply = [Tag]()
-            
-            let nTags = Int.random(in: 1..<3)
-            
-            do {
-                
-                let cropsFetch = NSFetchRequest<Crop>(entityName: "Crop")
-                //                cropsFetch.predicate = NSPredicate(format: "cropName == %@", cropName)
-                
-                try crops = managedObjectContext.fetch(cropsFetch)
-                try tags = managedObjectContext.fetch(NSFetchRequest<Tag>(entityName: "Tag"))
-                
-                tags = tags.shuffled()
-                
-                for n in 1...nTags {
-                    tagsToApply.append(tags[n])
-                }
-                
-            } catch {
-                print("Fetching failed")
-                
-                
-            }
-            
-            // Simulate date
-            let simDate =  String(yearRng.nextInt()) + "-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
-            
-            
-            Harvest.addHarvest(crop: crops.randomElement(),
-                               amountEntered: String(amountRng.nextInt()),
-                               harvestDate: dateFormatter.date(from: simDate) ?? Date(),
-                               unit: "oz",
-                               chosenTags: tagsToApply,
-                               isPresented: Binding.constant(false),
-                               in: managedObjectContext)
-            
-        } // nSim loop
-        
-    } // end create Harvests
-    
-    
-    // Create harvests
-    func deleteAllData(in managedObjectContext: NSManagedObjectContext) {
-        
-        var tags = [Tag]()
-        var harvests = [Harvest]()
-        
-        do {
-            
-            print("Deleting all harvests and tags...")
-            
-            try tags = managedObjectContext.fetch(NSFetchRequest<Tag>(entityName: "Tag"))
-            try harvests = managedObjectContext.fetch(NSFetchRequest<Harvest>(entityName: "Harvest"))
-            
-            
-            for tag in tags {
-                
-                Tag.deleteTag(tag: tag, in: managedObjectContext)
-            }
-            
-            for harvest in harvests {
-                Harvest.deleteHarvest(harvest: harvest, in: managedObjectContext)
-            }
-            
-        } catch {
-            print("Fetching failed")
-        }
-        
-    } // end delete all data
-    
-}
+//
+//class Testing {
+//    
+//    
+//    // Create tags
+//    func createTags(in managedObjectContext: NSManagedObjectContext) {
+//        
+//        // Add tag to database
+//        Tag.addTag(tagName: "Organic",
+//                   tagColor: Color(UIColor(hexString: "#86B953")),
+//                   in: managedObjectContext)
+//        // Add tag to database
+//        Tag.addTag(tagName: "Container",
+//                   tagColor: Color(UIColor(hexString: "#D03A20")),
+//                   in: managedObjectContext)
+//        // Add tag to database
+//        Tag.addTag(tagName: "Backyard",
+//                   tagColor: Color(UIColor(hexString: "#4585F6")),
+//                   in: managedObjectContext)
+//        // Add tag to database
+//        Tag.addTag(tagName: "Heirloom",
+//                   tagColor: Color(UIColor(hexString: "#8C33B6")),
+//                   in: managedObjectContext)
+//        // Add tag to database
+//        Tag.addTag(tagName: "Porch",
+//                   tagColor: Color(UIColor(hexString: "#479FD3")),
+//                   in: managedObjectContext)
+//        
+//    }
+//    
+//    
+//    // Create harvests
+//    func createHarvests(in managedObjectContext: NSManagedObjectContext) {
+//        
+//        var crops = [Crop]()
+//        var tags = [Tag]()
+//        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        
+//        let arc4 = GKARC4RandomSource()
+//        let amountRng = GKGaussianDistribution(randomSource: arc4, mean: 10, deviation: 3)
+//        let dayRng = GKGaussianDistribution(lowestValue: 1, highestValue: 27)
+//        let yearRng = GKGaussianDistribution(lowestValue: 2015, highestValue: 2020)
+//        let monthRng = GKGaussianDistribution(randomSource: arc4, mean: 7, deviation: 1.5)
+//                
+//        let nSims = 100
+//        print("Generating data for \(nSims) simulated harvests")
+//        
+//        for _ in 1...nSims {
+//            
+//            var tagsToApply = [Tag]()
+//            
+//            let nTags = Int.random(in: 1..<3)
+//            
+//            do {
+//                
+//                let cropsFetch = NSFetchRequest<Crop>(entityName: "Crop")
+//                //                cropsFetch.predicate = NSPredicate(format: "cropName == %@", cropName)
+//                
+//                try crops = managedObjectContext.fetch(cropsFetch)
+//                try tags = managedObjectContext.fetch(NSFetchRequest<Tag>(entityName: "Tag"))
+//                
+//                tags = tags.shuffled()
+//                
+//                for n in 1...nTags {
+//                    tagsToApply.append(tags[n])
+//                }
+//                
+//            } catch {
+//                print("Fetching failed")
+//                
+//                
+//            }
+//            
+//            // Simulate date
+//            let simDate =  String(yearRng.nextInt()) + "-" + String(monthRng.nextInt()) + "-" + String(dayRng.nextInt())
+//            
+//            
+//            Harvest.addHarvest(crop: crops.randomElement(),
+//                               amountEntered: String(amountRng.nextInt()),
+//                               harvestDate: dateFormatter.date(from: simDate) ?? Date(),
+//                               unit: "oz",
+//                               chosenTags: tagsToApply,
+//                               isPresented: Binding.constant(false),
+//                               in: managedObjectContext)
+//            
+//        } // nSim loop
+//        
+//    } // end create Harvests
+//    
+//    
+//    // Create harvests
+//    func deleteAllData(in managedObjectContext: NSManagedObjectContext) {
+//        
+//        var tags = [Tag]()
+//        var harvests = [Harvest]()
+//        
+//        do {
+//            
+//            print("Deleting all harvests and tags...")
+//            
+//            try tags = managedObjectContext.fetch(NSFetchRequest<Tag>(entityName: "Tag"))
+//            try harvests = managedObjectContext.fetch(NSFetchRequest<Harvest>(entityName: "Harvest"))
+//            
+//            
+//            for tag in tags {
+//                
+//                Tag.deleteTag(tag: tag, in: managedObjectContext)
+//            }
+//            
+//            for harvest in harvests {
+//                Harvest.deleteHarvest(harvest: harvest, in: managedObjectContext)
+//            }
+//            
+//        } catch {
+//            print("Fetching failed")
+//        }
+//        
+//    } // end delete all data
+//    
+//}
 
 

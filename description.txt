@@ -1,0 +1,12 @@
+## Description
+
+
+How many tomatos did you harvest last summer? I don't remember either, but Cosecha will keep track of that for you.
+
+Cosecha helps you:
+
+- Log the timing and amount of harvests coming out of your garden
+- Choose from many common crops and add your own
+- Organize your harvests with tags
+- Visualize how your harvests change over time with graphs
+- Optimize your garden, or just satisfy your curiosity

@@ -16,7 +16,7 @@ struct SettingsView: View {
     var units = ["oz", "lb", "g", "kg"]
     
     // If testing
-    let testing = Testing()
+//    let testing = Testing()
 
     
     
@@ -95,27 +95,27 @@ struct SettingsView: View {
                     }
                     
                     HStack {
-                        Link("Graph based on ChartView", destination: URL(string: "https://github.com/AppPear/ChartView")!)
+                        Link("Graph modified from ChartView", destination: URL(string: "https://github.com/AppPear/ChartView")!)
                         Spacer()
                     }
                 }
                 
-                // For testing
-                Section(header: Text("Load data")
-                            .font(.headline)
-                ) {
-                    Button("Load tags") {
-                        testing.createTags(in: self.managedObjectContext)
-                    }
-                    Button("Load harvests") {
-                        testing.createHarvests(in: self.managedObjectContext)
-                    }
-                    
-                    Button("Delete all data") {
-                        testing.deleteAllData(in: self.managedObjectContext)
-                    }
-                    
-                }
+//                // For testing
+//                Section(header: Text("Load data")
+//                            .font(.headline)
+//                ) {
+//                    Button("Load tags") {
+//                        testing.createTags(in: self.managedObjectContext)
+//                    }
+//                    Button("Load harvests") {
+//                        testing.createHarvests(in: self.managedObjectContext)
+//                    }
+//                    
+//                    Button("Delete all data") {
+//                        testing.deleteAllData(in: self.managedObjectContext)
+//                    }
+//                    
+//                }
                 
                 
                 

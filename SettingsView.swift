@@ -82,10 +82,18 @@ struct SettingsView: View {
                         Spacer()
                         Text("1.0")
                     }
+                    
+                    HStack {
+                        Link("Privacy policy", destination: URL(string: "https://github.com/lukembrowne/cosecha")!)
+                        Spacer()
+                    }
+                    
+                    
                     HStack {
                         Link("App Icon by Ewa Mazur", destination: URL(string: "https://www.iconfinder.com/mypoint13k")!)
                         Spacer()
                     }
+                    
                     HStack {
                         Link("Graph based on ChartView", destination: URL(string: "https://github.com/AppPear/ChartView")!)
                         Spacer()

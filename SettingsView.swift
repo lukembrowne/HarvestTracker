@@ -76,13 +76,12 @@ struct SettingsView: View {
                 // About section
                 Section(header: Text("About")
                             .font(.headline)
-//                            .foregroundColor(Color.white)
                 ) {
                     
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("0.1")
+                        Text("1.0")
                     }
                     HStack {
                         Link("App Icon by Ewa Mazur", destination: URL(string: "https://www.iconfinder.com/mypoint13k")!)
@@ -115,9 +114,7 @@ struct SettingsView: View {
                 
             }
             .navigationBarTitle("Settings")
-//            .onAppear {
-//                UITableView.appearance().backgroundColor = UIColor(settings.bgColor)
-//            }
+
             
         }
         

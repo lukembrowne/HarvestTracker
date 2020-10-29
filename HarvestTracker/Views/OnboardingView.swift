@@ -23,19 +23,19 @@ struct OnboardingView: View {
         self.pages = [IntroPage]()
         self.pages.append(IntroPage(imageName: "OnboardingScreen1",
                                     title: "Welcome!",
-                                    description: "The purpose of Harvest Tracker is to provide a tool to better understand the harvests coming from your garden. Use it to optimize your planting, or just satisfy your curiosity. Swipe left to continue the tutorial."))
+                                    description: "The purpose of Cosecha is to provide a tool to better understand the harvests coming from your garden. Use it to optimize your planting, or just satisfy your curiosity. \n \n Swipe left to continue the tutorial."))
         self.pages.append(IntroPage(imageName: "OnboardingScreen2",
-                                    title: "Add your harvests",
-                                    description: "The first step is to add some harvest data - choose the crop, weight, date, and any tags that may apply."))
+                                    title: "Add harvests",
+                                    description: "The first step is to add some harvests - choose the crop, weight, date, and any tags you'd like to use."))
         self.pages.append(IntroPage(imageName: "OnboardingScreen3",
-                                    title: "Add your own crops",
-                                    description: "Harvest Tracker comes with many common crops pre-loaded, but you can add and customize your list of crops however you'd like."))
+                                    title: "Add crops",
+                                    description: "Cosecha comes with many common crops and vegetables pre-loaded, but you can add and customize your list of crops however you'd like."))
         self.pages.append(IntroPage(imageName: "OnboardingScreen4",
-                                    title: "Add your own tags",
-                                    description: "You can add tags to every harvest as another useful way to organize and visualize patterns in your harvest data. You can customize your tags however you'd like."))
+                                    title: "Add tags",
+                                    description: "You can add tags to every harvest as another useful way to organize and visualize patterns in your data. You can customize the label and color of your tags"))
         self.pages.append(IntroPage(imageName: "OnboardingScreen5",
                                     title: "Visualize your harvest data",
-                                    description: "Once you have some harvests entered, you'll be able to create graphs of your harvest amounts over time, filtering based on date, crop type, and tag."))
+                                    description: "Once you have some harvests entered, you'll be able to create graphs of your harvest amounts over time, filtering based on date, crop, and tag."))
         
     }
     
@@ -79,7 +79,20 @@ struct OnboardingView: View {
                     
                     Spacer()
                 }
-                .padding()
+                .padding([.top, .horizontal])
+                
+                HStack {
+                    Spacer()
+                    Text("End tutorial")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                }
+                .padding(.bottom)
+
+                
+                
             }
         }
     }
@@ -115,24 +128,13 @@ struct IntroPageView: View {
             Spacer()
                         
             HStack {
+                Spacer()
                 Text(self.page.description)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                 Spacer()
             }
-                        
-            //            HStack {
-            //                Spacer()
-            //                Image("AppIcon_nobg")
-            //                    .resizable()
-            //                    .aspectRatio(contentMode: .fit)
-            //                    .frame(height: 50)
-            //
-            //                Spacer()
-            //            }
-            
-            
-            
+
             HStack {
                 Spacer()
                 

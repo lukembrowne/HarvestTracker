@@ -42,10 +42,19 @@ struct SettingsView: View {
                     
                 }
                 
+                // Edit harvests list
+                Section(header: Text("Harvests")
+                            .font(.headline)
+                ) {
+                    
+                    NavigationLink(destination: HarvestListView().environment(\.managedObjectContext, self.managedObjectContext)) {
+                        Text("Edit Harvests")
+                    }
+                }
+                                
                 // Edit crop list
                 Section(header: Text("Crops")
                             .font(.headline)
-//                            .foregroundColor(Color.white)
                 ) {
                     
                     NavigationLink(destination: CropListView(cropEditMode: true).environment(\.managedObjectContext, self.managedObjectContext)) {
@@ -56,7 +65,6 @@ struct SettingsView: View {
                 // Edit tag list
                 Section(header: Text("Tags")
                             .font(.headline)
-//                            .foregroundColor(Color.white)
                 ) {
                     
                     NavigationLink(destination: TagListView().environment(\.managedObjectContext, self.managedObjectContext)) {
@@ -64,6 +72,7 @@ struct SettingsView: View {
                     }
                 }
                 
+
                 // About section
                 Section(header: Text("About")
                             .font(.headline)

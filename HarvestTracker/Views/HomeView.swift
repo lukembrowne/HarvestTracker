@@ -39,7 +39,7 @@ struct HomeView: View {
                 VStack {
                     
                     HStack {
-                        Text("Recent Harvests")
+                        Text("Recent harvests")
                             .font(.title)
                             .foregroundColor(Color.white)
                             .padding(.leading)

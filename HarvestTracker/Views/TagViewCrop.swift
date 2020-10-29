@@ -30,9 +30,6 @@ struct TagViewCrop: View {
         if(self.displayedCrops.contains(self.crop)) {
 
             Text(self.crop.cropName ?? "...")
-            .onAppear {
-                print("empty view for \(self.crop.cropName)")
-            }
 
         } else {
 
@@ -75,7 +72,6 @@ struct TagViewCrop: View {
             .buttonStyle(BorderlessButtonStyle()) // Bug fix so that entire row doesn't highlight
             .onAppear {
                 // If button appears, add to displayed crop list
-                print("appending to displayed crops")
                 self.displayedCrops.append(self.crop)
             }
         }

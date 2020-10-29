@@ -86,7 +86,6 @@ struct HarvestListView: View {
         .onAppear() {
             
             if(self.crops.count == 0){
-                print("No crops found")
                 Crop.loadDefaultCrops(in: self.managedObjectContext)
             }
         } // End on Appear

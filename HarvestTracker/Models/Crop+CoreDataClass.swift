@@ -39,9 +39,6 @@ public class Crop: NSManagedObject {
             print("Unrecognized unit")
         }
         
-        print(newCrop)
-        
-        
         // Save
         do {
             try managedObjectContext.save()
@@ -103,7 +100,6 @@ public class Crop: NSManagedObject {
     // Load default crops if no crops are in database
     static func loadDefaultCrops(in managedObjectContext: NSManagedObjectContext) {
         
-        print("Loading default crops")
         
         for crop in cropsJSONDecoded {
             addCrop(cropName: crop.cropName,
@@ -111,21 +107,6 @@ public class Crop: NSManagedObject {
                     unit: crop.unit,
                     in: managedObjectContext)
         }
-        
-//        for crop in cropsJSONDecoded {
-//            let newCrop = Crop(context: managedObjectContext)
-//
-//            newCrop.cropName = crop.cropName
-//            newCrop.costPerUnit = crop.costPerUnit
-//            newCrop.unit = crop.unit
-//        }
-//
-//        // Save
-//        do {
-//            try managedObjectContext.save()
-//        } catch {
-//            print("Error saving managed object context: \(error)")
-//        }
         
     }
     

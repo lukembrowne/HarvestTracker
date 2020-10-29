@@ -90,7 +90,6 @@ struct AddCropView: View {
                                     
                                     // Add Cancel button
                                     Button(action: {
-                                        print("tapped cancel")
                                         self.presentation.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Cancel")

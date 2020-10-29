@@ -121,11 +121,9 @@ struct AddHarvestView: View {
                             }
                             
                         } else if self.chosenCrop == nil {
-                            print("Chosen crop is nil")
                             self.showingNoCropAlert.toggle()
                             
                         } else if Double(self.chosenAmount) == nil {
-                            print("Entered amount is nil")
                             self.showingInvalidAmountAlert.toggle()
                         }
                     },
@@ -259,45 +257,6 @@ struct AddHarvestView: View {
                     Alert(title: Text("Invalid amount 😬"), message: Text("Sometimes an extra decimal or two gets thrown in there. Or maybe it's empty!"), dismissButton: .default(Text("Got it!")))
                 }
                 
-                
-                // Add harvest button
-//                HStack {
-//                    Spacer()
-//                    Button(action: {
-//
-//                        if self.chosenCrop != nil {
-//
-//                            if(inEditMode){
-//                                self.updateHarvestAction()
-//                            } else {
-//                                self.addHarvestAction()
-//                            }
-//
-//                        } else {
-//                            print("Chosen crop is nil")
-//                            self.showingNoCropAlert.toggle()
-//                        }
-//                    },
-//                    label: {
-//
-//                        if(inEditMode){
-//                            Image(systemName: "checkmark.circle")
-//                            Text("Save edits")
-//                        } else {
-//                            Image(systemName: "plus")
-//                            Text("Add Harvest")
-//                        }
-//
-//                    })
-//                    .foregroundColor(Color.white)
-//                    .padding()
-//                    .background(Color.green)
-//                    .cornerRadius(5)
-//                    .alert(isPresented: $showingNoCropAlert) {
-//                        Alert(title: Text("No crop chosen"), message: Text("Please choose a crop"), dismissButton: .default(Text("Got it!")))
-//                    }
-//                    Spacer()
-//                }
             }
         }
         // Need to set states on appearance of view bc setting these states in initializer was not working - work around for potential bug

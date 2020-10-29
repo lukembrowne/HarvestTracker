@@ -29,7 +29,6 @@ struct SettingsView: View {
                 // Change default unit of weight
                 Section(header: Text("Change default unit")
                             .font(.headline)
-//                            .foregroundColor(Color.white)
                 ) {
                     
                     Picker("units", selection: $settings.unitString) {

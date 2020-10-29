@@ -175,9 +175,7 @@ struct AddTagView: View {
     } // End body
     
     private func addTagAction() {
-        
-        print("Add tag button pressed")
-        
+                
         // Add tag to database
         Tag.addTag(tagName: tagName,
                    tagColor: tagColor,
@@ -188,9 +186,7 @@ struct AddTagView: View {
     }
     
     private func updateTagAction() {
-        
-        print("Update tag button pressed")
-        
+                
         // Add tag to database
         Tag.updateTag(tag: tagBeingEdited!,
                       tagName: tagName,

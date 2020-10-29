@@ -12,13 +12,7 @@ import CoreData
 
 @objc(Harvest)
 public class Harvest: NSManagedObject {
-    
-    
-    
-    func printHarvest() {
-        print(self)
-    }
-    
+
     
     // Add Harvest
     static func addHarvest(crop: Crop?,
@@ -44,19 +38,15 @@ public class Harvest: NSManagedObject {
         // Standardize amount
         switch unit {
         case "oz":
-            //            print("oz selected")
             newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
                                                         unit: UnitMass.ounces).converted(to: UnitMass.grams).value
         case "lb":
-            //            print("lb selected")
             newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
                                                         unit: UnitMass.pounds).converted(to: UnitMass.grams).value
         case "g":
-            //            print("g selected")
             newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
                                                         unit: UnitMass.grams).converted(to: UnitMass.grams).value
         case "kg":
-            //            print("kg selected")
             newHarvest.amountStandardized = Measurement(value: newHarvest.amountEntered,
                                                         unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
         default:
@@ -102,19 +92,15 @@ public class Harvest: NSManagedObject {
         // Standardize amount
         switch unit {
         case "oz":
-            //            print("oz selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
                                                      unit: UnitMass.ounces).converted(to: UnitMass.grams).value
         case "lb":
-            //            print("lb selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
                                                      unit: UnitMass.pounds).converted(to: UnitMass.grams).value
         case "g":
-            //            print("g selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
                                                      unit: UnitMass.grams).converted(to: UnitMass.grams).value
         case "kg":
-            //            print("kg selected")
             harvest.amountStandardized = Measurement(value: harvest.amountEntered,
                                                      unit: UnitMass.kilograms).converted(to: UnitMass.grams).value
         default:

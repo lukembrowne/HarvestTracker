@@ -44,27 +44,22 @@ public struct BarChartRow : View {
         switch chosenUnit {
         
         case "oz":
-            //                print("Default unit set to oz")
             let unitMass = UnitMass.ounces
             return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "lb":
-            //                print("Default unit set to lb")
             let unitMass = UnitMass.pounds
             return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "g":
-            //                print("Default unit set to g")
             let unitMass = UnitMass.grams
             return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "kg":
-            //                print("Default unit set to kg")
             let unitMass = UnitMass.kilograms
             return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
             
         default:
-            //                print("No default unit chosen")
             let unitMass = UnitMass.ounces
             return Measurement(value: max, unit: UnitMass.grams).converted(to: unitMass).value
         }
@@ -79,27 +74,22 @@ public struct BarChartRow : View {
         switch chosenUnit {
         
         case "oz":
-            //                print("Default unit set to oz")
             let unitMass = UnitMass.ounces
             return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "lb":
-            //                print("Default unit set to lb")
             let unitMass = UnitMass.pounds
             return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "g":
-            //                print("Default unit set to g")
             let unitMass = UnitMass.grams
             return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "kg":
-            //                print("Default unit set to kg")
             let unitMass = UnitMass.kilograms
             return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
             
         default:
-            //                print("No default unit chosen")
             let unitMass = UnitMass.ounces
             return Measurement(value: total, unit: UnitMass.grams).converted(to: unitMass).value
         }
@@ -297,9 +287,7 @@ public struct BarChartRow : View {
         
         let intfloor = Int(floor(  (self.touchLocation*width) / (width/CGFloat(self.data.count))    ))
         let min2 = min(self.data.count-1, intfloor) // selects right most if needed
-        let index = max(0, min2) // selects left most if needed
-        print("current index is: \(index)")
-        
+        let index = max(0, min2) // selects left most if needed        
         
         return self.data[index]
     }

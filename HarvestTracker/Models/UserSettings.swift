@@ -50,23 +50,18 @@ class UserSettings: ObservableObject {
             switch unitString {
             
             case "oz":
-//                print("Default unit set to oz")
                 self.unitMass = UnitMass.ounces
             
             case "lb":
-//                print("Default unit set to lb")
                 self.unitMass = UnitMass.pounds
             
             case "g":
-//                print("Default unit set to g")
                 self.unitMass = UnitMass.grams
             
             case "kg":
-//                print("Default unit set to kg")
                 self.unitMass = UnitMass.kilograms
             
             default:
-//                print("No default unit chosen")
                 self.unitMass = UnitMass.ounces
             
             }
@@ -79,27 +74,22 @@ class UserSettings: ObservableObject {
         switch UserDefaults.standard.string(forKey: "DefaultUnit") {
         
         case "oz":
-            print("Default unit oz")
             self.unitMass = UnitMass.ounces
             self.unitString = "oz"
             
         case "lb":
-            print("Default unit lb")
             self.unitMass = UnitMass.pounds
             self.unitString = "lb"
             
         case "g":
-            print("Default unit g")
             self.unitMass = UnitMass.grams
             self.unitString = "g"
             
         case "kg":
-            print("Default unit kg")
             self.unitMass = UnitMass.kilograms
             self.unitString = "kg"
             
         default:
-            print("No default unit chosen")
             self.unitMass = UnitMass.ounces
             self.unitString = "oz"
             

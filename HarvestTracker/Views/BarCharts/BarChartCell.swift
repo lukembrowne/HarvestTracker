@@ -37,27 +37,22 @@ public struct BarChartCell : View {
         switch chosenUnit {
         
         case "oz":
-            //                print("Default unit set to oz")
             let unitMass = UnitMass.ounces
             return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "lb":
-            //                print("Default unit set to lb")
             let unitMass = UnitMass.pounds
             return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "g":
-            //                print("Default unit set to g")
             let unitMass = UnitMass.grams
             return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
             
         case "kg":
-            //                print("Default unit set to kg")
             let unitMass = UnitMass.kilograms
             return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
             
         default:
-            //                print("No default unit chosen")
             let unitMass = UnitMass.ounces
             return Measurement(value: rawValue, unit: UnitMass.grams).converted(to: unitMass).value
         }

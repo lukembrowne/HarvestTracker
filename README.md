@@ -10,7 +10,7 @@ Cosecha helps you:
 -   Visualize how your harvests change over time with graphs
 -   Optimize your garden, or just satisfy your curiosity
 
-![](screenshots/onboarding/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20-%202020-10-28%20at%2008.18.45.png){width="50%"}
+![](screenshots/onboarding/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20-%202020-10-28%20at%2008.18.45.png){width="303"}
 
 ![](screenshots/onboarding/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20-%202020-10-28%20at%2008.20.03.png){width="50%"}
 

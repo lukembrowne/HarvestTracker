@@ -1,6 +1,6 @@
 ## Description
 
-How many tomatos did you harvest last summer? I don't remember either, but Cosecha will keep track of that for you.
+How many tomatos did you harvest last summer? Cosecha is an iOS app written with Swift that will keep track of that for you.
 
 Cosecha helps you:
 
